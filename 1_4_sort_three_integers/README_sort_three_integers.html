@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 1_4_sort_three_integers</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+1_4_sort_three_integers</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>入力された3つの整数を小さい順に出力せよ．</p>
+<p> <strong>入力：</strong></p>
+<ul>
+<li>標準入力に3つの整数が与えられる．</li>
+<li>同じ整数が2度入力されることはない．</li>
+</ul>
+<p> <strong>出力：</strong></p>
+<ul>
+<li>小さい順に3つの整数を，1行に一つずつ出力する．最終行の行末は改行すること．</li>
+</ul>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o sort_three_integers sort_three_integers.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_three_integers</code></pre>
+<p>入力</p>
+<pre><code>2 1 3</code></pre>
+<p>出力</p>
+<pre><code>1
+2
+3</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_three_integers</code></pre>
+<p>入力</p>
+<pre><code>1 2 3</code></pre>
+<p>出力</p>
+<pre><code>1
+2
+3</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_three_integers</code></pre>
+<p>入力</p>
+<pre><code>0 5 4</code></pre>
+<p>出力</p>
+<pre><code>0
+4
+5</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_three_integers</code></pre>
+<p>入力</p>
+<pre><code>37 36 82</code></pre>
+<p>出力</p>
+<pre><code>36
+37
+82</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_three_integers</code></pre>
+<p>入力</p>
+<pre><code>127 31 83</code></pre>
+<p>出力</p>
+<pre><code>31
+83
+127</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_three_integers</code></pre>
+<p>入力</p>
+<pre><code>163 366 117</code></pre>
+<p>出力</p>
+<pre><code>117
+163
+366</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_three_integers</code></pre>
+<p>入力</p>
+<pre><code>572 472 145</code></pre>
+<p>出力</p>
+<pre><code>145
+472
+572</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_three_integers</code></pre>
+<p>入力</p>
+<pre><code>342 54 180</code></pre>
+<p>出力</p>
+<pre><code>54
+180
+342</code></pre>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_three_integers</code></pre>
+<p>入力</p>
+<pre><code>258 190 948</code></pre>
+<p>出力</p>
+<pre><code>190
+258
+948</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_three_integers</code></pre>
+<p>入力</p>
+<pre><code>4090 5246 441</code></pre>
+<p>出力</p>
+<pre><code>441
+4090
+5246</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: sort_three_integers.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p><code>int</code>型変数<code>a</code>, <code>b</code>,
+<code>c</code>が，<code>a &lt; b</code>かつ<code>b &lt; c</code>
+を満たすことを確かめるなら次のように書く．</p>
+<pre><code>if (a &lt; b &amp;&amp; b &lt; c)</code></pre></li>
+<li><p><code>a &lt; b</code>かつ<code>b &lt; c</code>
+を満たすならば次のように出力すればよい．</p>
+<pre><code>printf(&quot;%d\n%d\n%d\n&quot;, a, b, c);</code></pre>
+<p>あるいは次のように一つずつ出力する方法でもよい．</p>
+<pre><code>printf(&quot;%d\n&quot;, a);      
+printf(&quot;%d\n&quot;, b);      
+printf(&quot;%d\n&quot;, c);      </code></pre></li>
+<li><p><strong>あとで学ぶ「文字型と文字列」について：</strong></p>
+<p>上に挙げた<code>"%d\n%d\n%d\n"</code>や<code>"%d\n"</code>は文字列定数．C言語では，文字列と文字を区別する．</p>
+<p>文字列は0文字以上の文字からなる．文字列は<code>char</code>型の配列に格納する．一方，文字は1文字だけで<code>char</code>型変数に格納する．明快入門Cの14「定数3
+…」や20「文字列と配列」を読みましょう．</p>
+<p><em>文字列定数</em>
+はダブルクオート（<code>"</code>）で囲む．0文字の文字列定数は<code>""</code>．
+1文字の例<code>"a"</code>，3文字の例<code>"abc"</code>，改行文字を含む例<code>"a\nb\nc\n"</code>など．
+<code>printf</code>や<code>scanf</code>の引数でよく使う．</p>
+<p><em>文字定数</em>
+はシングルクオート（<code>'</code>）で囲む．<code>'a'</code>，<code>'1'</code>，<code>'\n'</code>など．
+<code>case</code>文や<code>if</code>文でよく使う．</p></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,49 @@
+
+# Thu Oct 2 14:12:35 JST 2025 CYGWIN_NT-10.0-26100 3.6.4-1.x86_64 2025-07-15 07:55 UTC x86_64 Cygwin
+ls -l hello_world.c
+/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+
+#include<stdio.h>
+int main(){
+	int i;
+	for(i = 0; i < 4; i++)
+		printf("Hello world!\n");
+}-rw-r--r-- 1 me なし 190 Oct  2 14:10 hello_world.c
+/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+
+#include<stdio.h>
+int main(){
+	int i;
+	for(i = 0; i < 4; i++)
+		printf("Hello world!\n");
+}
+テスト 1 成功（pass）
+すべてのテストに成功しました．(1)

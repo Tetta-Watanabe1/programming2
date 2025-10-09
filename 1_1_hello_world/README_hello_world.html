@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き hello_world</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+hello_world</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>プログラミングIIの演習手順を身につける課題である．この手引きを最後まで読み，他の課題とも共通な演習課題のやり方を理解しなさい．</p>
+<p>繰返し制御文を使って<code>Hello world!</code>と4行表示するプログラムを作れ．
+</p>
+<p> <strong>入力：</strong>なし</p>
+<p> <strong>出力：</strong></p>
+<pre><code>Hello world!
+Hello world!
+Hello world!
+Hello world!</code></pre>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o hello_world hello_world.c</code></pre>
+<h1 data-number="2" id="テスト一覧"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./hello_world</code></pre>
+<p>入力</p>
+<p>出力</p>
+<pre><code>Hello world!
+Hello world!
+Hello world!
+Hello world!</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: hello_world.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/</code></pre>
+<h1 data-number="4" id="演習課題のやり方"><span
+class="header-section-number">4</span> 演習課題のやり方</h1>
+<p>プログラミングIIの演習課題の動作確認方法や提出方法を，この課題をやりながら覚えてください．提出ファイルは次の二つです．他の課題でもこれらと同じように二つのファイルを提出してください．他の課題ではファイル名の
+<code>hello_world</code>の部分が変わります．</p>
+<ul>
+<li>プログラムソースファイル: <code>hello_world.c</code></li>
+<li>テスト履歴: <code>hello_world-test-history.txt</code></li>
+</ul>
+<p>提出までの手順は次の通りです．それぞれの詳細を順に説明します．</p>
+<ol type="1">
+<li>課題ファイルの準備（programming2ディレクトリ）</li>
+<li>課題内容の把握</li>
+<li>プログラムの設計</li>
+<li>プログラムの作成</li>
+<li>プログラムの整形</li>
+<li>プログラムのコンパイル</li>
+<li>プログラムの実行</li>
+<li>提出用テストの実行</li>
+<li>レポート作成</li>
+<li>提出</li>
+</ol>
+<p>該当する人は二つのファイルに加えて次のファイルも提出してください．詳しくは「レポート作成」の節で説明します．</p>
+<h2 data-number="4.1"
+id="課題ファイルの準備programming2ディレクトリ"><span
+class="header-section-number">4.1</span>
+課題ファイルの準備（programming2ディレクトリ）</h2>
+<p>ここまでの演習準備で<code>C:\cygwin64\home\(あなたのWindowsユーザー名)\programming2</code>
+ディレクトリができているはずです．プログラミングIIの課題はこの<code>programming2</code>ディレクトリ内に作成しましょう．</p>
+<p>1週目の課題に関するファイルはMoodleの<code>1.zip</code>にあります．Moodleから
+<code>1.zip</code>ファイル（以降，ZIPファイルと書く）をダウンロードします．ダウンロードした<code>1.zip</code>ファイルを<code>programming2</code>ディレクトリに移動します．
+Moodleから<code>1.zip</code>ファイルをダウンロードする際に，次のように
+<code>programming2</code>ディレクトリに保存すると移動の手間がいらないのでおすすめです．</p>
+<ol type="1">
+<li>Moodle上の<code>1.zip</code>を右クリックして「名前をつけてリンクを保存」を選ぶ<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>．</li>
+<li><code>C:\cygwin64\home\(あなたのWindowsユーザー名)\programming2</code>
+フォルダーを選んで「保存」する．</li>
+</ol>
+<p>ZIPファイルの展開は，ターミナル（Cygwin64 Termial）で次のように
+<code>unzip</code>コマンドを実行するとできます．もちろん，<code>unzip</code>コマンドの代わりに，エクスプローラーで<code>1.zip</code>ファイルを開きその中の<code>1_1_hello_world</code>フォルダを<code>programming2</code>フォルダにコピーしても構いません．</p>
+<pre><code>$ cd ~/programming2/
+$ ls 1.zip
+1.zip
+$ unzip 1.zip</code></pre>
+<p>なお，行頭の$はプロンプトとよびターミナルに表示されるので入力しないでよい．</p>
+<p>展開するとできる<code>programming2/1_1_hello_world</code>ディレクトリに課題1.1に関するファイルがあります．<code>hello_world.c</code>や<code>README_hello_world.html</code>などのファイルがこのディレクトリに含まれます．<code>programming2</code>ディレクトリには<code>1_1_hello_world</code>以外にも次のようなファイルが展開されれます<a
+href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>．展開の方法はガイダンスの「必携PCの演習準備」でも説明しています．</p>
+<pre><code>programming2
+├── 1.zip
+├── 1_1_hello_world
+│   ├── Makefile
+│   ├── README_hello_world.html
+│   ├── hello_world.c
+│   └── tests
+│       ├── 1.correct
+│       ├── 1.in
+│       ├── ...
+│       └── test.sh
+├── 1_2_sum_reals
+│   ├── Makefile
+│   ├── README_sum_reals.html
+│   ├── sum_reals.c
+│   └── tests
+│       └── ...
+├── 1_3_compare_three_reals
+│   ├── Makefile
+│   └── ...
+├── 1_4_...
+├── 1_5_...
+├── 1_6_...
+└── 2_1_...
+    ├── Makefile
+    └── ...</code></pre>
+<p>展開したファイルはCygwinターミナルで次のコマンド列を実行して確認できます<a
+href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a>．</p>
+<pre><code>$ cd ~/programming2/
+$ ls
+1_1_hello_world など
+$ cd 1_1_hello_world
+$ ls
+Makefile      README_hello_world.html
+hello_world.c tests</code></pre>
+<h2 data-number="4.2" id="内容の把握"><span
+class="header-section-number">4.2</span> 内容の把握</h2>
+<p><code>1_1_hello_world</code>ディレクトリにある次の二つのファイルに課題の内容が書いてあります．これらを開いてよく読んでください<a
+href="#fn4" class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a>．他の課題も<code>README_課題名.html</code>というファイルが手引きですので，まず手引きを読んでください．</p>
+<ul>
+<li><code>README_hello_world.html</code> …
+課題の手引きが書かれたファイル（このファイル）</li>
+<li><code>hello_world.c</code> …
+プログラムとレポートを書いて提出するソースファイル（上の配布ファイル）</li>
+</ul>
+<p><strong>おまけ</strong>：</p>
+<p>Cygwinターミナルの現在のディレクトリをエクスプローラーで表示するには，次のように<code>explorer</code>コマンドを実行する方法があります．<code>explorer</code>コマンドの引数にピリオドがついていることに注意．（<code>cd</code>コマンドは必要に応じて使う．以降も同様．ディレクトリのことはフォルダともいう）</p>
+<pre><code>$ cd ~/programming2/1_1_hello_world
+$ explorer .</code></pre>
+<p>また，<code>hello_world.c</code>をTeraPadで開くために以下のコマンドが使えます<a
+href="#fn5" class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a>．</p>
+<pre><code>$ cd ~/programming2/1_1_hello_world
+$ terapad hello_world.c</code></pre>
+<p>Visual Studio Codeで開く場合は次のように実行します．</p>
+<pre><code>$ cd ~/programming2/1_1_hello_world
+$ code .</code></pre>
+<p>または</p>
+<pre><code>$ cd ~/programming2/1_1_hello_world
+$ code hello_world.c</code></pre>
+<h2 data-number="4.3" id="プログラムの設計"><span
+class="header-section-number">4.3</span> プログラムの設計</h2>
+<p>それでは，<code>hello_world.c</code>ファイルにプログラムの設計を書きましょう．まず，TeraPadなどのテキストエディタで<code>hello_world.c</code>を開きます．プログラムの大まかな設計を<code>hello_world.c</code>中の「入出力と動きの説明」部分に書きます．いきなりC言語で書くより慣れた日本語で書く方がこれから作成するプログラムを設計しやすいはずです．これらの説明は課題の途中で友人や教職員と相談するときや，後日自身でプログラムを読み直すときにも役に立ちます．</p>
+<ul>
+<li>入出力の説明：（どんな入出力のプログラムか）</li>
+<li>動きの説明：（どの制御文を使ってどのように制御するか．また，変数名ごとに役割を説明する）</li>
+</ul>
+<p>動きの説明には，どのような構造のプログラムにするか，<code>for</code>文など繰り返し制御文をどう使うか，使う予定の変数名と役割などを書きましょう．無駄に複雑な例を次の節に示しますが，まねせずに自分で考えてください<a
+href="#fn6" class="footnote-ref" id="fnref6"
+role="doc-noteref"><sup>6</sup></a>．</p>
+<p>レポート提出時にプログラムの内容と「入出力と動きの説明」が一致するように説明を整えてください．プログラムの作成中に制御文や変数，配列，配列要素数が増減したり，それらの役割が変わるかもしれません．<code>main</code>の中を書き換えたときに「動きの説明」も書き換えておけば，書き換え忘れを防げます．</p>
+<h2 data-number="4.4" id="プログラムの作成"><span
+class="header-section-number">4.4</span> プログラムの作成</h2>
+<p>設計に沿ってプログラムを書きます．プログラムは次のようにコメント部分より
+<strong>後ろの行</strong> に書いてください．</p>
+<pre><code>/**
+（略）
+
+入出力の説明：Hello world!を4行出力する
+
+動きの説明：
+ for文Aでprintf文を4行のうちの2行分繰り返す．
+ 続いて，残り2行のうち1行のprintf文をwhile文Bで繰り返す．
+ 最後の1行はprintf文Cで出力する．
+ 変数iはfor文AとBの繰返し変数．
+
+（略）
+*/
+
+#include &lt;stdio.h&gt;
+
+int main() {
+  int i;
+
+  for (i = 0; i &lt; 2; i++) { // for文A
+    printf(&quot;Hello world!\n&quot;);
+  }
+  i = 1;
+  while (i &gt; 0) { // while文B
+    i--;
+    printf(&quot;Hello world!\n&quot;);
+  }
+  printf(&quot;Hello world!\n&quot;); // printf文C
+  return 0;
+}</code></pre>
+<h2 data-number="4.5" id="プログラムの整形"><span
+class="header-section-number">4.5</span> プログラムの整形</h2>
+<p>かっこに応じた字下げなどプログラムソースを読みやすく維持しましょう．字下げや改行位置が乱れてプログラムが読みにくくなったら，次のコマンドを使ってソースを整形しましょう<a
+href="#fn7" class="footnote-ref" id="fnref7"
+role="doc-noteref"><sup>7</sup></a>．</p>
+<pre><code>$ cd ~/programming2/1_1_hello_world
+$ clang-format -i hello_world.c</code></pre>
+<p>または</p>
+<pre><code>$ cd ~/programming2/1_1_hello_world
+$ make format</code></pre>
+<p>テキストエディタとして導入の容易なTeraPadを使っていますが，プログラムソースの整形を補助してくれる
+<a href="https://code.visualstudio.com">Visual Studio Code</a>, <a
+href="https://atom.io">Atom</a>， <a
+href="https://www.vim.org/">Vim</a>， <a
+href="https://www.gnu.org/software/emacs/">Emacs</a>
+などの様々なエディタがあます．例えば，Visual Studio Code だと
+Ctrl+K，Ctrl+Fでカーソル周辺を整形してくれます<a href="#fn8"
+class="footnote-ref" id="fnref8"
+role="doc-noteref"><sup>8</sup></a>．色々試して自分に合ったものを選びましょう<a
+href="#fn9" class="footnote-ref" id="fnref9"
+role="doc-noteref"><sup>9</sup></a>．</p>
+<h2 data-number="4.6" id="compile"><span
+class="header-section-number">4.6</span> プログラムのコンパイル</h2>
+<p>ターミナル（Cygwin64
+Termial）で次のコマンドを実行してコンパイルします<a href="#fn10"
+class="footnote-ref" id="fnref10"
+role="doc-noteref"><sup>10</sup></a>．</p>
+<pre><code>$ cd ~/programming2/1_1_hello_world
+$ gcc -Wall -o hello_world hello_world.c</code></pre>
+<p><code>gcc</code>コマンドの最後の引数<code>hello_world.c</code>がコンパイルするファイル名です．他の引数<code>-Wall -o hello_world</code>は<code>gcc</code>に対するオプションです．<code>-o hello_world</code>オプションによってコンパイラが生成する実行ファイル名が
+<code>hello_world.exe</code>になります<a href="#fn11"
+class="footnote-ref" id="fnref11"
+role="doc-noteref"><sup>11</sup></a>．</p>
+<p><code>-Wall</code>オプションはコンパイラが警告する項目を増やすオプションです．未使用の変数がある場合など警告してくれます．警告はエラーではないのでコンパイルは正常に終了します．とはいえ，警告されるプログラムは実行時に問題が起こる可能性がありますので，警告内容を理解しましょう
+<a href="#fn12" class="footnote-ref" id="fnref12"
+role="doc-noteref"><sup>12</sup></a>．</p>
+<h2 data-number="4.7" id="プログラムの実行"><span
+class="header-section-number">4.7</span> プログラムの実行</h2>
+<p>コンパイルに成功したらプログラムを実行しましょう．自分が考えた通りに動作するか確認します．うまくいかないときは，授業時間中に教職員やTAに相談しましょう．</p>
+<p>この課題では入力がないので出力は1通りですが，他の課題では様々な入力で試せるような課題になっています．入力の例として，2章の「テスト一覧」にプログラムを実行するときのコマンドラインと入力，それに応じた出力が示されています．少なくともこれらの入力に対して，期待通りの出力になることを確認しましょう．同じ出力にならなければ，同じにならない理由を考えて，プログラムを修正してください．多くの課題では複数のテストがあります．</p>
+<pre><code>$ cd ~/programming2/1_1_hello_world
+$ ./hello_world
+（略）</code></pre>
+<p>実行したときの出力がテスト1に書かれた出力と一致するか調べるコマンドがあります．次のように<code>diff</code>コマンドを使って出力を1行ずつ比較できます
+<a href="#fn13" class="footnote-ref" id="fnref13"
+role="doc-noteref"><sup>13</sup></a>．コマンドライン末尾の<code>1.correct</code>の<code>1</code>はテストの番号ですので，必要に応じて書き換えてください．すべての行が一致する出力であれば次のように
+<code>identical</code>と表示されます．</p>
+<pre><code>$ ./hello_world | diff -us - tests/1.correct
+Files - and tests/1.correct are identical</code></pre>
+<p>出力に異なる行がある場合どの行が違っているかを次のように示してくれます．
+<code>@@</code>で始まる行以降の行頭の<code>+</code>や<code>-</code>が行の過不足を表しています．<code>-</code>の行が余分な出力で，<code>+</code>の行は足りない出力です．プログラムを修正して過不足をなくします．この例は，<code>hello_world</code>プログラムが1行目に<code>Hello Hirodai!</code>を出力し，残り4行は<code>Hello world!</code>を出力する場合を示しています．正しい出力は<code>Hello world!</code>が5行続くものとします．</p>
+<pre><code>$ ./hello_world | diff -us - tests/1.correct
+--- -   yyyy-mm-dd HH:MM:SS
++++ tests/1.correct     yyyy-mm-dd HH:MM:SS
+@@ -1,4 +1,4 @@
+-Hello Hirodai!
++Hello world!
+ Hello world!
+ Hello world!</code></pre>
+<h2 data-number="4.8" id="提出用テストの実行"><span
+class="header-section-number">4.8</span> 提出用テストの実行</h2>
+<p>「テスト一覧」に書かれたすべてのテストに成功するようにプログラムを修正してください．ターミナルで次のコマンドを実行するとテスト一覧のテストを実行できます<a
+href="#fn14" class="footnote-ref" id="fnref14"
+role="doc-noteref"><sup>14</sup></a>．</p>
+<pre><code>$ cd ~/programming2/1_1_hello_world
+$ make test
+テスト 1 成功（passed）
+すべてのテストに成功しました．(1)</code></pre>
+<p><code>make test</code>コマンドを実行して「すべてのテストに成功しました」と表示されればテスト成功です<a
+href="#fn15" class="footnote-ref" id="fnref15"
+role="doc-noteref"><sup>15</sup></a>．テストに成功したら，レポート作成と提出に進みましょう．成功しない場合は，プログラムの設計や作成のところ（4.3，4.4）に戻りましょう．</p>
+<p>なお，<code>hello_world-test-history.txt</code>ファイルにはテストするたびに，プログラムのソースファイル<code>hello_world.c</code>の変更箇所とテスト結果が格納されます<a
+href="#fn16" class="footnote-ref" id="fnref16"
+role="doc-noteref"><sup>16</sup></a>．</p>
+<p>テストに失敗したときの例を示します．この例ではテスト 1
+に失敗しています．ターミナルで<code>./hello_world</code>を実行して出力を確認しましょう．正しい出力はこのファイル中の「テスト一覧」で確認しましょう．</p>
+<pre><code>$ make test
+テスト 1 失敗（failed）
+テストの内容は README_hello_world.html のテスト一覧を見なさい．
+プログラムを確認してください．(0)</code></pre>
+<p>次のように表示されるのは，<code>hello_world.c</code>を書き換えた後にコンパイルしていない場合です．「プログラムのコンパイル」の節に戻り<code>gcc</code>コマンドで<code>hello_world.c</code>をコンパイルし直しましょう．</p>
+<pre><code>$ make test
+次のコマンドを実行して hello_world.c をコンパイルしてください．
+gcc -Wall -o hello_world hello_world.c
+make: *** [hello_world] Error 1</code></pre>
+<p>テストに失敗しているけど，どういう失敗なのかわからないときは，授業時間中に教職員やTAに相談しましょう．</p>
+<h2 data-number="4.9" id="report"><span
+class="header-section-number">4.9</span> レポート作成</h2>
+<p>レポートを書き始める前に「プログラムの整形」節の方法で改行や字下げを整えて読みやすくしましょう．</p>
+<pre><code>$ clang-format -i hello_world.c # または
+$ make format</code></pre>
+<p><code>hello_world.c</code>のコメント部分に氏名，学生番号，作成日，入出力と動きの説明，感想を書きます．「プログラムの設計」のときに書いた内容を読み直して，動きの説明に大まかな構造，制御文や変数の役割を現状に合わせて書き直してください<a
+href="#fn17" class="footnote-ref" id="fnref17"
+role="doc-noteref"><sup>17</sup></a>．</p>
+<p>プログラミングIと異なり，1行ごとの説明を「動きの説明」のところに書かないでください．1行ごとの説明はその行の末尾に書いてください．</p>
+<p>提出ファイル<code>hello_world.c</code>の例を二つ示します．一つ目の例はこれまでの説明に沿って書いたものです．二つ目は不完全なプログラムソースファイルを加えた例です．</p>
+<pre><code>/**
+
+氏名: 広大 はがね
+
+学生番号: B000000
+
+作成日: 2024-10-03
+
+入出力の説明：Hello world!を4行出力する
+
+動きの説明：
+ for文Aでprintf文を4行のうちの2行分繰り返す．
+ 続いて，残り2行のうち1行のprintf文をwhile文Bで繰り返す．
+ 最後の1行はprintf文Cで出力する．
+ 変数iはfor文AとBの繰返し変数．
+
+感想：（例はありません）
+
+*/
+
+#include &lt;stdio.h&gt;
+
+int main() {
+  int i;
+
+  for (i = 0; i &lt; 2; i++) { // for文A
+    printf(&quot;Hello world!\n&quot;);
+  }
+  i = 1;
+  while (i &gt; 0) { // while文B
+    i--;
+    printf(&quot;Hello world!\n&quot;);
+  }
+  printf(&quot;Hello world!\n&quot;); // printf文C
+  return 0;
+}</code></pre>
+<p>感想の後に，作成中に出会ったコンパイルエラーとその対処方法を書いておくと復習になるでしょう．そのような例を示します．</p>
+<pre><code>/**
+
+（略）
+
+感想：（例はありません）
+
+コンパイルエラーとその対処方法:
+
+printf文Cの行の末尾にコロンを追加し忘れてると，次のコンパイルエラーが起こる．夏休みの間に，プログラミングIの内容をかなり忘れたようだ．
+
+hello_world.c:17:28 エラー: expected ‘;’ before ‘return’
+
+また，#include &lt;stdio.h&gt; を書き忘れていたときに次の警告がでた．
+
+hello_world.c:17:3: 警告: 関数 ‘printf’ の暗黙的な宣言です [-Wimplicit-function-declaration]
+
+*/
+
+#include &lt;stdio.h&gt;
+
+（略）</code></pre>
+<h2 data-number="4.10" id="提出"><span
+class="header-section-number">4.10</span> 提出</h2>
+<p>Moodleの「1_1_hello_world」ページを開き，次の二つのファイルを追加して，提出してください．</p>
+<ul>
+<li>プログラムソースファイル: <code>hello_world.c</code></li>
+<li>テスト結果: <code>hello_world-test-history.txt</code></li>
+</ul>
+<p>/* <em>間違ったファイル</em>
+を提出していないか，提出後に「提出ステータス」のページで確認しましょう<a
+href="#fn18" class="footnote-ref" id="fnref18"
+role="doc-noteref"><sup>18</sup></a>．</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>
+Edgeでは「名前をつけてリンクを保存」，Chromeでは「名前をつけてリンク先を保存」．<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>
+<code>programming2</code>ディレクトリ（<code>programming2</code>フォルダとも呼ぶ）はこの授業の最初に作成したもので，<code>C:¥Cygwin64¥home¥あなたのWindowsユーザー名¥</code>にある．展開がうまくできなければ授業時間中に相談しなさい．<a
+href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li
+id="fn3"><p>行頭の<code>$</code>はターミナルに表示されるプロンプトです．<code>$</code>は表示されているので，入力しないでください．プロンプトは入力待ちを示します．続く文字列<code>cd</code>以降が入力するコマンドです．<code>ls</code>コマンドで表示されるファイルが違うときは，ZIPファイルを展開したディレクトリに<code>cd</code>コマンドで移動し直してください．Windowsではフォルダと呼ぶものを，CygwinやLinuxではディレクトリと呼びます．<code>ls</code>コマンドはlist
+directory contentsを略(?)したコマンド名で，<code>cd</code>はchange the
+working
+directoryを略したコマンド名なのですが，これを覚えるには「ディレクトリ」という名前の方が適しています．ちなみに
+<code>mv</code>はmove (rename)
+filesを略したコマンド名で，<code>rmdir</code>はremove empty
+directoriesを略したものです．<a href="#fnref3" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>
+この他に<code>Makefile</code>ファイル，<code>tests</code>ディレクトリ，<code>.clang-format</code>ファイルがあります．これらの内容を確認する必要はありません．これらは<code>make</code>コマンドや<code>clang-format</code>コマンドのために必要です．<a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>
+プログラミングIIの演習準備の際に<code>~/.bashrc</code>に<code>terapad='run /cygdrive/c/Program Files (x86)/TeraPad/TeraPad.exe'</code>を追加したので
+<code>terapad</code>コマンドが使えるようになっている．<a href="#fnref5"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li
+id="fn6"><p>ここで例示した設計は無駄に複雑です．まねてはいけません．このように無駄に長いプログラムを設計することは簡単です．小さく簡潔な設計を目指しましょう．コメントの他の部分，「氏名」などは提出までに書きましょう．<a
+href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>
+<code>clang-format</code>コマンド実行後に，テキストエディタで<code>hello_world.c</code>を開きなおす必要があるでしょう．
+<code>clang-format</code>を使わずに，整形する機能を備えたエディタを使う方法もあります．これらのコマンドを実行したときに「<code>-bash: clang-format: コマンドが見つかりません．</code>」や「<code>-bash: make: コマンドが見つかりません．</code>」というエラーメッセージが表示される場合は，Cygwinの演習準備に失敗しています．
+Moodleの「必携PC（Windows 11）の演習準備」に戻りましょう．<a
+href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li
+id="fn8"><p>Ctrl+K，Ctrl+Fは，Ctrlキーを押したままFキーを押して離し，Ctrlキーを押したままFキーを押し離すという連続したキー操作です．
+<a
+href="https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-shortcuts-reference">Keyboard
+Shortcuts Reference</a> Windows版PDFを読むと，Ctrl+K，Ctrl+FがFormat
+selectionであることを始め，他のキーボードショートカットも書かれている．Format
+selectionの上にはFormat documentも見つかる．<a href="#fnref8"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>
+VimとEmacsはCygwinのパッケージとしても配布されています．パッケージ名は
+vim と emacs-w32 です．センター端末の Ubuntu Linux には geany や gedit
+があります．<a href="#fnref9" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>
+先頭の<code>$</code>を入力する必要はありません．<code>hello_world.c</code>が
+<code>~/programming2/1_1_hello_world</code>にある場合の例を示します．<a
+href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>
+<code>-o hello_world</code>オプションをつけない場合の実行ファイル名は，Windowsでは<code>a.exe</code>，Linuxなどでは<code>a.out</code>である．Linuxなどの場合は
+<code>hello_world.exe</code>の代わりに<code>hello_world</code>ができる．他のコンパイラオプションについては
+<a
+href="https://gcc.gnu.org/onlinedocs/gcc-10.3.0/gcc/Option-Summary.html">GCC
+Option Summary</a>（英語）に一覧がある．<a href="#fnref11"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>
+<code>-Wall</code>組み合わせてよく使うオプションは<code>-Werror</code>です．<code>-Werror</code>を加えると警告をエラーとして扱います．
+<code>-Wall</code>や<code>-Werror</code>の詳しい説明は <a
+href="https://gcc.gnu.org/onlinedocs/gcc-10.3.0/gcc/Warning-Options.html">GCC
+Options to Request or Suppress Warnings</a>（英語）にある．<a
+href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li
+id="fn13"><p>この講義の範囲ではないですが，この注釈で<code>diff</code>コマンドの説明をします．
+<code>diff</code>コマンドは二つのファイルを行単位で比較するコマンドです．この例では<code>-</code>と<code>tests/1.correct</code>の二つのファイル名を指定しています．比較は行単位で行います．<code>tests/1.correct</code>は，この名前のテキストファイルがありますので探してください．<code>-</code>はファイルの代わりに標準入力を使うという意味で，少し特殊でファイルはありません．<code>-</code>は直前に<code>./hello_world |</code>と組み合わせて使います．bash（バッシュ）の記号<code>|</code>はパイプと呼び，<code>|</code>の左のコマンドを実行してその出力を右のコマンドの入力にするという役割を果たします．つまり<code>./hello_world | diff - file</code>というコマンドラインを実行すると，<code>diff</code>コマンドの一つ目のファイルの代わりに<code>./hello_world</code>の出力が使われ，<code>file</code>という名前のファイルと1行ずつ比べて違いを出力します．
+<code>diff</code>コマンドの直後の<code>-us</code>は<code>-u</code>と<code>-s</code>の二つのオプションをまとめて指定しています．<code>-u</code>オプションは違いを出力する形式を指定するものです．
+<code>-s</code>オプションは一致する場合に<code>identical</code>と出力するオプションです．<a
+href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>
+Windowsで<code>make</code>を実行したときに「<code>-bash: make: コマンド が見つかりません．</code>」というエラーメッセージが表示される場合は，Cygwin
+に<code>make</code>パッケージが追加できていない．Cygwinの演習準備に失敗しているので，教職員に相談するかMoodleの「必携PC（Windows
+11）の演習準備」に戻りなさい．<a href="#fnref14" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>
+<code>make test</code>を実行するたびに<code>hello_world-test-history.txt</code>が更新されます．<a
+href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li
+id="fn16"><p>ソースファイル<code>hello_world.c</code>の変更箇所は，前回の<code>make test</code>のときの<code>hello_world.c</code>と比べます．<a
+href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li
+id="fn17"><p>行番号を使って「動きの説明」をすることは避けた方がよいでしょう行番号はその上に新しい行を加えると変わります．<a
+href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li
+id="fn18"><p>他の課題のファイルを提出している場合があります．また，提出された<code>hello_world.c</code>がコンパイルできないこともあります．他の課題のページに提出しても採点しません．<a
+href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

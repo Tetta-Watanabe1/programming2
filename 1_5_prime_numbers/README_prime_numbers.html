@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 1_5_prime_numbers</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+1_5_prime_numbers</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>与えられた範囲内の素数をすべて出力せよ．</p>
+<p> <strong>入力：</strong></p>
+<ul>
+<li>標準入力に2つの整数<code>min</code>，<code>max</code>が与えられる．</li>
+<li><code>min &lt; max</code>，<code>min &gt; 1</code>および<code>max &lt;= 10000</code>と仮定してよい．</li>
+</ul>
+<p> <strong>出力：</strong></p>
+<ul>
+<li><code>min</code>以上，<code>max</code>未満の素数をすべて出力する．1行に1つずつ出力すること．</li>
+</ul>
+<p>最終行の行末は改行すること．今後の課題も同様に行末を改行しなさい．</p>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o prime_numbers prime_numbers.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./prime_numbers</code></pre>
+<p>入力</p>
+<pre><code>2 7</code></pre>
+<p>出力</p>
+<pre><code>2
+3
+5</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./prime_numbers</code></pre>
+<p>入力</p>
+<pre><code>10 100</code></pre>
+<p>出力</p>
+<pre><code>11
+13
+17
+19
+23
+29
+31
+37
+41
+43
+47
+53
+12行目以降省略（21行）</code></pre>
+<p>出力の全体は <code>cat tests/2.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./prime_numbers</code></pre>
+<p>入力</p>
+<pre><code>9900 10000</code></pre>
+<p>出力</p>
+<pre><code>9901
+9907
+9923
+9929
+9931
+9941
+9949
+9967
+9973</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./prime_numbers</code></pre>
+<p>入力</p>
+<pre><code>100 1000</code></pre>
+<p>出力</p>
+<pre><code>101
+103
+107
+109
+113
+127
+131
+137
+139
+149
+151
+157
+12行目以降省略（143行）</code></pre>
+<p>出力の全体は <code>cat tests/4.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./prime_numbers</code></pre>
+<p>入力</p>
+<pre><code>1000 2000</code></pre>
+<p>出力</p>
+<pre><code>1009
+1013
+1019
+1021
+1031
+1033
+1039
+1049
+1051
+1061
+1063
+1069
+12行目以降省略（135行）</code></pre>
+<p>出力の全体は <code>cat tests/5.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./prime_numbers</code></pre>
+<p>入力</p>
+<pre><code>2000 3000</code></pre>
+<p>出力</p>
+<pre><code>2003
+2011
+2017
+2027
+2029
+2039
+2053
+2063
+2069
+2081
+2083
+2087
+12行目以降省略（127行）</code></pre>
+<p>出力の全体は <code>cat tests/6.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./prime_numbers</code></pre>
+<p>入力</p>
+<pre><code>3000 4000</code></pre>
+<p>出力</p>
+<pre><code>3001
+3011
+3019
+3023
+3037
+3041
+3049
+3061
+3067
+3079
+3083
+3089
+12行目以降省略（120行）</code></pre>
+<p>出力の全体は <code>cat tests/7.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./prime_numbers</code></pre>
+<p>入力</p>
+<pre><code>4000 5000</code></pre>
+<p>出力</p>
+<pre><code>4001
+4003
+4007
+4013
+4019
+4021
+4027
+4049
+4051
+4057
+4073
+4079
+12行目以降省略（119行）</code></pre>
+<p>出力の全体は <code>cat tests/8.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./prime_numbers</code></pre>
+<p>入力</p>
+<pre><code>5000 6000</code></pre>
+<p>出力</p>
+<pre><code>5003
+5009
+5011
+5021
+5023
+5039
+5051
+5059
+5077
+5081
+5087
+5099
+12行目以降省略（114行）</code></pre>
+<p>出力の全体は <code>cat tests/9.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./prime_numbers</code></pre>
+<p>入力</p>
+<pre><code>6000 7000</code></pre>
+<p>出力</p>
+<pre><code>6007
+6011
+6029
+6037
+6043
+6047
+6053
+6067
+6073
+6079
+6089
+6091
+12行目以降省略（117行）</code></pre>
+<p>出力の全体は <code>cat tests/10.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト11</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./prime_numbers</code></pre>
+<p>入力</p>
+<pre><code>7000 8000</code></pre>
+<p>出力</p>
+<pre><code>7001
+7013
+7019
+7027
+7039
+7043
+7057
+7069
+7079
+7103
+7109
+7121
+12行目以降省略（107行）</code></pre>
+<p>出力の全体は <code>cat tests/11.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト12</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./prime_numbers</code></pre>
+<p>入力</p>
+<pre><code>9000 10000</code></pre>
+<p>出力</p>
+<pre><code>9001
+9007
+9011
+9013
+9029
+9041
+9043
+9049
+9059
+9067
+9091
+9103
+12行目以降省略（112行）</code></pre>
+<p>出力の全体は <code>cat tests/12.correct</code>
+コマンドを実行すると表示される．</p>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: prime_numbers.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>ある整数<code>i</code>が素数ならば，2以上<code>i</code>未満のどの整数<code>j</code>で割っても，<code>i</code>は割り切れない<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>．別の言い方をすると，約数が1
+と<code>i</code>の二つしかない数が素数である．</p>
+<ul>
+<li><p><code>i</code>が<code>j</code>で割り切れるとは，<code>i</code>を<code>j</code>で割ったときの余り<code>i % j</code>が0であること．</p></li>
+<li><p>2以上<code>i</code>未満のすべての整数<code>j</code>で<code>i</code>を割ってみるには，次のように
+<code>for</code>文で書けるだろう．<code>i = 10</code>の例を示す．</p>
+<pre><code>int i, j;
+
+i = 10;
+for (j = 2; j &lt; i; j++) { // jは2からi-1までの整数
+  i % j;
+}</code></pre></li>
+<li><p><code>i</code>がある整数<code>j</code>で割り切れたときに<code>j</code>を変数<code>f</code>で覚えておくようにするなら，次のように書ける．for文を終えた時点で<code>f</code>が0ならば，試した
+<code>j</code>はどれも<code>i</code>を割り切らない．<code>f</code>が0より大きければ，<code>f</code>が<code>i</code>を割り切る．どれか一つが<code>f</code>に代入されている．</p>
+<pre><code>int i, j, f;
+
+i = 10;
+f = 0;
+for (j = 2; j &lt; i; j++) {
+  if (i % j == 0)
+    f = j;
+}
+if (j &gt; 0)
+  printf(&quot;%d は %d で割り切れる\n&quot;, i, f);</code></pre></li>
+<li><p><code>i</code>が<code>j</code>で割り切れたときに<code>for</code>ループの繰り返しを終了するには
+<code>break</code>文を使う方法がある．<code>printf</code>文の行のタイミングで<code>j</code>の値を確認すると，<code>i</code>が<code>j</code>で割り切れて<code>break</code>文で<code>for</code>ループを終了したか，
+<code>j &lt; i</code>の条件で<code>for</code>ループを終了したか判断できる．</p>
+<pre><code>for (j = 2; j &lt; i; j++) {
+  if (i % j == 0)
+    break;
+}
+printf(&quot;%d\n&quot;, j);</code></pre>
+<p>次のように<code>for</code>文の条件に書いても同じである．</p>
+<pre><code>for (j = 2; (j &lt; i) &amp;&amp; (i % j != 0); j++)
+  ;
+printf(&quot;%d\n&quot;, j);</code></pre>
+<p>あるいは，次のように<code>while</code>文でも書ける．</p>
+<pre><code>j = 2;
+while ((j &lt; i) &amp;&amp; (i % j != 0))
+  j++;
+printf(&quot;%d\n&quot;, j);</code></pre></li>
+</ul></li>
+<li><p>ある整数以下のすべての素数をまとめて求める方法として，エラトステネスのふるいを紹介する（この方法で課題のプログラムを作る必要はない．数学的帰納法に似た考え方をする）<a
+href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>．</p>
+<ul>
+<li><p>求める素数は10000未満なので，10000要素からなる配列<code>a</code>を用意する．ふるいが終わった時点で，整数<code>i</code>が素数のときに<code>a[i]</code>が1，合成数のときに<code>a[i]</code>が0になるようにふるう．</p></li>
+<li><p>最初は2以上10000未満（あるいは<code>max</code>未満）の整数がすべて素数だと仮定し，<code>i &gt;= 2</code>のすべての<code>a[i]</code>に1を代入する．</p></li>
+<li><p>以下の2重ループがふるいである．すべての合成数<code>i</code>を見つけ，<code>a[i]</code>に0を代入する．</p></li>
+<li><p>外側の<code>for</code>ループで，2から順に素数<code>p</code>を選ぶ．<code>a[p] == 1</code>を満たす整数<code>p</code>が素数．</p></li>
+<li><p>内側の<code>for</code>ループで，素数<code>p</code>を整数倍（2倍以上）した整数は合成数なので，すべての<code>a[p*i]</code>に0を代入する．ただし，<code>i</code>は2以上の整数．内側の<code>for</code>ループは，<code>i</code>を2から順に1ずつ増やしていき，<code>p*i</code>が10000以上になったら繰り返しを終了する．（少し考えると<code>i</code>は<code>p</code>以上の整数であればよいことがわかる）</p></li>
+<li><p>2以上10000未満の整数<code>i</code>について，配列の要素<code>a[i]</code>が1ならば素数である．</p></li>
+<li><p>エラトステネスのふるいはまとめて素数がもとまる．一つずつ素数か調べる方法と比べてどちらがはやく計算できるか考えてみるとよい（「アルゴリズムとデータ構造」で学ぶ「計算量」が理解しやすくなる）．</p></li>
+</ul></li>
+</ul>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li
+id="fn1"><p>逆も成り立つ．2以上<code>i</code>未満のある整数<code>j</code>が存在し，<code>j</code>で
+<code>i</code>が割り切れれば，<code>i</code>は素数ではない．<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>
+ふるいの漢字は篩．大きい石ころを残して小さい砂を落とす道具．<a
+href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

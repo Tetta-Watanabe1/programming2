@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 1_3_compare_three_reals</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+1_3_compare_three_reals</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>標準入力の3つの実数が大きい順に並んでいるなら<code>Yes</code>を，大きい順でなければ<code>No</code>を出力せよ．</p>
+<p> <strong>入力：</strong></p>
+<ul>
+<li><p>標準入力から3つの実数を<code>float</code>型変数に読み込む．</p></li>
+<li><p>読み込んだ実数を先頭から順に<span class="math inline">\(a, b,
+c\)</span> とする．<span class="math inline">\(a, b, c\)</span>
+は異なる値と仮定してよい．</p></li>
+</ul>
+<p> <strong>出力：</strong> <span class="math inline">\(a &gt; b &gt;
+c\)</span>が成立すれば<code>Yes</code>を，成立しなければ<code>No</code>を出力する．
+<span class="math inline">\(a &gt; b &gt; c\)</span>は，<span
+class="math inline">\(a &gt; b\)</span>かつ<span class="math inline">\(b
+&gt; c\)</span>であることに注意せよ．また，行末は改行すること．</p>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o compare_three_reals compare_three_reals.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compare_three_reals</code></pre>
+<p>入力</p>
+<pre><code>3.0 2.0 1.0</code></pre>
+<p>出力</p>
+<pre><code>Yes</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compare_three_reals</code></pre>
+<p>入力</p>
+<pre><code>1.0 3.0 2.0</code></pre>
+<p>出力</p>
+<pre><code>No</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compare_three_reals</code></pre>
+<p>入力</p>
+<pre><code>3.0 1.0 2.0</code></pre>
+<p>出力</p>
+<pre><code>No</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compare_three_reals</code></pre>
+<p>入力</p>
+<pre><code>2.0 3.0 1.0</code></pre>
+<p>出力</p>
+<pre><code>No</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compare_three_reals</code></pre>
+<p>入力</p>
+<pre><code>1.0 2.0 3.0</code></pre>
+<p>出力</p>
+<pre><code>No</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compare_three_reals</code></pre>
+<p>入力</p>
+<pre><code>2.0 1.0 3.0</code></pre>
+<p>出力</p>
+<pre><code>No</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compare_three_reals</code></pre>
+<p>入力</p>
+<pre><code>10.0 1.0 0.1</code></pre>
+<p>出力</p>
+<pre><code>Yes</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compare_three_reals</code></pre>
+<p>入力</p>
+<pre><code>0.1 10.0 1.0</code></pre>
+<p>出力</p>
+<pre><code>No</code></pre>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compare_three_reals</code></pre>
+<p>入力</p>
+<pre><code>10000.0 1.0 0.0001</code></pre>
+<p>出力</p>
+<pre><code>Yes</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compare_three_reals</code></pre>
+<p>入力</p>
+<pre><code>0.0001 10000.0 1.0</code></pre>
+<p>出力</p>
+<pre><code>No</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: compare_three_reals.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>標準入力から<code>float</code>型の変数に実数を読み込むときは書式に<code>"%f"</code>を指定する．</p></li>
+<li><p>3つの変数<code>a</code>と<code>b</code>と<code>c</code>が大きい順に並んでいることを，次のように一つの式で表すことはできない．演算子の優先順位の結合規則を理解すると納得できる．</p>
+<pre><code>if (a &gt; b &gt; c)</code></pre>
+<p>そのため，<code>a &gt; b</code>かつ<code>b &gt; c</code>のように分解して，「かつ」の部分を論理積（<code>&amp;&amp;</code>）で表して次のように書く．</p>
+<pre><code>if ((a &gt; b) &amp;&amp; (b &gt; c))</code></pre>
+<p>演算子の優先順位は<code>&gt;</code>の方が<code>&amp;&amp;</code>より高いので，次のようにかっこを削除できる．</p>
+<pre><code>if (a &gt; b &amp;&amp; b &gt; c)</code></pre></li>
+<li><p>論理積演算子（<code>&amp;&amp;</code>）は二つの<code>if</code>文に分解して同じ場合分けにできる．</p>
+<pre><code>if (a &gt; b &amp;&amp; b &gt; c)
+  // a &gt; b かつ b &gt; c のときに実行したい文
+else
+  // (a &gt; b かつ b &gt; c)ではないときに実行したい文
+  // 言い換えると
+  // a &gt; b ではないとき，あるいは b &gt; cではないときに実行したい文
+  // a &lt;= b または b &lt;= c のときに実行したい文</code></pre>
+<p>上の一つの<code>if</code>文を二つの<code>if</code>文に分解して次のように書ける．ただし，「a
+&gt; b &gt; c
+ではないときに実行したい文」を2箇所に同じように書くことになるので，論理積演算子（<code>&amp;&amp;</code>）を使ったほうがすっきり書ける．</p>
+<pre><code>if (a &gt; b) {
+  if (b &gt; c)
+    // a &gt; b &gt; c のときに実行したい文
+  else 
+    // a &gt; b &gt; c ではないときに実行したい文
+} else {
+  // a &gt; b &gt; c ではないときに実行したい文</code></pre></li>
+<li><p><code>if (a &gt; b &gt; c)</code>の条件式は文法的には正しいのでコンパイルエラーにはならなず，正常にコンパイルが終了する．ところが<code>if (a &gt; b &amp;&amp; b &gt; c)</code>とは違う動作をする．なぜなら，<code>&gt;</code>演算子が左結合であることから，
+<code>(a &gt; b) &gt; c</code>と解釈されるからである．ここで，式<code>a &gt; b</code>の値が0または1
+であることに注意すると，<code>(a &gt; b) &gt; c</code>は次の4つに場合分けできる．</p>
+<ol type="i">
+<li><code>a</code>が<code>b</code>より大きく，<code>c</code>が1より小さい．</li>
+<li><code>a</code>が<code>b</code>より大きく，<code>c</code>が1以上．</li>
+<li><code>a</code>が<code>b</code>以下で，<code>c</code>が0より小さい．</li>
+<li><code>a</code>が<code>b</code>以下で，<code>c</code>が0以上．</li>
+</ol>
+<p>式<code>a &gt; b &gt; c</code>の真偽を場合ごとに表に示す．表には本来調べたかった<code>a, b, c</code>が大きい順に並んでいる例や並んでいない例を場合ごとに示す．</p>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 12%" />
+<col style="width: 36%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: center;">場合</th>
+<th
+style="text-align: center;">条件式<code>a &gt; b &gt; c</code>の真偽</th>
+<th><code>a, b, c</code>が大きい順に並んでいる例</th>
+<th>大きい順ではない例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">(i)</td>
+<td style="text-align: center;">真</td>
+<td><code>a = 4.0; b = 3.0; c = 0.0;</code></td>
+<td><code>a = -2.0; b = -3.0; c = 0.0;</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">(ii)</td>
+<td style="text-align: center;">偽</td>
+<td><code>a = 4.0; b = 3.0; c = 2.0;</code></td>
+<td><code>a = -2.0; b = -3.0; c = 2.0;</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">(iii)</td>
+<td style="text-align: center;">真</td>
+<td>なし</td>
+<td><code>a = 3.0; b = 4.0; c = -1.0;</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">(iv)</td>
+<td style="text-align: center;">偽</td>
+<td>なし</td>
+<td><code>a = 3.0; b = 4.0; c = 1.0;</code></td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</body>
+</html>
