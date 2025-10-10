@@ -13,3 +13,10 @@
 感想: 
 
 */
+
+#include<stdio.h>
+int main(){
+  int max, min;
+  for(min;min<=max;min++)
+    for(int i = 0; i<=min; i++)
+}
