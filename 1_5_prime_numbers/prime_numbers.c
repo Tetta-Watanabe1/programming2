@@ -16,7 +16,12 @@
 
 #include<stdio.h>
 int main(){
-  int max, min;
-  for(min;min<=max;min++)
-    for(int i = 0; i<=min; i++)
+  int max, min, check=1, prime_numbers[10000], quantity, j=0;
+  for(;min<=max;min++, j++){
+    for(int i = 2; i<=min; i++)
+      if(min%i!=0)
+        check=0;
+    if(check)
+      prime_number[j]=min;
+      
 }
