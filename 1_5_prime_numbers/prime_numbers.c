@@ -16,10 +16,10 @@
 
 #include <stdio.h>
 int main() {
-  int max, min, check, prime_numbers[10000], quantity, j = 0;
+  int max, min, check, prime_numbers[10000], quantity, i, j = 0;
   for (; min <= max; min++) {
     check = 1;
-    for (int i = 2; i <= min; i++)
+    for (i = 2; i <= min; i++)
       if (min % i != 0)
         check = 0;
     if (check){
@@ -27,4 +27,6 @@ int main() {
       j++;
     }
   }
+  for(i=0i<j;i++)
+    printf("%d\n", prime_numbers[j])
 }
