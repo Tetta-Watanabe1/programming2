@@ -27,6 +27,6 @@ int main() {
       j++;
     }
   }
-  for(i=0i<j;i++)
+  for(i=0;i<j;i++)
     printf("%d\n", prime_numbers[j])
 }
