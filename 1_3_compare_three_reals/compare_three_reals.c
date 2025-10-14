@@ -32,4 +32,5 @@ int main() {
     printf("Yes\n");
   else
     printf("No\n");
+  return 0;
 }

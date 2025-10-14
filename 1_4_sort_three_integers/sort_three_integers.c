@@ -38,4 +38,5 @@ int main() {
     if (max != a[i] && min != a[i])
       mid = a[i];
   printf("%d\n%d\n%d\n", min, mid, max);
+  return 0;
 }

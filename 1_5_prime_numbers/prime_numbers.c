@@ -31,4 +31,5 @@ int main() {
   }
   for (i = 0; i < j; i++)
     printf("%d\n", prime_numbers[i]);
+  return 0;
 }
