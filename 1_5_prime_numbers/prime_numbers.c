@@ -21,8 +21,8 @@ int main() {
   scanf("%d", &max);
   for (; min <= max; min++) {
     check = 1;
-    for (i = 2; i <= min; i++)
-      if (min % i != 0)
+    for (i = 2; i < min; i++)
+      if ((min % i) == 0)
         check = 0;
     if (check) {
       prime_numbers[j] = min;
