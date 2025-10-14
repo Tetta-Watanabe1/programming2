@@ -31,18 +31,23 @@ int main() {
   int n = 0, m = 0;
   for (i = 0; i < 9; i++, n--) {
     if (!n) {
-      print("+---+---+---+");
-      n = 4;
+      printf("+---+---+---+\n");
+      n = 3;
     }
-    for (j = 0; j < 9; j++) {
+    for (j = 0; j < 9; j++, m--) {
       if (!m) {
         printf("|");
-        m = 4;
+        m = 3;
+      }
+      if (!grid[i][j]) {
+        printf(" ");
+        continue;
       }
       printf("%d", grid[i][j]);
     }
     printf("|\n");
   }
+  printf("+---+---+---+\n");
 
   return 0;
 }
