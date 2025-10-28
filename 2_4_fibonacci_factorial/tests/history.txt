@@ -1,3 +1,8 @@
+# 2025
+
+# test
+ls -l fibonacci_factorial.c; cat fibonacci_factorial.c
+-rwxr-xr-x 1 me なし 571 Oct 29 01:00 fibonacci_factorial.c
 /**
 
 氏名:渡邊　鉄太
@@ -8,9 +13,9 @@
 
 入出力の説明:
 
-動きの説明:
+動きの説明: 
 
-感想:
+感想: 
 
 */
 #include <stdio.h>
@@ -42,3 +47,7 @@ int main() {
   printf("%d\n", factorial(n));
   return 0;
 }
+
+テスト 11 成功（pass）
+テスト 12 成功（pass）
+すべてのテストに成功しました．(12)
