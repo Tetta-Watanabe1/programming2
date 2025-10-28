@@ -1,0 +1,87 @@
+# 2025
+
+# test
+ls -l math_functions.c; cat math_functions.c
+-rwxr-xr-x 1 me なし 344 Oct 28 23:53 math_functions.c
+/**
+
+氏名:
+
+学生番号:
+
+作成日:
+
+入出力の説明:
+
+動きの説明:
+
+感想:
+
+*/
+
+#include <math.h>
+#include <stdio.h>
+int main() {
+  double x, y;
+  scanf("%lf", &x);
+  scanf("%lf", &y);
+  printf("%.5lf ", sqrt(x));
+  printf("%.5e ", pow(x, y));
+  printf("%.5lf ", sin(x));
+  printf("%.5lf ", log10(x));
+  printf("%.5lf ", log(x));
+}
+# test
+diff -ubs 直前のmath_functions.c math_functions.c
+Files tests/math_functions_prev.c and math_functions.c are identical
+
+テスト 9 成功（pass）
+テスト 10 成功（pass）
+すべてのテストに成功しました．(10)
+
+# test
+diff -ubs 直前のmath_functions.c math_functions.c
+--- tests/math_functions_prev.c	2025-10-28 23:59:23.303564800 +0900
++++ math_functions.c	2025-10-29 00:17:44.227612100 +0900
+@@ -1,16 +1,23 @@
+ /**
+ 
+-氏名:
++氏名:渡邊　鉄太
+ 
+-学生番号:
++学生番号:B255451
+ 
+-作成日:
++作成日:2025-10-19
+ 
+ 入出力の説明:
++    与えられた二つの実数(一つ目は正の数)をdouble型の変数に代入する.
++    入力された順にx, yとする.
+ 
+ 動きの説明:
+-
+-感想:
++    計算結果を空白で区切って標準出力に出す。改行は付かない。
++        sqrt(x) を "%.5lf"で出力
++        pow(x, y) を "%.5e"で出力
++        sin(x) を "%.5lf" で出力
++        log10(x) を "%.5lf" で出力
++        log(x) を "%.5lf" で出力
++感想:double型のフォーマット指定子を忘れていた.
+ 
+ */
+ 
+@@ -24,5 +31,6 @@
+   printf("%.5e ", pow(x, y));
+   printf("%.5lf ", sin(x));
+   printf("%.5lf ", log10(x));
+-  printf("%.5lf ", log(x));
++  printf("%.5lf \n", log(x));
++  return 0;
+ }
+\ No newline at end of file
+
+テスト 9 成功（pass）
+テスト 10 成功（pass）
+すべてのテストに成功しました．(10)
