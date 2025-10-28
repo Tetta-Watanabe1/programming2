@@ -1,3 +1,8 @@
+# 2025
+
+# test
+ls -l average_function.c; cat average_function.c
+-rwxr-xr-x 1 me なし 1397 Oct 29 00:47 average_function.c
 /**
 
 氏名:渡邊　鉄太
@@ -57,3 +62,7 @@ int main() {
   プロトタイプ宣言はプログラミングIIIで学習する．
   明快入門C 54 関数プロトタイプ
 */
+
+テスト 9 成功（pass）
+テスト 10 成功（pass）
+すべてのテストに成功しました．(10)
