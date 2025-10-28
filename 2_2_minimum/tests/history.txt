@@ -1,3 +1,8 @@
+# 2025
+
+# test
+ls -l minimum.c; cat minimum.c
+-rwxr-xr-x 1 me なし 722 Oct 29 00:31 minimum.c
 /**
 
 氏名:渡邊　鉄太
@@ -40,3 +45,7 @@ int main() {
   printf("%d\n", m);
   return 0;
 }
+
+テスト 6 成功（pass）
+テスト 7 成功（pass）
+すべてのテストに成功しました．(7)
