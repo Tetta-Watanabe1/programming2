@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 2_1_math_functions</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+2_1_math_functions</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>入力された実数<span class="math inline">\(x\)</span>と<span
+class="math inline">\(y\)</span>に対して，<span
+class="math inline">\(x\)</span>の平方根，<span
+class="math inline">\(x\)</span>の<span
+class="math inline">\(y\)</span>乗，<span
+class="math inline">\(\sin(x)\)</span>， <span
+class="math inline">\(x\)</span>の常用対数，<span
+class="math inline">\(x\)</span>の自然対数を出力せよ．変数や関数には<code>double</code>型を用いよ．</p>
+<p> <strong>入力：</strong></p>
+<ul>
+<li>実数が二つ与えられる．仮にこれらを<span
+class="math inline">\(x\)</span>と<span
+class="math inline">\(y\)</span>と呼ぶ．</li>
+<li>一つ目の実数<span
+class="math inline">\(x\)</span>は正の数と仮定してよい．</li>
+<li><span class="math inline">\(x\)</span>と<span
+class="math inline">\(y\)</span>を<code>double</code>型の変数に読み込む．</li>
+</ul>
+<p> <strong>出力：</strong></p>
+<ul>
+<li><p><span class="math inline">\(x\)</span>の平方根，<span
+class="math inline">\(x\)</span>の<span
+class="math inline">\(y\)</span>乗，<span
+class="math inline">\(\sin(x)\)</span>，<span
+class="math inline">\(x\)</span>の常用対数（<span
+class="math inline">\(\log_{10}(x)\)</span>）， <span
+class="math inline">\(x\)</span>の自然対数（<span
+class="math inline">\(\log_e(x)\)</span>）を出力する．</p></li>
+<li><p>出力する数値と数値の間には空白を1つ入れ，すべてを1行に出力する．</p></li>
+<li><p>数値は小数第5位まで出力する．ただし，<span
+class="math inline">\(x\)</span>の<span
+class="math inline">\(y\)</span>乗は指数形式で小数第5位まで出力する．</p>
+<p>指数形式の<code>"2.20263e+04"</code>は<span
+class="math inline">\(2.20263\times
+10^{4}\)</span>を意味する（<code>e</code>の前後で分ける）．</p>
+<p>指数形式での出力するときの書式指定子<code>%e</code>は明快入門C 49
+printfの機能で調べること．</p></li>
+</ul>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -o math_functions math_functions.c</code></pre>
+<p>（Linuxなどでマニュアルに Link with -lm
+などと書かれているC言語環境の場合は，次のように末尾に<code>-lm</code>を付ける．Cygwin
+gccやmacOS Xcode clangの場合は<code>-lm</code>は不要）</p>
+<pre><code>    $ gcc -o math_functions math_functions.c -lm</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./math_functions</code></pre>
+<p>入力</p>
+<pre><code>3.14159 1</code></pre>
+<p>出力</p>
+<pre><code>1.77245 3.14159e+00 0.00000 0.49715 1.14473</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./math_functions</code></pre>
+<p>入力</p>
+<pre><code>2.71828 10</code></pre>
+<p>出力</p>
+<pre><code>1.64872 2.20263e+04 0.41078 0.43429 1.00000</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./math_functions</code></pre>
+<p>入力</p>
+<pre><code>2 10</code></pre>
+<p>出力</p>
+<pre><code>1.41421 1.02400e+03 0.90930 0.30103 0.69315</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./math_functions</code></pre>
+<p>入力</p>
+<pre><code>1.57078 2</code></pre>
+<p>出力</p>
+<pre><code>1.25331 2.46735e+00 1.00000 0.19612 0.45157</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./math_functions</code></pre>
+<p>入力</p>
+<pre><code>4.71239 10</code></pre>
+<p>出力</p>
+<pre><code>2.17080 5.40023e+06 -1.00000 0.67324 1.55020</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./math_functions</code></pre>
+<p>入力</p>
+<pre><code>0.78540 1</code></pre>
+<p>出力</p>
+<pre><code>0.88623 7.85400e-01 0.70711 -0.10491 -0.24156</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./math_functions</code></pre>
+<p>入力</p>
+<pre><code>0.70711 2</code></pre>
+<p>出力</p>
+<pre><code>0.84090 5.00005e-01 0.64964 -0.15051 -0.34657</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./math_functions</code></pre>
+<p>入力</p>
+<pre><code>10 10</code></pre>
+<p>出力</p>
+<pre><code>3.16228 1.00000e+10 -0.54402 1.00000 2.30259</code></pre>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./math_functions</code></pre>
+<p>入力</p>
+<pre><code>16 16</code></pre>
+<p>出力</p>
+<pre><code>4.00000 1.84467e+19 -0.28790 1.20412 2.77259</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./math_functions</code></pre>
+<p>入力</p>
+<pre><code>1024 2</code></pre>
+<p>出力</p>
+<pre><code>32.00000 1.04858e+06 -0.15853 3.01030 6.93147</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: math_functions.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>平方根など数学関数はスライドや明快入門Cの付録A，C言語主要関数一覧，数学処理を参照せよ．<code>double</code>型変数への数値入力については，明快入門C
+の50 scanfの機能，指数形式での数値出力については，明快入門Cの49
+printfの機能を参照せよ．</p></li>
+<li><p>平方根など数学関数は<code>math.h</code>ヘッダファイルで定義されているので，
+<code>math.h</code>をインクルードする必要がある．</p>
+<pre><code>#include &lt;math.h&gt;</code></pre></li>
+<li><p>また，Linuxなどのオペレーティングシステムによっては，<code>math.h</code>に定義されている数学関数を使う場合，コンパイル時に<code>-lm</code>オプションをつける必要がある．（Cygwin
+gccの場合は不要）</p>
+<pre><code>gcc -o math_funcitons math_functions.c -lm</code></pre>
+<p><code>-lm</code>は<code>libm.a</code>（数学ライブラリのファイル名）
+をリンクするという指示．
+<code>-lm</code>が必要かどうかは，ターミナルで<code>man math</code>や<code>man sqrtf</code>などのコマンドを実行してマニュアルページを確認する．マニュアルページに”Link
+with -lm”などと書かれていれば必要．</p></li>
+<li><p><code>scanf</code>関数で<code>double</code>型の変数<code>a</code>に実数値を読み込むには
+<code>scanf("%lf", &amp;a)</code>のように書く．<code>float</code>型変数の場合には<code>"%f"</code>と指定し，<code>double</code>型の変数の場合には<code>"%lf"</code>と指定する．明快入門C第6章「50
+scanfの機能」に説明がある．より詳しく知りたいときはターミナルで
+<code>man 3 scanf</code> コマンドでオンラインマニュアルを読め．</p></li>
+<li><p>なお，<code>printf</code>関数の書式指定は<code>float</code>型変数でも<code>double</code>型変数でも
+<code>"%f"</code>でよく．<code>"%lf"</code>と書いた場合は<code>l</code>は無視される．明快入門C第6章「49
+printfの機能」に説明がある．（<code>scanf</code>関数と違う）</p></li>
+<li><p><code>printf</code>関数で指数形式の実数を出力する場合も，小数第何位まで出力するかを<code>"%f"</code>の場合と同じように指定できる．</p></li>
+<li><p>平方根などの関数名を表に示す．変数の型に合わせて<code>double</code>型の関数と
+<code>float</code>型の関数を使い分けたほうがよい．明快入門Cの付録A，数学処理のページにもこれらの関数の説明がある．</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: center;">関数</th>
+<th style="text-align: left;"><code>double</code>型関数名</th>
+<th style="text-align: left;"><code>float</code>型関数名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>x</code>の平方根</td>
+<td style="text-align: left;"><code>double sqrt(double x)</code></td>
+<td style="text-align: left;"><code>float sqrtf(float x)</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>x</code>の<code>y</code>乗</td>
+<td
+style="text-align: left;"><code>double pow(double x, double y)</code></td>
+<td
+style="text-align: left;"><code>float powf(float x, float y)</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>x</code>の正弦</td>
+<td style="text-align: left;"><code>double sin(double x)</code></td>
+<td style="text-align: left;"><code>float sinf(float x)</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>x</code>の常用対数（底10）</td>
+<td style="text-align: left;"><code>double log10(double x)</code></td>
+<td style="text-align: left;"><code>float log10f(float x)</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>x</code>の自然対数（底<span
+class="math inline">\(e\)</span>）</td>
+<td style="text-align: left;"><code>double log(double x)</code></td>
+<td style="text-align: left;"><code>float logf(float x)</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>float</code>型の関数名は<code>double</code>型の関数名の末尾に<code>f</code>が付く．表にはないが，
+<code>long double</code>型の関数もあり，関数名の末尾に<code>l</code>が付く．例えば，<code>long double sqrtl(long double x)</code>．</p></li>
+<li><p><code>printf</code>で<code>float</code>型変数か<code>double</code>型変数の値を小数第5位まで出力するには<code>"%.5f"</code>を指定する．指数形式の指定は<code>"%e"</code>．指数形式で小数第5位まで出力するには<code>"%.5e"</code>を指定する．</p></li>
+<li><p>（第7回を先取り）<code>double</code>型と<code>float</code>型はどちらも実数の型．どちらも丸め誤差を含むが，<code>float</code>型より<code>double</code>型のほうが精度が高い．精度が高い分，<code>double</code>型変数はメモリを多く使う．</p></li>
+<li><p>（余談）絶対値を求める関数は整数（<code>int</code>型）と実数の両方あるので，関数名に注意．</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">型</th>
+<th style="text-align: left;">関数名</th>
+<th style="text-align: left;">ヘッダファイル名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;"><code>int abs(int i)</code></td>
+<td style="text-align: left;"><code>stdlib.h</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>double</code></td>
+<td style="text-align: left;"><code>double fabs(double x)</code></td>
+<td style="text-align: left;"><code>math.h</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>float</code></td>
+<td style="text-align: left;"><code>float fabsf(float x)</code></td>
+<td style="text-align: left;"><code>math.h</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>long double</code></td>
+<td
+style="text-align: left;"><code>long double fabsl(long double x)</code></td>
+<td style="text-align: left;"><code>math.h</code></td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</body>
+</html>

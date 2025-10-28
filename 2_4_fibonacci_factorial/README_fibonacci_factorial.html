@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 2_4_fibonacci_factorial</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+2_4_fibonacci_factorial</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>フィボナッチ数列の<span class="math inline">\(n\)</span>番目の値<span
+class="math inline">\(F_n\)</span>と階乗<span
+class="math inline">\(n!\)</span>を出力したい． <span
+class="math inline">\(F_n\)</span>を返す<code>fibonacci</code>関数と<span
+class="math inline">\(n!\)</span>を返す<code>factorial</code>関数を作成せよ．</p>
+<p> <strong>入力：</strong>標準入力に1つの正の整数 <span
+class="math inline">\(n\)</span> が与えられる．<span
+class="math inline">\(n\)</span>は<span class="math inline">\(1 \le n
+\le 12\)</span>を満たす．</p>
+<p> <strong>出力：</strong>フィボナッチ数 <span
+class="math inline">\(F_n\)</span> と階乗 <span
+class="math inline">\(n!\)</span> を表示する．</p>
+<ul>
+<li><p>フィボナッチ数 <span class="math inline">\(F_n\)</span>
+は漸化式<span class="math inline">\(F_n = F_{n-1} +
+F_{n-2}\)</span>で定義される．ただし <span class="math inline">\(F_1 =
+F_2 = 1\)</span> ．</p></li>
+<li><p>階乗 <span class="math inline">\(n!\)</span> は <span
+class="math inline">\(n! =1\cdot 2\cdot 3\cdots (n-1)\cdot
+n\)</span>で定義される．</p></li>
+</ul>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -o fibonacci_factorial fibonacci_factorial.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./fibonacci_factorial</code></pre>
+<p>入力</p>
+<pre><code>5</code></pre>
+<p>出力</p>
+<pre><code>5 120</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./fibonacci_factorial</code></pre>
+<p>入力</p>
+<pre><code>1</code></pre>
+<p>出力</p>
+<pre><code>1 1</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./fibonacci_factorial</code></pre>
+<p>入力</p>
+<pre><code>2</code></pre>
+<p>出力</p>
+<pre><code>1 2</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./fibonacci_factorial</code></pre>
+<p>入力</p>
+<pre><code>3</code></pre>
+<p>出力</p>
+<pre><code>2 6</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./fibonacci_factorial</code></pre>
+<p>入力</p>
+<pre><code>4</code></pre>
+<p>出力</p>
+<pre><code>3 24</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./fibonacci_factorial</code></pre>
+<p>入力</p>
+<pre><code>6</code></pre>
+<p>出力</p>
+<pre><code>8 720</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./fibonacci_factorial</code></pre>
+<p>入力</p>
+<pre><code>7</code></pre>
+<p>出力</p>
+<pre><code>13 5040</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./fibonacci_factorial</code></pre>
+<p>入力</p>
+<pre><code>8</code></pre>
+<p>出力</p>
+<pre><code>21 40320</code></pre>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./fibonacci_factorial</code></pre>
+<p>入力</p>
+<pre><code>9</code></pre>
+<p>出力</p>
+<pre><code>34 362880</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./fibonacci_factorial</code></pre>
+<p>入力</p>
+<pre><code>10</code></pre>
+<p>出力</p>
+<pre><code>55 3628800</code></pre>
+<p><strong>テスト11</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./fibonacci_factorial</code></pre>
+<p>入力</p>
+<pre><code>11</code></pre>
+<p>出力</p>
+<pre><code>89 39916800</code></pre>
+<p><strong>テスト12</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./fibonacci_factorial</code></pre>
+<p>入力</p>
+<pre><code>12</code></pre>
+<p>出力</p>
+<pre><code>144 479001600</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: fibonacci_factorial.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#include &lt;stdio.h&gt;
+
+/* この辺りに二つの関数を書く */
+
+int main() {
+  int n;
+
+  scanf(&quot;%d&quot;, &amp;n);
+  printf(&quot;%d &quot;, fibonacci(n));
+  printf(&quot;%d\n&quot;, factorial(n));
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>フィボナッチ数 <span class="math inline">\(F_n\)</span>
+を返す<code>int fibonacci(int n)</code>関数を作成する．引数と戻り値はいずれも<code>int</code>型．</p></li>
+<li><p>階乗 <span class="math inline">\(n!\)</span>
+を返す<code>int factorial(int n)</code>関数を作成する．引数と戻り値はいずれも<code>int</code>型．</p></li>
+<li><p><code>main</code>関数で次のように二つの関数を呼び出して，フィボナッチ数列<span
+class="math inline">\(F_n\)</span> と階乗<span
+class="math inline">\(n!\)</span>を求め，これらを出力する．</p>
+<pre><code>printf(&quot;%d &quot;,  fibonacci(n));
+printf(&quot;%d\n&quot;, factorial(n));</code></pre></li>
+<li><p>フィボナッチ数 <span class="math inline">\(F_n\)</span>
+の求め方は<code>n</code>が2以下の場合と3以上の場合に分けて考える．</p>
+<ul>
+<li><p><code>n</code>が2以下ならば<span class="math inline">\(F_1 = F_2
+=
+1\)</span>なので，<code>fibonacci(int n)</code>関数は1を返す．</p></li>
+<li><p><code>n</code>が3以上ならば<span class="math inline">\(F_3,
+\ldots, F_n\)</span>の順にフィボナッチ数<span
+class="math inline">\(F_n\)</span>を計算し，<span
+class="math inline">\(F_n\)</span>を返す．配列<code>f[]</code>を用意し，<span
+class="math inline">\(F_i\)</span>を配列の要素 <code>f[</code><span
+class="math inline">\(i\)</span><code>]</code>に入れることにすると，<code>for</code>文で<code>f[3]</code>から順に<code>f[n]</code>まで順に求められる．<code>n</code><span
+class="math inline">\(\le 12\)</span>であることがわかっているので，
+<code>int f[13]</code>と宣言すればよい．</p></li>
+<li><p>未使用の<code>f[0]</code>がもったいなければ，<span
+class="math inline">\(F_i\)</span>を配列の要素<code>f[i - 1]</code>に入れることにすればよい．この場合は配列<code>f</code>の要素数は12でよい．</p></li>
+<li><p>配列<code>f</code>を使わずに三つの変数を用いて<span
+class="math inline">\(F_n\)</span>を求めるられる．<code>f[i]</code>を求めるときに必要なのは<code>f[i - 1]</code>と<code>f[i -2]</code>だけで，<code>f[1]</code>から<code>f[i - 3]</code>を記憶しておく必要はない．よって<code>f[i]</code>，<code>f[i - 1]</code>と<code>f[i -2]</code>をそれぞれ変数<code>fi</code>，<code>fi1</code>，<code>fi2</code>に格納しておき，<code>fi</code>を計算した後
+<code>fi1</code>の値を<code>fi2</code>に，<code>fi</code>の値を<code>fi1</code>にずらせば，次は<code>fi</code>に
+<code>f[i + 1]</code>を代入できる．</p></li>
+</ul></li>
+<li><p>階乗<span
+class="math inline">\(n!\)</span>は，<code>for</code>文を使って1から順に<span
+class="math inline">\(n\)</span>まで順に掛け算すれば求められる．</p></li>
+<li><p>漸化式<span class="math inline">\(F_n = F_{n-1} +
+F_{n-2}\)</span>の具体例． <span
+class="math display">\[\begin{eqnarray*}
+  F_3 &amp; = &amp; F_2 + F_1 = 2\\
+  F_4 &amp; = &amp; F_3 + F_2 \\
+      &amp; = &amp; (F_2 + F_1) + F_2 \\
+      &amp; = &amp; 2F_2 + F_1 = 3\\
+  F_5 &amp; = &amp; F_4 + F_3 \\
+      &amp; = &amp; (F_3 + F_2) + (F_2 + F_1) \\
+      &amp; = &amp; F_3 + 2F_2 + F_1 \\
+      &amp; = &amp; (F_2 + F_1) + 2F_2 + F_1 \\
+      &amp; = &amp; 3F_2 + 2F_1 = 5
+\end{eqnarray*}\]</span></p></li>
+</ul>
+</body>
+</html>

@@ -111,3 +111,15 @@ diff -ubs 直前のsum_reals.c sum_reals.c
 テスト 9 成功（pass）
 テスト 10 成功（pass）
 すべてのテストに成功しました．(10)
+
+# test
+diff -ubs 直前のsum_reals.c sum_reals.c
+Files tests/sum_reals_prev.c and sum_reals.c are identical
+
+# test
+diff -ubs 直前のsum_reals.c sum_reals.c
+Files tests/sum_reals_prev.c and sum_reals.c are identical
+
+テスト 9 成功（pass）
+テスト 10 成功（pass）
+すべてのテストに成功しました．(10)

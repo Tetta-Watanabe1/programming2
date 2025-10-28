@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 2_7_sudoku_print</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+2_7_sudoku_print</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p><strong>発展課題</strong></p>
+<p>配列<code>int grid[9][9]</code>に格納された数独の盤面を出力する
+<code>sudoku_print(grid[9][9])</code> 関数を作成せよ．</p>
+<p> <strong>数独のルール：</strong></p>
+<ul>
+<li><p>タテ9列，ヨコ9行，3 <span class="math inline">\(\times\)</span>
+3の9つあるブロックのどれにも，1から9までの数字が一つずつ入るように空きマスに数字を入れる．</p></li>
+<li><p>詳しくは以下のページで確認してください．なお「数独(SUDOKU)」はニコリの登録商標です．</p>
+<p><a
+href="http://nikoli.co.jp/ja/puzzles/sudoku/">http://nikoli.co.jp/ja/puzzles/sudoku/</a>
+(和文)</p>
+<p><a
+href="http://nikoli.co.jp/en/puzzles/sudoku/">http://nikoli.co.jp/en/puzzles/sudoku/</a>
+(英文)</p></li>
+<li><p>参考：数独の空きマスの最大数に関する論文．</p>
+<p>Gary McGuire, Bastian Tugemann, and Gilles Civario, “There is no
+16-Clue Sudoku: Solving the Sudoku Minimum Number of Clues Problem via
+Hitting Set Enumeration,” Journal of Experimental Mathematics, vol. 23,
+no. 2, Taylor &amp; Franscis, Aug. 2013. <a
+href="https://doi.org/10.1080/10586458.2013.870056">https://doi.org/10.1080/10586458.2013.870056</a>
+<a
+href="https://arxiv.org/pdf/1201.0749.pdf">https://arxiv.org/pdf/1201.0749.pdf</a></p></li>
+</ul>
+<p>
+<strong>入力：</strong>なし（<code>main</code>関数の配列<code>grid</code>）</p>
+<p> <strong>出力：</strong></p>
+<ul>
+<li><p>テスト一覧に示すように3 <span
+class="math inline">\(\times\)</span> 3ブロックの縁を <code>+-|</code>
+で囲んで，13行で表す．</p></li>
+<li><p>配列要素が0のマスは空白にする．</p></li>
+</ul>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o sudoku_print sudoku_print.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sudoku_print</code></pre>
+<p>入力</p>
+<p>出力</p>
+<pre><code>+---+---+---+
+| 23|456|789|
+|4 6|789|1 3|
+|78 |123|456|
++---+---+---+
+|234|5 7|89 |
+|567| 91|234|
+|891|23 |567|
++---+---+---+
+|345|678|91 |
+|678|9 2| 45|
+|91 |345|6 8|
++---+---+---+</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: sudoku_print.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+int main() {
+  int grid[9][9] = {
+    {0, 2, 3, 4, 5, 6, 7, 8, 9},
+    {4, 0, 6, 7, 8, 9, 1, 0, 3},
+    {7, 8, 0, 1, 2, 3, 4, 5, 6},
+    {2, 3, 4, 5, 0, 7, 8, 9, 0},
+    {5, 6, 7, 0, 9, 1, 2, 3, 4},
+    {8, 9, 1, 2, 3, 0, 5, 6, 7},
+    {3, 4, 5, 6, 7, 8, 9, 1, 0},
+    {6, 7, 8, 9, 0, 2, 0, 4, 5},
+    {9, 1, 0, 3, 4, 5, 6, 0, 8}};
+
+  sudoku_print(grid);
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<p> <strong>ヒント：</strong></p>
+<ul>
+<li><p>明快入門C 19 配列（多次元配列），56 関数への引数渡し2
+配列．</p></li>
+<li><p><code>sudoku_print</code>関数は2次元配列を引数に取るので，次のように宣言する．</p>
+<pre><code>void sudoku_print(int grid[9][9]) {
+}</code></pre></li>
+<li><p><code>sudoku_print</code>関数の戻り値は不要なので，<code>void</code>型でよいだろう．</p></li>
+<li><p>2次元配列を引数にもつ関数を宣言する場合，次のどちらかのように配列のサイズを仮引数に書く必要がある．</p>
+<pre><code>   sudoku_print(int grid[9][9])
+   sudoku_print(int grid[][9])</code></pre>
+<p>なぜなら，配列の要素はメモリ上に<code>[0][0]</code>，<code>[0][1]</code>，<code>[0][2]</code>，
+<span
+class="math inline">\(\ldots\)</span>，<code>[0][8]</code>，<code>[1][0]</code>，<span
+class="math inline">\(\ldots\)</span>，<code>[1][8]</code>，<code>[2][0]</code>,
+<span class="math inline">\(\ldots\)</span>，
+<code>[8][8]</code>の順に格納されている．つまり，要素<code>[i][j]</code>は<code>i*9+j</code>番目に格納されている（先頭要素を0番目と数えていることに注意）．そのため，2次元目の要素数を与えないと，<code>[i][j]</code>が先頭から何番目に格納されているかわからない．一般に2次元以上の配列を引数にとる場合，最初の次元（添字）のみ省略可能であり，他はすべて指定しなければならない．</p></li>
+</ul>
+</body>
+</html>

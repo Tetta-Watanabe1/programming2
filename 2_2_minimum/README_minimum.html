@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 2_2_minimum</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+2_2_minimum</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>二つの整数を引数に取り，そのうち小さい方を返す<code>int min(int x, int y)</code>関数を書け．<code>main</code>関数は書き換えないこと．</p>
+<p> <strong><code>min</code>関数の引数：</strong></p>
+<ul>
+<li>第1引数: int型の整数．仮に<code>x</code>と呼ぶ．</li>
+<li>第2引数: int型の整数．仮に<code>y</code>と呼ぶ．</li>
+</ul>
+<p> <strong><code>min</code>関数の戻り値：</strong></p>
+<ul>
+<li><code>x</code>と<code>y</code>のうち小さい方の整数（<code>int</code>型）．</li>
+<li><code>x</code>と<code>y</code>が同じ場合はその値（<code>x</code>または<code>y</code>）．</li>
+</ul>
+<p> <strong>入力：</strong>標準入力に3つの整数が与えられる．</p>
+<p> <strong>出力：</strong>
+3つの整数のうち最も小さい整数を表示する．</p>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o minimum minimum.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./minimum</code></pre>
+<p>入力</p>
+<pre><code>3 1 2</code></pre>
+<p>出力</p>
+<pre><code>1</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./minimum</code></pre>
+<p>入力</p>
+<pre><code>2 3 1</code></pre>
+<p>出力</p>
+<pre><code>1</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./minimum</code></pre>
+<p>入力</p>
+<pre><code>1 2 3</code></pre>
+<p>出力</p>
+<pre><code>1</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./minimum</code></pre>
+<p>入力</p>
+<pre><code>83 50 2</code></pre>
+<p>出力</p>
+<pre><code>2</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./minimum</code></pre>
+<p>入力</p>
+<pre><code>50 2 83</code></pre>
+<p>出力</p>
+<pre><code>2</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./minimum</code></pre>
+<p>入力</p>
+<pre><code>2 83 50</code></pre>
+<p>出力</p>
+<pre><code>2</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./minimum</code></pre>
+<p>入力</p>
+<pre><code>1 1 2</code></pre>
+<p>出力</p>
+<pre><code>1</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: minimum.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#include &lt;stdio.h&gt;
+
+// ここにint min(int a, int b)関数を書く
+
+int main() {
+  int a, b, c, m;
+
+  scanf(&quot;%d&quot;, &amp;a);
+  scanf(&quot;%d&quot;, &amp;b);
+  scanf(&quot;%d&quot;, &amp;c);
+
+  // aとbのうち小さいものをmに代入
+  m = min(a, b);
+
+  // 三つのうち最も小さいものをmに代入
+  m = min(m, c);
+
+  printf(&quot;%d\n&quot;, m);
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>明快入門Cの第7章が関数．そのうち特にこの課題と関係するのは，52
+関数の基本形，53 関数の構成，55 関数への引数渡し1 数値</p></li>
+<li><p>このプログラムは3つの整数の中から最も小さいものを出力するが，<code>min</code>関数は2つの整数を引数に取り，小さい方を返す関数とする．</p></li>
+</ul>
+</body>
+</html>
