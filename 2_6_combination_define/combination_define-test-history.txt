@@ -1,0 +1,46 @@
+# 2025
+
+# test
+ls -l combination_define.c; cat combination_define.c
+-rwxr-xr-x 1 me なし 591 Oct 29 09:34 combination_define.c
+/**
+
+氏名:渡邊　鉄太
+
+学生番号:B255451
+
+作成日:2025-10-29
+
+入出力の説明:
+
+動きの説明: 
+
+感想:
+
+*/
+#include <stdio.h>
+
+/* 先ほどと同様に，ここに作成した int factorial(int n) 関数を定義する */
+int factorial(int n) {
+  if (n == 0) {
+    return 1;
+  } else {
+    return n * factorial(n - 1);
+  }
+}
+
+int main() {
+  int n, r;
+
+  scanf("%d", &n);
+  scanf("%d", &r);
+  #ifdef VERBOSE
+    printf("%d / %d / %d = ", factorial(n), factorial(r), factorial(n - r));
+  #endif
+  printf("%d\n", factorial(n) / factorial(r) / factorial(n - r));
+  return 0;
+}
+
+テスト 19 成功（pass）
+テスト 20 成功（pass）
+すべてのテストに成功しました．(20)
