@@ -1,3 +1,8 @@
+# 2025
+
+# test
+ls -l sudoku_print.c; cat sudoku_print.c
+-rwxr-xr-x 1 me なし 1462 Oct 29 10:10 sudoku_print.c
 /**
 
 氏名:渡邊　鉄太
@@ -53,3 +58,6 @@ int main() {
   sudoku_print(grid);
   return 0;
 }
+
+テスト 1 成功（pass）
+すべてのテストに成功しました．(1)
