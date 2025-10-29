@@ -1,0 +1,69 @@
+# 2025
+
+# test
+ls -l combination.c; cat combination.c
+-rwxr-xr-x 1 me なし 690 Oct 29 09:11 combination.c
+/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明:
+  標準入力に2つの整数nとrが，この順に与えられる．
+  nとrはいずれも整数で，1<=n<=12，1<=r<=nとする．
+  組合せの数nCrを出力する．
+
+動きの説明:2_4のfactorial関数を利用した.
+
+感想:2_4のfactorial関数を再利用できてよかった.
+
+*/
+#include <stdio.h>
+
+/* ここに int factorial(int n) 関数を定義する */
+int factorial(int n) {
+  if (n == 0) {
+    return 1;
+  } else {
+    return n * factorial(n - 1);
+  }
+}
+
+int main() {
+  int n, r;
+
+  scanf("%d", &n);
+  scanf("%d", &r);
+  printf("%d\n", factorial(n) / factorial(r) / factorial(n - r));
+  return 0;
+}
+
+テスト 9 成功（pass）
+テスト 10 成功（pass）
+すべてのテストに成功しました．(10)
+
+# test
+diff -ubs 直前のcombination.c combination.c
+--- tests/combination_prev.c	2025-10-29 09:11:59.333996500 +0900
++++ combination.c	2025-10-29 09:13:56.931341200 +0900
+@@ -1,10 +1,10 @@
+ /**
+ 
+-氏名: 
++氏名:渡邊鉄太
+ 
+-学生番号: 
++学生番号:B255451
+ 
+-作成日: 
++作成日:2025-10-29
+ 
+ 入出力の説明:
+   標準入力に2つの整数nとrが，この順に与えられる．
+
+テスト 9 成功（pass）
+テスト 10 成功（pass）
+すべてのテストに成功しました．(10)
