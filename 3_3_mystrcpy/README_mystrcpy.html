@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 3_3_mystrcpy</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+3_3_mystrcpy</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>配列<code>src[]</code>に格納された文字列を配列<code>dst[]</code>にコピーする<code>void mystrcpy(char dst[], char src[])</code>関数を書け．ただし，この関数内で
+<code>strcpy</code>関数などの文字列処理関数を使ってはならない．</p>
+<p><code>main</code>関数は<code>mystrcpy</code>関数の呼び出しのみ書き加えること．</p>
+<p> <strong><code>mystrcpy</code>関数の引数：</strong></p>
+<ul>
+<li>第1引数：<code>char</code>型配列<code>dst[]</code> …
+コピー先の配列</li>
+<li>第2引数：<code>char</code>型配列<code>src[]</code> …
+コピー元の文字列が格納された配列</li>
+</ul>
+<p> <strong><code>mystrcpy</code>関数の戻り値：</strong></p>
+<p>なし．</p>
+<p> <strong>プログラムの入力：</strong>
+1行目の最初から一定長の文字列．残りは無視する．</p>
+<p> <strong>プログラムの出力：</strong>入力された1行の文字列．</p>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o mystrcpy mystrcpy.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mystrcpy</code></pre>
+<p>入力</p>
+<pre><code>I copy a line.</code></pre>
+<p>出力</p>
+<pre><code>I copy a line.</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mystrcpy</code></pre>
+<p>入力</p>
+<pre><code>This is a copy of long long long long long long long long long long long line.</code></pre>
+<p>出力</p>
+<pre><code>This is a copy of long long long long long long long long long long long line.</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mystrcpy</code></pre>
+<p>入力</p>
+<pre><code>Input over 79 characters in a line.  ...40........50........60........70........80........90........100.......</code></pre>
+<p>出力</p>
+<pre><code>Input over 79 characters in a line.  ...40........50........60........70.......</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mystrcpy</code></pre>
+<p>入力</p>
+<pre><code>Based on its founding principle &quot;a single unified university, free and
+pursuing peace&quot; and its five guiding principles, Hiroshima University
+fulfills its roles as a national university.
+Multiple lines.  Ref. Principles and Vision of HU.</code></pre>
+<p>出力</p>
+<pre><code>Based on its founding principle &quot;a single unified university, free and</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: mystrcpy.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#include &lt;stdio.h&gt;
+
+/* ここにmystrcpy関数を書く．この関数内でSIZEや80を使う必要はない */
+
+#define SIZE 80
+
+int main() {
+  char s1[SIZE];
+  char s2[SIZE];
+  char c;
+  int i;
+
+  // s1に1行読み込む．長くとも(SIZE-1)文字まで
+  i = 0;
+  c = getchar();
+  while (c != &#39;\n&#39; &amp;&amp; i &lt; SIZE - 1) {
+    s1[i] = c;
+    i++;
+    c = getchar();
+  }
+  s1[i] = &#39;\0&#39;; // 末尾のヌル文字
+
+  // s2を数字で埋める（デバッグ用）
+  for (i = 0; i &lt; SIZE - 1; i++)
+    s2[i] = &#39;0&#39; + (i % 10);
+
+  // ここからmystrcpy関数を呼び出す
+
+  printf(&quot;%s\n&quot;, s2); // コピーした文字列を出力する
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>文字列のコピーは1文字ずつコピーします．配列要素<code>s[0]</code>に格納された文字を別の配列<code>d[]</code>の3番目の要素にコピーするなら，次のように書きます．</p>
+<pre><code>d[3] = s[0];</code></pre></li>
+<li><p>コピー元の文字列の長さはヌル文字<code>'\0'</code>を見つけることでわかります．</p></li>
+<li><p>コピーした文字列の末尾にはヌル文字<code>'\0'</code>が必要です．つまり，配列
+<code>s[]</code>に10文字の文字列を格納する場合は，<code>s[0]</code>から<code>s[9]</code>に文字列の各文字を格納します．さらに，次のように最後の文字の次の要素<code>s[10]</code>に
+<strong> ヌル文字</strong> <code>'\0'</code>を代入します．</p>
+<pre><code>s[10] = &#39;\0&#39;;</code></pre></li>
+<li><p>10文字の文字列を配列に格納するには，末尾のヌル文字を含めると11要素あるので，この配列の要素数（大きさ）は11以上必要です．</p></li>
+<li><p>配列の名前<code>dst</code>と<code>src</code>は目的地を意味するdestinationと情報源を意味するsourceの子音を抜き出した略語です．</p></li>
+<li><p>配布ファイル中の<code>printf</code>関数の第二引数を次のように<code>s1</code>にすれば
+<code>mystrcpy</code>関数を書かなくても正しい出力になりますが，文字列をコピーする関数を書く課題ですので，このような変更だけで提出してはいけません．</p>
+<pre><code>  printf(&quot;%s\n&quot;, s1); // 入力した文字列を出力する</code></pre></li>
+<li><p>（プログラミングIの復習）11要素の配列<code>a</code>は<code>int a[11];</code>のように宣言して，<code>a[0]</code>から<code>a[10]</code>までの11要素を読み書きできます．<code>a[11]</code>に読み書きすると他の変数の値が書き変わるなど，プログラムの挙動がわからなくなります．</p>
+<pre><code>int a[11]; // 11要素の配列を宣言
+
+a[0] = &#39;a&#39;;
+a[10] = &#39;k&#39;;
+a[11] = &#39;l&#39;; // この行のように，宣言していない配列要素に代入してはならない．
+  // 残念ながら，この代入はコンパイル時と実行時ともにエラーにはならず，
+  // これ以降のプログラムがおかしな挙動をすることがある．</code></pre></li>
+</ul>
+</body>
+</html>

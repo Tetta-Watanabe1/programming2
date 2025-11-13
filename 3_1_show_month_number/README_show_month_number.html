@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 3_1_show_month_number</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+3_1_show_month_number</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>英語表記の月をアラビア数字に変換して出力せよ．</p>
+<p>例：<code>"January"</code>が入力されると<code>"1"</code>を出力する．</p>
+<p> <strong>入力：</strong></p>
+<ul>
+<li><p>標準入力から一単語読み込む．単語は月名の英語表記のことが多い．</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">英語表記</th>
+<th style="text-align: center;">アラビア数字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">January</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;">February</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td style="text-align: center;">March</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td style="text-align: center;">April</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr>
+<td style="text-align: center;">May</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr>
+<td style="text-align: center;">June</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr>
+<td style="text-align: center;">July</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr>
+<td style="text-align: center;">August</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr>
+<td style="text-align: center;">September</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr>
+<td style="text-align: center;">October</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr>
+<td style="text-align: center;">November</td>
+<td style="text-align: center;">11</td>
+</tr>
+<tr>
+<td style="text-align: center;">December</td>
+<td style="text-align: center;">12</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>複数の単語が与えられた場合は最初の単語以外は無視すること．</p></li>
+</ul>
+<p> <strong>出力：</strong></p>
+<ul>
+<li>読み込んだ単語が，月名の英語表記に対応する場合は月の数値（1~12）．月名でない場合は0．</li>
+<li>出力の末尾は改行すること．</li>
+</ul>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -o show_month_number show_month_number.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 20, 21, 22, 23,
+24, 25, 26</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>January</code></pre>
+<p>出力</p>
+<pre><code>1</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>February</code></pre>
+<p>出力</p>
+<pre><code>2</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>March</code></pre>
+<p>出力</p>
+<pre><code>3</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>April</code></pre>
+<p>出力</p>
+<pre><code>4</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>May</code></pre>
+<p>出力</p>
+<pre><code>5</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>June</code></pre>
+<p>出力</p>
+<pre><code>6</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>July</code></pre>
+<p>出力</p>
+<pre><code>7</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>August</code></pre>
+<p>出力</p>
+<pre><code>8</code></pre>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>September</code></pre>
+<p>出力</p>
+<pre><code>9</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>October</code></pre>
+<p>出力</p>
+<pre><code>10</code></pre>
+<p><strong>テスト11</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>November</code></pre>
+<p>出力</p>
+<pre><code>11</code></pre>
+<p><strong>テスト12</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>December</code></pre>
+<p>出力</p>
+<pre><code>12</code></pre>
+<p><strong>テスト20</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>TheBeatles</code></pre>
+<p>出力</p>
+<pre><code>0</code></pre>
+<p><strong>テスト21</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>Ma</code></pre>
+<p>出力</p>
+<pre><code>0</code></pre>
+<p><strong>テスト22</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>Augussttt</code></pre>
+<p>出力</p>
+<pre><code>0</code></pre>
+<p><strong>テスト23</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>Septemberr</code></pre>
+<p>出力</p>
+<pre><code>0</code></pre>
+<p><strong>テスト24</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>Januar</code></pre>
+<p>出力</p>
+<pre><code>0</code></pre>
+<p><strong>テスト25</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>May June</code></pre>
+<p>出力</p>
+<pre><code>5</code></pre>
+<p><strong>テスト26</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./show_month_number</code></pre>
+<p>入力</p>
+<pre><code>JanuaryFebruaryMarchAprilMayJuneJulyAugustSeptemberOctoberNovemberDecember</code></pre>
+<p>出力</p>
+<pre><code>0</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: show_month_number.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#define LEN 10 // 入力文字列長の最大値（使わないで構わない）
+#define N_MONTHS 12 // 月の数（使わないで構わない）
+</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>明快入門C</p>
+<ul>
+<li>50 scanfの機能</li>
+<li>付録A C言語主要関数一覧（文字列処理）</li>
+</ul></li>
+<li><p>最初はJanuaryが入力されたら1を出力するプログラムから作成しましょう．それが動いたら2月以降を追加してみましょう．</p></li>
+<li><p>標準入力から一単語を読み込むには</p>
+<pre><code>char s[11];
+scanf(&quot;%10s&quot;, s);</code></pre>
+<p>とすればよい．<code>%10s</code>については，明快入門C 50
+scanfの機能をみよ．
+<code>s</code>は配列なのでscanfの第二引数は<code>&amp;s</code>ではなく<code>s</code>．
+<code>&amp;</code>をつけたければ<code>&amp;s[0]</code>．</p></li>
+<li><p>月名の英語表記の文字数は多くとも9文字（<code>"September"</code>が最長）なので，それより1文字多い10文字目まで読み込めば比較できる．10文字目まで読み込みたいので，10にヌル文字分の1を加えて，配列<code>s</code>の大きさを11にして宣言したのが上の例である．</p></li>
+<li><p>10文字より長い文字列を<code>scanf</code>関数で読み込まないように<code>"%10s"</code>を指定したのが上の例である．<code>"%s"</code>だと，10文字を超える単語が入力されたときに配列の大きさ以上の文字を読み込むプログラムになる．入力文字列の長さを制限しないと，情報セキュリティでいうところのバッファオーバーフローの脆弱性が存在するプログラムになる．</p></li>
+<li><p>文字列比較は先頭から1文字ずつ比較してもよいし，<code>strcmp</code>関数を使ってもよい．1文字ずつ比較する方法は授業スライドにある．</p></li>
+<li><p><code>strcmp</code>関数の使い方は明快入門C 79
+文字列処理関数をみよ．<code>strcmp</code>関数の戻り値については明快入門C
+付録A
+にある．Cygwinターミナルでオンラインマニュアルを見る方法もある（man
+strcmp）</p>
+<ul>
+<li><p><code>int strcmp(char s1[], char s2[])</code>関数は<code>s1</code>と<code>s2</code>が指す文字列を比較し，等しければ0を返し，辞書順で<code>s1</code>の方が大きければ0以上，小さければ0以下を返す．</p></li>
+<li><p><code>strcmp</code>関数（や<code>strncmp</code>関数）はヘッダファイルに<code>string.h</code>で宣言されているので，このヘッダファイルをインクルードすること．</p></li>
+</ul></li>
+<li><p>数値を出力したあとは改行文字<code>"\n"</code>を出力しなさい．</p></li>
+<li><p>スペル間違いなど月の英語表記ではない場合は0を出力しなさい．</p></li>
+</ul>
+<p> <strong>余力がある人向けの追加ヒント：</strong></p>
+<ul>
+<li><p><code>scanf</code>の文字数指定の<code>%s</code>は，意地悪な入力では期待しない動作をすることがある．例えば，<code>"0123456789May"</code>を入力すると，初回の<code>scanf</code>で先頭の10文字（<code>"0123456780"</code>）が読み込まれ，次の<code>scanf</code>で続きの”May”が読み込まれる．1語を2語に分割して処理することになるので，<code>"May"</code>が入力されたと誤って判定することになる．<code>"%10s"</code>の10を大きくしても，
+<code>scanf</code>を使う限り同様の意地悪な入力を用意できる．<code>scanf</code>で<code>"%s"</code>を使う限り避けられない問題である．</p></li>
+<li><p><code>scanf("%10s", s);</code>は<code>scanf("%10s", &amp;s[0]);</code>とも書ける．演算子<code>&amp;</code>や配列名<code>s</code>の意味はポインタの回で学ぶ．</p></li>
+<li><p><code>strcmp</code>関数の代わりに<code>strncmp</code>関数を使う場合は次のようにJanuaryが7
+文字なので8文字まで比べれば十分．この例のように比較する文字列の一方が定数の場合は<code>strcmp</code>関数で十分．</p>
+<pre><code>if (strcmp(s, &quot;January&quot;, 8) == 0) {</code></pre></li>
+<li><p><code>strncmp</code>関数の詳細については，ターミナルで<code>man strncmp</code>を実行すると表示されるマニュアルページを読みなさい．</p></li>
+<li><p><code>int strncmp(char *s1, char *s2, int n)</code>関数は<code>s1</code>と<code>s2</code>が指す文字列を比較する．ただし，<code>s1</code>と<code>s2</code>の両方が<code>n</code>文字を超える場合に<code>n</code>文字目までしか比較しない．等しければ0を返し，辞書順で<code>s1</code>の方が大きければ0
+以上，小さければ0以下を返すことは<code>strcmp</code>関数と同じ．（正確には，仮引数<code>n</code>の型は符号なし整数型（<code>size_t</code>型））</p></li>
+</ul>
+</body>
+</html>

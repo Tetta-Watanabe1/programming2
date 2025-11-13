@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 3_4_mytoupper</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+3_4_mytoupper</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p><code>char lower2upper(char c)</code>関数を作成せよ．この関数は，引数の文字<code>c</code>が英小文字の場合に英大文字に変換して返し．それ以外の場合は引数の文字をそのまま返す．ただし，<code>lower2upper</code>関数内で標準ライブラリ<code>ctype.h</code>の
+<code>toupper</code>関数と<code>islower</code>関数を使ってはならない．</p>
+<p>さらに，<code>main</code>関数にこの関数を呼び出す一文を追加せよ．</p>
+<p>このプログラムは，標準入力から入力した1行分の文字列を出力する．ただし，入力された文字のうち英小文字は英大文字に変換されて出力される．このようなプログラムになるようにせよ．</p>
+<p>
+<strong><code>lower2upper</code>関数の引数：</strong>文字<code>c</code>（<code>char</code>型）</p>
+<p>
+<strong><code>lower2upper</code>関数の戻り値：</strong>文字<code>c</code>が英小文字なら<code>c</code>を大文字にして返す．それ以外は<code>c</code>を返す．</p>
+<p> <strong>入力：</strong>
+1行分の文字列を読み込む．行は改行文字<code>\n</code>で終わる．行には空白や記号を含みうる．</p>
+<p>
+<strong>出力：</strong>読み込んだ文字列を出力するが，アルファベット小文字だけを大文字に変換し，その他の文字は変換せずに出力する．</p>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -o mytoupper mytoupper.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mytoupper</code></pre>
+<p>入力</p>
+<pre><code>this is a pen.</code></pre>
+<p>出力</p>
+<pre><code>THIS IS A PEN.</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mytoupper</code></pre>
+<p>入力</p>
+<pre><code>  V&lt;qp*VP&gt;2a9-U wN BSOLjW&gt;L2LQiuo  v(7 A4*qhob7eD</code></pre>
+<p>出力</p>
+<pre><code>  V&lt;QP*VP&gt;2A9-U WN BSOLJW&gt;L2LQIUO  V(7 A4*QHOB7ED</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mytoupper</code></pre>
+<p>入力</p>
+<pre><code>fea078415c29cf78a6ae70ccdca39d4f76b02d9901ecf7ce415be6c1bb86e1ae</code></pre>
+<p>出力</p>
+<pre><code>FEA078415C29CF78A6AE70CCDCA39D4F76B02D9901ECF7CE415BE6C1BB86E1AE</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mytoupper</code></pre>
+<p>入力</p>
+<pre><code>9IKDkieI9zVZZmvlC8GJctzGjyfOvAKJo9jadayGY0Y=</code></pre>
+<p>出力</p>
+<pre><code>9IKDKIEI9ZVZZMVLC8GJCTZGJYFOVAKJO9JADAYGY0Y=</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mytoupper</code></pre>
+<p>入力</p>
+<pre><code>44OX44Ot44Kw44Op44Of44Oz44KwSUnmloflrZfliJflh6bnkIYNCg==</code></pre>
+<p>出力</p>
+<pre><code>44OX44OT44KW44OP44OF44OZ44KWSUNMLOFLRZFLIJFLH6BNKIYNCG==</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mytoupper</code></pre>
+<p>入力</p>
+<pre><code>d2858101-18f0-479c-bb0e-e10f57e8d07e</code></pre>
+<p>出力</p>
+<pre><code>D2858101-18F0-479C-BB0E-E10F57E8D07E</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mytoupper</code></pre>
+<p>入力</p>
+<pre><code>80:a8:94:58:27:d2</code></pre>
+<p>出力</p>
+<pre><code>80:A8:94:58:27:D2</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mytoupper</code></pre>
+<p>入力</p>
+<pre><code>&lt;http://www.hiroshima-u.ac.jp&gt;</code></pre>
+<p>出力</p>
+<pre><code>&lt;HTTP://WWW.HIROSHIMA-U.AC.JP&gt;</code></pre>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mytoupper</code></pre>
+<p>入力</p>
+<pre><code>p+a-s*s [\]^ {|}~</code></pre>
+<p>出力</p>
+<pre><code>P+A-S*S [\]^ {|}~</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./mytoupper</code></pre>
+<p>入力</p>
+<pre><code>We, the Japanese people, pledge our national honor to accomplish these high ideals and purposes with all our resources.</code></pre>
+<p>出力</p>
+<pre><code>WE, THE JAPANESE PEOPLE, PLEDGE OUR NATIONAL HONOR TO ACCOMPLISH THESE HIGH IDEALS AND PURPOSES WITH ALL OUR RESOURCES.</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: mytoupper.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#include &lt;stdio.h&gt;
+
+/* lower2upper関数をこの辺りに定義する */
+
+int main() {
+  char c;
+  while ((c = getchar()) != &#39;\n&#39;) {
+
+    /* ここでlower2upper関数を呼び出す．引数は変数c．戻り値はcに代入する */
+
+    printf(&quot;%c&quot;, c);
+  }
+  printf(&quot;\n&quot;);
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p><code>char</code>型変数<code>c</code>に格納された文字は整数値として扱えるため，大小関係を比較できる．それぞれの文字に割り当てられた整数はASCIIコード表で確認できるが，この整数を覚える必要はない．シングルクオートで囲んだ文字定数で書く．例えば<code>char</code>型変数<code>c</code>は以下のように他の文字<code>'b'</code>などとの大小比較や加減算ができる．</p>
+<pre><code>char c;
+c = &#39;a&#39;;
+if (c &lt; &#39;b&#39;) // c &lt; 98 とも書けるが書かない
+  printf(&quot;c &lt; &#39;b&#39;\n&quot;);
+if (c == &#39;c&#39;)
+  printf(&quot;c == &#39;c&#39;\n&quot;); // c == 99 とは書かない
+c += &#39;A&#39; - &#39;a&#39;;
+printf(&quot;%c\n&quot;, c); // 文字&#39;A&#39;が出力される</code></pre></li>
+<li><p>英小文字はASCIIコード表で<code>'a'</code>，<code>'b'</code>，<code>'c'</code>,
+<span class="math inline">\(\ldots\)</span>，<code>'y'</code>，
+<code>'z'</code>のように隙間なく並んでいる．よって，文字<code>c</code>が英小文字（lowercase
+letter）か調べるには次のような<code>if</code>文でよいだろう．</p>
+<pre><code>if (c &gt;= &#39;a&#39; &amp;&amp; c &lt;= &#39;z&#39;)
+  // cが英小文字である場合の処理
+  printf(&quot;&#39;%c&#39; is a lowercase letter\n&quot;, c);
+else
+  // cが英小文字でない場合の処理
+  printf(&quot;&#39;%c&#39; is NOT a lowercase letter\n&quot;, c);</code></pre>
+<p>次のように<code>&lt;=</code>演算子を使うように順序を入れ替えて書くほうが文字<code>c</code>が
+<code>'a'</code>から<code>'z'</code>の間ということがわかりやすいかもしれない．</p>
+<pre><code>if (&#39;a&#39; &lt;= c &amp;&amp; c &lt;= &#39;z&#39;)</code></pre>
+<p>この<code>if</code>文の条件を関数にしたものが<code>ctype.h</code>で宣言されている
+<code>islower</code>関数．ただし，冒頭で説明したように，この課題では<code>islower</code>関数と<code>toupper</code>関数を使ってはならない．<code>islower</code>関数については明快入門
+C p.198や<code>man islower</code>などを参照．</p>
+<pre><code>#include &lt;ctype.h&gt;
+
+if (islower(c))</code></pre></li>
+</ul>
+<p>-　作成する<code>lower2upper</code>関数は標準ライブラリ<code>ctype.h</code>の<code>toupper</code>関数と同じように文字変換をする．</p>
+<ul>
+<li><code>lower2upper</code>関数で<code>getchar</code>や<code>scanf</code>，<code>printf</code>などの入出力関数を呼び出す必要はない．</li>
+</ul>
+</body>
+</html>

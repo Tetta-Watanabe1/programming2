@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 3_2_ascii_code</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+3_2_ascii_code</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>文字と整数<code>n</code>が入力されたら，入力された文字の文字コードを1行目に出力し，
+2行目に文字コード表の並びに沿って入力された文字から<code>n</code>文字を出力するプログラムを書け．</p>
+<p> <strong>入力：</strong></p>
+<ul>
+<li>標準入力から1文字と整数<code>n</code>を読み込む．</li>
+</ul>
+<p> <strong>出力：</strong></p>
+<ul>
+<li><p>1行目に入力された文字のASCIIコード（10進表現の整数値）を出力する．</p></li>
+<li><p>2行目に入力された文字から<code>n</code>文字を出力する．行末は改行すること．</p></li>
+</ul>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o ascii_code ascii_code.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>A 1</code></pre>
+<p>出力</p>
+<pre><code>65
+A</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>A 3</code></pre>
+<p>出力</p>
+<pre><code>65
+ABC</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>Z 3</code></pre>
+<p>出力</p>
+<pre><code>90
+Z[\</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>0 3</code></pre>
+<p>出力</p>
+<pre><code>48
+012</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>9 3</code></pre>
+<p>出力</p>
+<pre><code>57
+9:;</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>a 3</code></pre>
+<p>出力</p>
+<pre><code>97
+abc</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>z 3</code></pre>
+<p>出力</p>
+<pre><code>122
+z{|</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>a 26</code></pre>
+<p>出力</p>
+<pre><code>97
+abcdefghijklmnopqrstuvwxyz</code></pre>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>A 26</code></pre>
+<p>出力</p>
+<pre><code>65
+ABCDEFGHIJKLMNOPQRSTUVWXYZ</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>! 26</code></pre>
+<p>出力</p>
+<pre><code>33
+!&quot;#$%&amp;&#39;()*+,-./0123456789:</code></pre>
+<p><strong>テスト11</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>0 26</code></pre>
+<p>出力</p>
+<pre><code>48
+0123456789:;&lt;=&gt;?@ABCDEFGHI</code></pre>
+<p><strong>テスト12</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>G 26</code></pre>
+<p>出力</p>
+<pre><code>71
+GHIJKLMNOPQRSTUVWXYZ[\]^_`</code></pre>
+<p><strong>テスト13</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>J 26</code></pre>
+<p>出力</p>
+<pre><code>74
+JKLMNOPQRSTUVWXYZ[\]^_`abc</code></pre>
+<p><strong>テスト14</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>a 26</code></pre>
+<p>出力</p>
+<pre><code>97
+abcdefghijklmnopqrstuvwxyz</code></pre>
+<p><strong>テスト15</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./ascii_code</code></pre>
+<p>入力</p>
+<pre><code>e 26</code></pre>
+<p>出力</p>
+<pre><code>101
+efghijklmnopqrstuvwxyz{|}~</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: ascii_code.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+/* 必要なヘッダファイルをこのあたりでincludeする．*/
+
+/* ここにmain関数を書く */</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>標準入力から1文字読み込むには<code>int getchar()</code>関数を使うとよい．あるいは<code>scanf("%c")</code>を使ってもよい．（<code>getchar</code>について詳しくは明快入門C
+42 文字入出力1
+基本用法やターミナルで<code>man getchar</code>を見よ）</p></li>
+<li><p>標準入力から整数<code>n</code>を読み込むには<code>scanf</code>関数を，
+<code>int n; scanf("%d", &amp;n)</code>のように使うとよい．（明快入門C
+46 数値入出力1 基本用法）</p></li>
+<li><p>文字は数値として扱える．それぞれの文字に割り当てられた数値はASCIIコード表を見よ（明快入門C
+pp.244-245 の文字コード表）．<code>a</code>の次は<code>b</code>，
+<code>b</code>の次は<code>c</code>のように英文字は順に並んでいる．例えば，次のプログラムでは変数<code>b1</code>と<code>b2</code>は同じ文字<code>b</code>を表す．文字を<code>'</code>（シングルクオート）で囲んでいることに注意．文字列を囲む<code>"</code>（ダブルクオート）とは区別して使う．</p>
+<pre><code>char b1, b2;
+b1 = &#39;a&#39; + 1;
+b2 = &#39;b&#39;;</code></pre></li>
+<li><p>ASCIIコード表の文字と数値の対応を覚えるのは構わないが，上の例の代わりに次のように書くのはやめよう．文字定数<code>'a'</code>の代わりに数値<code>97</code>を書いても，プログラムが読みにくくなるだけである．</p>
+<pre><code>b1 = 97 + 1; // 読みにくい書き方の例．&#39;a&#39;の代わりに97
+b2 = 98; // 読みにくい書き方の例．&#39;b&#39; の代わりに98</code></pre>
+<p>以下のような<code>printf</code>文を見かけたら，一度実行してシングルクオートで囲んだ文字定数に書き換えればよい．あるいはダブルクオートで囲んだ文字列定数にまとめた方がいいだろう．</p>
+<pre><code>printf(&quot;%c%c%c%c%c%c%c%c%c%c%c%c%c&quot;,
+       72, 101, 108, 108, 111, 32, 119, 
+       111, 114, 108, 100, 33, 10);</code></pre></li>
+<li><p><code>char</code>型変数の文字を<code>printf</code>関数で出力する場合の書式指定は<code>%c</code>である．一方，同じ変数のASCIIコード（整数値）を出力する場合は<code>%d</code>を使う．（<code>%d</code>を指定した場合，<code>char</code>型から<code>int</code>型にキャスト（型変換）されて
+<code>printf</code>関数に渡されている）．</p>
+<pre><code>char b;
+b = &#39;A&#39;;
+printf(&quot;%c %d\n&quot;, b, b); // A 65 と出力される</code></pre></li>
+</ul>
+</body>
+</html>

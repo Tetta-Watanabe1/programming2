@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 3_5_find_letter</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+3_5_find_letter</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p><code>int find_letter(char str[], char x)</code>関数を作成せよ．この関数は<code>str</code>の先頭から何文字目に文字<code>x</code>があるかを返す．文字<code>x</code>がない場合は<code>-1</code>を返す．文字列<code>str[]</code>の中に文字<code>x</code>が複数ある場合は，最初の位置を返す．文字列
+<code>str</code>と文字<code>x</code>はいずれも<code>find_letter</code>関数の引数であることに注意せよ．</p>
+<p>さらに，<code>main</code>関数にこの関数を呼び出す一文を追加せよ．</p>
+<p> <strong><code>find_letter</code>関数の引数：</strong></p>
+<ul>
+<li>第1引数：文字列が格納された<code>char</code>型配列<code>str[]</code></li>
+<li>第2引数：<code>char</code>型変数<code>x</code></li>
+<li>配列<code>str</code>に格納されている文字列の長さは100文字以下とは限らない．</li>
+</ul>
+<p> <strong><code>find_letter</code>関数の戻り値：</strong></p>
+<ul>
+<li>配列
+<code>str[]</code>に格納された文字列の<code>i</code>文字目（<code>str[i]</code>）が文字<code>x</code>なら<code>i</code>を返す．</li>
+<li>ただし，配列
+<code>str[]</code>中に文字<code>x</code>が複数ある場合は先頭に近い方の<code>i</code>を返す．</li>
+<li>配列
+<code>str[]</code>中に文字<code>x</code>が現れない場合は-1を返す．</li>
+</ul>
+<p> <strong>入力：</strong></p>
+<ul>
+<li><p>標準入力から探す文字を変数<code>x</code>に読み込む．</p></li>
+<li><p>続いて，空白を含まない文字列を配列<code>str</code>に読み込む．長さが100文字を超える場合は100文字まで読み込む．<code>find_letter</code>関数は<code>str</code>の長さを制限する必要はない．</p></li>
+</ul>
+<p> <strong>出力：</strong></p>
+<ul>
+<li><p>文字列<code>str</code>中の文字<code>x</code>の位置を表示する．文字列の最初の文字が<code>x</code>であれば0を，2番目の文字が<code>x</code>であれば1を，<span
+class="math inline">\(i\)</span>番目の文字が<code>x</code>であれば <span
+class="math inline">\(i-1\)</span>を出力する．</p></li>
+<li><p>文字<code>x</code>が文字列<code>str</code>中に存在しない場合には-1を出力する．</p></li>
+<li><p>文字列中に2回以上，<code>x</code>が出現する場合には，最初の位置を出力する．</p></li>
+</ul>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -o find_letter find_letter.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./find_letter</code></pre>
+<p>入力</p>
+<pre><code>a This_is_a_pen</code></pre>
+<p>出力</p>
+<pre><code>8</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./find_letter</code></pre>
+<p>入力</p>
+<pre><code>f vws8a&amp;&amp;Xbeg6flsXW8pdfAinv//MQNh&lt;ST8CFD</code></pre>
+<p>出力</p>
+<pre><code>12</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./find_letter</code></pre>
+<p>入力</p>
+<pre><code>a bcdef</code></pre>
+<p>出力</p>
+<pre><code>-1</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./find_letter</code></pre>
+<p>入力</p>
+<pre><code>- CBk1&lt;6</code></pre>
+<p>出力</p>
+<pre><code>-1</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./find_letter</code></pre>
+<p>入力</p>
+<pre><code>d GNU_Emacs:_An_extensible,_customizable,_free/libre_text_editor_-_and_more.</code></pre>
+<p>出力</p>
+<pre><code>57</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./find_letter</code></pre>
+<p>入力</p>
+<pre><code>g fea078415c29cf78a6ae70ccdca39d4f76b02d9901ecf7ce415be6c1bb86e1ae</code></pre>
+<p>出力</p>
+<pre><code>-1</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./find_letter</code></pre>
+<p>入力</p>
+<pre><code>Y 9IKDkieI9zVZZmvlC8GJctzGjyfOvAKJo9jadayGY0Y=</code></pre>
+<p>出力</p>
+<pre><code>40</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./find_letter</code></pre>
+<p>入力</p>
+<pre><code>- d2858101-18f0-479c-bb0e-e10f57e8d07e</code></pre>
+<p>出力</p>
+<pre><code>8</code></pre>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./find_letter</code></pre>
+<p>入力</p>
+<pre><code>: &lt;http://www.hiroshima-u.ac.jp&gt;</code></pre>
+<p>出力</p>
+<pre><code>5</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./find_letter</code></pre>
+<p>入力</p>
+<pre><code>&lt; &lt;http://www.hiroshima-u.ac.jp&gt;</code></pre>
+<p>出力</p>
+<pre><code>0</code></pre>
+<p><strong>テスト11</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./find_letter</code></pre>
+<p>入力</p>
+<pre><code>{ A={1,2,3,4},B={3,4,5,6}</code></pre>
+<p>出力</p>
+<pre><code>2</code></pre>
+<p><strong>テスト12</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./find_letter</code></pre>
+<p>入力</p>
+<pre><code>} A={1,2,3,4},B={3,4,5,6}</code></pre>
+<p>出力</p>
+<pre><code>10</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: find_letter.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#include &lt;stdio.h&gt;
+
+/* ここにfind_letter関数を定義する */
+
+int main() {
+  char x;
+  char str[100 + 1]; // 100文字以下の文字列
+  int location, i;
+
+  // デバッグ用
+  for (i = 0; i &lt; 100 + 1; i++)
+    str[i] = &#39;a&#39;; // scanfで読み込んだ文字列より後の配列要素をあらかじめ&#39;a&#39;で埋めておく．
+  
+  x = getchar(); 
+  scanf(&quot;%100s&quot;, str);
+
+  /* ここでfind_letter関数を呼び出し，戻り値を変数locationに代入する */
+
+  printf(&quot;%d\n&quot;, location);
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p><code>char</code>型配列<code>str[4]</code>に文字列<code>"ABC"</code>が格納されているとき，最後の文字
+<code>'C'</code>の後に<code>'\0'</code>（ヌル文字と呼ぶ1文字）が格納されている．例えば，次のように配列<code>str[]</code>を初期化すると，<code>str</code>の要素数は4で，<code>str[3]</code>には
+<code>'\0'</code>が格納される．</p>
+<pre><code>char str[] = &quot;ABC&quot;;</code></pre>
+<p>これは，次のように配列を初期化する場合と同じ．</p>
+<pre><code>char str[4];
+str[0] = &#39;A&#39;;
+str[1] = &#39;B&#39;;
+str[2] = &#39;C&#39;;
+str[3] = &#39;\0&#39;;</code></pre></li>
+<li><p>文字列<code>str[]</code>の先頭文字から順にたどるには次のように<code>for</code>文が使える．末尾に<code>'\0'</code>があるので，それが見つかるまで<code>for</code>ループの本体を繰り返す．</p>
+<pre><code>int i;
+for (i = 0; str[i] != &#39;\0&#39;; i++) {
+  printf(&quot;%c&quot;, str[i]); // 試しにi番目の文字を出力する
+}</code></pre>
+<p><code>for</code>の代わりに<code>while</code>を使っても書ける．</p>
+<pre><code>int i;
+i = 0;
+while (str[i] != &#39;\0&#39;) {
+  printf(&quot;%c&quot;, str[i]); // 試しにi番目の文字を出力する
+  i++;
+}</code></pre></li>
+</ul>
+</body>
+</html>
