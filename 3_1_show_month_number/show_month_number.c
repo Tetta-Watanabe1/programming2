@@ -16,3 +16,9 @@
 #define LEN 10 // 入力文字列長の最大値（使わないで構わない）
 #define N_MONTHS 12 // 月の数（使わないで構わない）
 
+int main(){
+  char s[11];
+  scanf("%10d",s);
+
+  //swich文で書けるか確認したい
+}
