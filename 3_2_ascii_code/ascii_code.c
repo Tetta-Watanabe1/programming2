@@ -14,5 +14,9 @@
 
 */
 /* 必要なヘッダファイルをこのあたりでincludeする．*/
-
+#include <stdio.h>
 /* ここにmain関数を書く */
+int main(){
+  int c;
+  c = getchar();
+}
