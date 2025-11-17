@@ -16,6 +16,14 @@
 #include <stdio.h>
 
 /* ここにmystrcpy関数を書く．この関数内でSIZEや80を使う必要はない */
+void mystrcpy(char dst[], char src[]) {
+  int i = 0;
+  while (src[i] != '\0') {
+    dst[i] = src[i];
+    i++;
+  }
+  dst[i] = '\0';
+}
 
 #define SIZE 80
 
@@ -40,7 +48,7 @@ int main() {
     s2[i] = '0' + (i % 10);
 
   // ここからmystrcpy関数を呼び出す
-
+  mystrcpy(s2, s1);
   printf("%s\n", s2); // コピーした文字列を出力する
   return 0;
 }
