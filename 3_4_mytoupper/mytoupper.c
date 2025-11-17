@@ -17,9 +17,8 @@
 
 /* lower2upper関数をこの辺りに定義する */
 char lower2upper(char c) {
-  if ('a' <= c && c <= 'z') {
+  if ('a' <= c && c <= 'z')
     return c - 1;
-  }
   return c;
 }
 
