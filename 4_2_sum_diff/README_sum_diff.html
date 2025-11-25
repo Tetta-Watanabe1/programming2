@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 4_2_sum_diff</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+4_2_sum_diff</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>参照渡しの練習．</p>
+<p>二つの整数型引数の和と差を返す<code>sum_diff</code>関数を書け．関数の戻り値を2つにできないので，和と差は参照渡しの引数を使って<code>main</code>関数に返す．</p>
+<p><code>sum_diff</code>関数の引数は4つにする．最初の二つの引数<code>x</code>と<code>y</code>は整数である．残りの二つの引数を参照渡しにして，<code>main</code>関数の変数<code>s</code>と<code>d</code>のアドレスを渡す，これらの変数のアドレスが格納されたポインタを使って和<code>x+y</code>と差
+<code>x-y</code>の二つの値を<code>main</code>関数に返せ．<code>sum_diff</code>関数の戻り値は<code>void</code>型にする．<code>main</code>関数は<code>sum_diff</code>関数の呼び出しを書き加えるだけで十分である．</p>
+<p> <strong><code>sum_diff</code>関数の引数：</strong></p>
+<ul>
+<li><p>第1引数<code>x</code>と第2引数<code>y</code>は<code>int</code>型整数（値渡しの引数）．</p></li>
+<li><p>第3引数<code>ps</code>と第4引数<code>pd</code>は<code>int</code>型ポインタ（参照渡しの引数）．一方は参照する変数に和<code>x+y</code>を代入する変数のアドレス．他方は差<code>x-y</code>を代入する変数のアドレス．</p></li>
+</ul>
+<p> <strong><code>sum_diff</code>関数の戻り値：</strong></p>
+<ul>
+<li>なし．<code>void</code>型．</li>
+</ul>
+<p> <strong>入力：</strong>標準入力に二つの整数が与えられる．</p>
+<p> <strong>出力：</strong>二つの整数の和と差を表示する．</p>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o sum_diff sum_diff.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_diff</code></pre>
+<p>入力</p>
+<pre><code>10 2</code></pre>
+<p>出力</p>
+<pre><code>sum       12
+diff       8</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_diff</code></pre>
+<p>入力</p>
+<pre><code>2 10</code></pre>
+<p>出力</p>
+<pre><code>sum       12
+diff      -8</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_diff</code></pre>
+<p>入力</p>
+<pre><code>1024 1000</code></pre>
+<p>出力</p>
+<pre><code>sum     2024
+diff      24</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_diff</code></pre>
+<p>入力</p>
+<pre><code>1048576 1000000</code></pre>
+<p>出力</p>
+<pre><code>sum  2048576
+diff   48576</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: sum_diff.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#include &lt;stdio.h&gt;
+
+// このあたりにsum_diff関数を定義する．
+
+int main() {
+  int a, b;
+  int s; // 和を代入する変数
+  int d; // 差を代入する変数
+
+  scanf(&quot;%d&quot;, &amp;a);
+  scanf(&quot;%d&quot;, &amp;b);
+  /* テスト用の適当な代入
+  s = 100;
+  d = 100; */
+
+  // ここでsum_diff関数を呼び出す．
+  
+  printf(&quot;sum  %7d\n&quot;, s);
+  printf(&quot;diff %7d\n&quot;, d);
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>明快入門C 66 ポインタを引数にする．</p></li>
+<li><p>参照渡しの例（スライドより）：</p>
+<pre><code>void set_value(int *b) { // bには変数aのアドレスが入る
+  *b = 20; // main関数aに20を代入する
+}
+
+int main() {
+  int a = 10;
+
+  set_value(&amp;a); // 変数aのアドレスを引数にする
+  printf(&quot;a=%d\n&quot;, a); // 20が出力される
+  return 0;
+}</code></pre>
+<p>変数<code>a</code>が<code>int</code>型なのと同じように，変数<code>b</code>に間接参照演算子をつけた
+<code>*b</code>の型は<code>int</code>型である．アスタリスクも含めた<code>*b</code>が変数名だと思って，仮引数の宣言<code>int *b</code>を眺めると，<code>*b</code>は<code>int</code>型に見えないだろうか．</p></li>
+<li><p><code>sum_diff</code>関数を用いなければ次のように和と差が計算できる．この課題は，以下の文<code>A</code>と<code>B</code>の代入を<code>sum_diff</code>関数の中で行うように書き直しないという課題である．</p>
+<pre><code>scanf(&quot;%d&quot;, &amp;a);
+scanf(&quot;%d&quot;, &amp;b);
+s = a + b; // 文A
+d = a - b; // 文B
+printf(&quot;%d\t%d\n&quot;, s, d);</code></pre></li>
+<li><p><code>main</code>関数から<code>sum_diff</code>関数を呼び出す際に，変数<code>s</code>と<code>d</code>のアドレスを第3，4実引数にする．これらの変数のアドレスは<code>&amp;s</code>と<code>&amp;d</code>で取り出せる．このように変数のアドレスを実引数にすることを，参照渡しやアドレス渡しと呼ぶ<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>．</p>
+<pre><code>int main() {
+  int s;
+  ...
+  sum_diff(..., &amp;s, ...); // 変数sの参照渡しの例
+  ...
+}</code></pre></li>
+<li><p>呼び出される側の<code>sum_diff</code>関数から見ると，第3引数<code>ps</code>に<code>main</code>関数の変数<code>s</code>のアドレスが代入されて呼び出される．よって，ポインタ<code>ps</code>が指す変数は<code>main</code>関数の変数である．ポインタ<code>ps</code>の前に間接参照演算子
+<code>*</code>をつけると，その変数<code>s</code>の値を間接的に読み書きできる<a
+href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>．つまり，<code>*ps</code>に代入すると，代入した値が<code>main</code>関数の変数<code>s</code>に代入される．</p>
+<pre><code>void sum_diff(..., int *ps, ...) {
+  *ps = 100; // main関数のsに100を代入する
+}
+
+int main() {
+  int s;
+  ...
+  sum_diff(..., &amp;s, ...);
+  ...
+}</code></pre>
+<p>この代入は呼び出し元の<code>main</code>関数に整数値を返しているように見えるため，この課題の冒頭では「参照渡しの引数を使って値を<code>main</code>関数に返す」と書いている．明快入門CやCの絵本にも「呼び出し側に値を戻す」あるいは「複数の値や文字列を返す」と書かれている．この返し方は<code>return</code>文で関数の戻り値を返すのとは別の返し方であることに注意せよ．</p>
+<p>第4引数<code>pd</code>も同様に<code>main</code>関数の変数を参照しているので，<code>*pd</code>に代入すると<code>main</code>関数の変数<code>d</code>がその値になる．（<code>s</code>と<code>d</code>の順序を逆にしてもよい）</p></li>
+<li><p><code>sum_diff</code>関数の第1，第2引数は値渡しで十分なので，参照渡しにする必要はない（すべきではない）．</p></li>
+</ul>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li
+id="fn1"><p>参照渡しという言葉はスライドとCの絵本で使われている．アドレス渡しは明快入門Cで使われている．呼び名が違うだけで，どちらも同じ内容である．つまり，アドレスのことを参照と呼んでいる．英語の参照（reference）には次のような意味があり，ここでは3の意味「ある物（変数）の場所を示す記号（アドレス）」として使われている．reference:
+1 ある物事について言及すること，2 ある物について調べること，3
+ある物の場所を示す記号（Oxford Advanced Learner’s
+Dictionary（オンライン）を訳）<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li
+id="fn2"><p>間接的に読み書きというのは，変数名を使わないで変数の値を読み書きすること．<a
+href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 4_4_partial_sum</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+4_4_partial_sum</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>整数配列の部分和を出力したい．引数で与えられた配列<code>p</code>の先頭<code>w</code>個の要素の和を求める関数<code>int partial_sum(int *p, int w)</code>関数を作成せよ．</p>
+<p>また，<code>main</code>関数では<code>partial_sum</code>関数を呼び出して，この関数の戻り値を<code>sum</code>に代入せよ．</p>
+<p> <strong><code>partial_sum</code>関数の引数：</strong></p>
+<ul>
+<li><code>a[s]</code>のアドレス<code>p</code>と整数<code>w</code>の二つを引数にする．<code>a[s]</code>のアドレスとは配列<code>a</code>の<code>s</code>番目の要素のアドレス．</li>
+</ul>
+<p> <strong><code>partial_sum</code>関数の戻り値：</strong>
+<code>p[0] + p[1] + p[2] + ... + p[w-1]</code></p>
+<p><code>p</code>が<code>main</code>関数の配列<code>a</code>の<code>s</code>番目の要素のアドレスであれば，上の和は次のように配列<code>a</code>で表すことができる．</p>
+<p><code>a[s] + a[s+1] + a[s+2] + ... + a[s+w-1]</code></p>
+<p>
+<strong>入力：</strong>標準入力に2つの整数<code>s</code>と<code>w</code>が与えられる．</p>
+<p>
+<strong>出力：</strong>配列<code>a</code>の要素のうち<code>s</code>番目から<code>w</code>個の要素の和を出力する．つまり次式の和を計算して出力する．なお，配列<code>a</code>は<code>main</code>関数にあらかじめ定義されている．</p>
+<pre><code>    a[s] + a[s+1] + a[s+2] + ... + a[s+w-1]</code></pre>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o partial_sum partial_sum.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./partial_sum</code></pre>
+<p>入力</p>
+<pre><code>1 2</code></pre>
+<p>出力</p>
+<pre><code>9</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./partial_sum</code></pre>
+<p>入力</p>
+<pre><code>0 10</code></pre>
+<p>出力</p>
+<pre><code>284</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./partial_sum</code></pre>
+<p>入力</p>
+<pre><code>1 10</code></pre>
+<p>出力</p>
+<pre><code>350</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./partial_sum</code></pre>
+<p>入力</p>
+<pre><code>10 10</code></pre>
+<p>出力</p>
+<pre><code>360</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./partial_sum</code></pre>
+<p>入力</p>
+<pre><code>2 20</code></pre>
+<p>出力</p>
+<pre><code>808</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./partial_sum</code></pre>
+<p>入力</p>
+<pre><code>8 8</code></pre>
+<p>出力</p>
+<pre><code>211</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./partial_sum</code></pre>
+<p>入力</p>
+<pre><code>13 24</code></pre>
+<p>出力</p>
+<pre><code>1147</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./partial_sum</code></pre>
+<p>入力</p>
+<pre><code>10 40</code></pre>
+<p>出力</p>
+<pre><code>1986</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: partial_sum.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#include &lt;stdio.h&gt;
+
+// ここにpartial_sum関数を定義する．
+
+int main() {
+  int a[50] =
+    {24, 3, 6, 69, 8, 41, 53, 25, 17, 38,
+     90, 0, 22, 24, 7, 13, 33, 44, 89, 38,
+     92, 99, 54, 18, 52, 74, 6, 80, 5, 73,
+     24, 24, 46, 64, 49, 48, 91, 41, 9, 93,
+     70, 83, 47, 72, 43, 86, 34, 60, 49, 40};
+  int s, w, sum;
+
+  scanf(&quot;%d %d&quot;, &amp;s, &amp;w);
+  // ここでpartial_sum関数を呼び出し，
+  // 関数の戻り値を変数sumに代入する．
+  printf(&quot;%d\n&quot;, sum);
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<p> <strong>ヒント：</strong></p>
+<ul>
+<li><p>明快入門C 67 ポインタによる配列渡し，66
+ポインタを引数にする．</p></li>
+<li><p>次のように<code>partial_sum</code>関数を作って欲しい．難しい人は以下の代案1から
+3のいずれかでもよい．</p></li>
+<li><p><code>main</code>関数から<code>partial_sum(&amp;a[s], w);</code>のように呼び出すと，配列<code>a</code>の
+<code>s</code>番目の要素のアドレスが第1引数として渡される．</p></li>
+<li><p><code>int partial_sum(int *pa, int w)</code>と宣言する．</p></li>
+<li><p>仮引数<code>pa</code>で部分和を求める先頭要素へのポインタ（<code>main</code>関数の<code>&amp;a[s]</code>）を受け取り，仮引数<code>w</code>で部分和を求める要素数を受け取る．このとき，
+<code>pa[0]</code>から<code>pa[w - 1]</code>が<code>main</code>関数の<code>a[s]</code>から<code>a[s + w - 1]</code>に対応する．</p></li>
+<li><p><code>pa[0]</code>から<code>pa[w - 1]</code>の和を返す．この和は次式の<code>sum</code>で表せる．</p>
+<p><span class="math display">\[{\tt sum} = \sum_{i=0}^{\tt w-1} {\tt
+pa}[i]\]</span></p></li>
+<li><p><code>sum</code>は，先頭要素から順に要素の和を求め，ポインタを次の要素に移動することを<code>w</code>回繰り返すことで求められる．</p>
+<pre><code>int sum;
+sum = 0;
+while (w-- &gt; 0) {
+  sum += *pa;
+  pa++;
+}</code></pre>
+<p>同じ計算を配列の添え字<code>i</code>を使って書くと次のようになる．</p>
+<pre><code>int sum, i;
+sum = 0;
+i = 0;
+while (i &lt; w) {
+  sum += pa[i];
+  i++;
+}</code></pre></li>
+<li><p><code>while</code>文の代わりに<code>for</code>文でも書ける．</p>
+<pre><code>int sum;
+for (sum = 0; w-- &gt; 0; pa++) {
+  sum += *pa;
+}</code></pre></li>
+<li><p><code>sum += *pa;</code>と<code>pa++;</code>の二文は次のように一文にまとめることもできる．</p>
+<pre><code>sum += *pa++;</code></pre>
+<p><code>*pa++</code>の二つの演算子<code>*</code>と<code>++</code>は同じ優先順位で右結合なので
+<code>*(pa++)</code>の順に評価される．<em>(++pa)ではないので，</em>pa++で参照される変数は，ポインタpaを増やす前のアドレスに格納されている変数であることに注意せよ．</p></li>
+<li><p>（代案1）配列<code>a</code>の先頭アドレスを関数に渡し，関数内ではポインタを使う．</p>
+<ul>
+<li><p><code>main</code>関数から<code>partial_sum(a, s, w);</code>のように呼び出す．</p></li>
+<li><p><code>int partial_sum(int *pa, int s, int w)</code>と宣言する．</p></li>
+<li><p>仮引数<code>pa</code>で配列<code>a</code>（の先頭要素）へのポインタを受け取る．</p></li>
+<li><p>仮引数<code>s</code>と<code>w</code>でそれぞれ先頭要素の添字と要素数を受け取る．</p></li>
+<li><p><code>pa[s]</code>から<code>pa[s + w - 1]</code>の和を返す．</p></li>
+<li><p><code>pa += s;</code>でポインタ<code>pa</code>を<code>s</code>番目の要素に移動する．</p></li>
+</ul></li>
+<li><p>（代案2）関数本体ではポインタを使わない書き方．</p>
+<ul>
+<li><p><code>main</code>関数から<code>partial_sum(&amp;a[s], w);</code>のように呼び出す．</p></li>
+<li><p><code>int partial_sum(int b[], int w)</code>と宣言する．</p></li>
+<li><p><code>b[0]</code>から<code>b[w - 1]</code>の和<code>sum</code>を返す．</p>
+<p><span class="math display">\[{\tt sum} = \sum_{i=0}^{\tt w-1} {\tt
+b}[i]\]</span></p></li>
+</ul></li>
+<li><p>（代案3）これが一番理解しやすいはず．ポインタをまったく使わないのでポインタの課題としては不十分．</p>
+<ul>
+<li><p><code>main</code>関数から<code>partial_sum(a, s, w);</code>のように呼び出す．</p></li>
+<li><p><code>int partial_sum(int b[], int s, int w)</code>と宣言する．</p></li>
+<li><p>次式の<code>sum</code>を返す．</p>
+<p><span class="math display">\[{\tt sum} = \sum_{i={\tt s}}^{\tt s+w-1}
+{\tt b}[i]\]</span></p></li>
+</ul></li>
+</ul>
+</body>
+</html>

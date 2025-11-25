@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 4_5_reverse_string</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+4_5_reverse_string</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>与えられた文字列を反転させる<code>char *reverse_string(char *p)</code>関数を作成せよ．この関数の戻り値は引数pとすること．<code>main</code>関数は変更しないこと．反転した文字列とは，最後の文字から逆順に並んだ文字列のことである．</p>
+<p><code>reverse_string</code>は文字列の長さが79文字を超えても正しく動作するようにすること．</p>
+<p>
+<strong>入力：</strong>標準入力から空白を含まない文字列を読み込む．読み込む文字列長は79文字までとする．</p>
+<p> <strong>出力：</strong></p>
+<ul>
+<li>1行目は入力された文字を反転して出力する．（最後の文字から逆順に出力する）</li>
+<li>2行目は入力された文字を2回反転して出力する．（元の文字列）</li>
+</ul>
+<p> <strong>reverse_string関数：</strong></p>
+<ul>
+<li>文字列へのポインタ<code>char *p</code>を引数にとる．</li>
+<li>戻り値は引数p．関数を入れ子にして呼び出せるようにするため．</li>
+<li>引数の文字列を反転させる．</li>
+</ul>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o reverse_string reverse_string.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./reverse_string</code></pre>
+<p>入力</p>
+<pre><code>This_is_a_pen.</code></pre>
+<p>出力</p>
+<pre><code>.nep_a_si_sihT
+This_is_a_pen.</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./reverse_string</code></pre>
+<p>入力</p>
+<pre><code>A_single_unified_university,_free_and_pursuing_peace</code></pre>
+<p>出力</p>
+<pre><code>ecaep_gniusrup_dna_eerf_,ytisrevinu_deifinu_elgnis_A
+A_single_unified_university,_free_and_pursuing_peace</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./reverse_string</code></pre>
+<p>入力</p>
+<pre><code>Linux_is_an_operating_system_that_evolved_from_a_kernel_created_by_Linus_Torvalds_when_he_was_a_student_at_the_University_of_Helsinki._https://www.linux.org/threads/what-is-linux.4106/</code></pre>
+<p>出力</p>
+<pre><code>lavroT_suniL_yb_detaerc_lenrek_a_morf_devlove_taht_metsys_gnitarepo_na_si_xuniL
+Linux_is_an_operating_system_that_evolved_from_a_kernel_created_by_Linus_Torval</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./reverse_string</code></pre>
+<p>入力</p>
+<pre><code>When_Linus_Torvalds_was_studying_at_the_University_of_Helsinki,_he_was_using_a_version_of_the_UNIX_operating_system_called_&#39;Minix&#39;._https://www.linux.org/threads/what-is-linux.4106/</code></pre>
+<p>出力</p>
+<pre><code>_a_gnisu_saw_eh_,iknisleH_fo_ytisrevinU_eht_ta_gniyduts_saw_sdlavroT_suniL_nehW
+When_Linus_Torvalds_was_studying_at_the_University_of_Helsinki,_he_was_using_a_</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./reverse_string</code></pre>
+<p>入力</p>
+<pre><code>Linus_and_other_users_sent_requests_for_modifications_and_improvements_to_Minix&#39;s_creator,_Andrew_Tanenbaum,_but_he_felt_that_they_weren&#39;t_necessary._https://www.linux.org/threads/what-is-linux.4106/</code></pre>
+<p>出力</p>
+<pre><code>xiniM_ot_stnemevorpmi_dna_snoitacifidom_rof_stseuqer_tnes_sresu_rehto_dna_suniL
+Linus_and_other_users_sent_requests_for_modifications_and_improvements_to_Minix</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./reverse_string</code></pre>
+<p>入力</p>
+<pre><code>That&#39;s_when_Linus_decided_to_create_his_own_operating_system_that_would_take_into_account_users&#39;_comments_and_suggestions_for_improvements._https://www.linux.org/threads/what-is-linux.4106/</code></pre>
+<p>出力</p>
+<pre><code>ni_ekat_dluow_taht_metsys_gnitarepo_nwo_sih_etaerc_ot_dediced_suniL_nehw_s&#39;tahT
+That&#39;s_when_Linus_decided_to_create_his_own_operating_system_that_would_take_in</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./reverse_string</code></pre>
+<p>入力</p>
+<pre><code>This_is_Joel_on_Software,_where_I&#39;ve_been_ranting_about_software_development,_management,_business,_and_the_Internet_since_2000_https://www.joelonsoftware.com/about-me/</code></pre>
+<p>出力</p>
+<pre><code>m_,tnempoleved_erawtfos_tuoba_gnitnar_neeb_ev&#39;I_erehw_,erawtfoS_no_leoJ_si_sihT
+This_is_Joel_on_Software,_where_I&#39;ve_been_ranting_about_software_development,_m</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./reverse_string</code></pre>
+<p>入力</p>
+<pre><code>GNU_is_an_operating_system_that_is_free_software-that_is,_it_respects_users&#39;_freedom._https://www.gnu.org</code></pre>
+<p>出力</p>
+<pre><code>rf_&#39;sresu_stcepser_ti_,si_taht-erawtfos_eerf_si_taht_metsys_gnitarepo_na_si_UNG
+GNU_is_an_operating_system_that_is_free_software-that_is,_it_respects_users&#39;_fr</code></pre>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./reverse_string</code></pre>
+<p>入力</p>
+<pre><code>The_Apache_Hadoop_software_library_is_a_framework_that_allows_for_the_distributed_processing_of_large_data_sets_across_clusters_of_computers_using_simple_programming_models._https://hadoop.apache.org</code></pre>
+<p>出力</p>
+<pre><code>tubirtsid_eht_rof_swolla_taht_krowemarf_a_si_yrarbil_erawtfos_poodaH_ehcapA_ehT
+The_Apache_Hadoop_software_library_is_a_framework_that_allows_for_the_distribut</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./reverse_string</code></pre>
+<p>入力</p>
+<pre><code>Apache_Spark_achieves_high_performance_for_both_batch_and_streaming_data,_using_a_state-of-the-art_DAG_scheduler,_a_query_optimizer,_and_a_physical_execution_engine._http://spark.apache.org</code></pre>
+<p>出力</p>
+<pre><code>gnisu_,atad_gnimaerts_dna_hctab_htob_rof_ecnamrofrep_hgih_seveihca_krapS_ehcapA
+Apache_Spark_achieves_high_performance_for_both_batch_and_streaming_data,_using</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: reverse_string.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+// ここにreverse_string関数を定義する．
+
+#define LEN 79
+
+int main() {
+  char s[LEN + 1];
+  char s2[LEN + 1];
+  char *t, *t1;
+
+  scanf(&quot;%79s&quot;, s);
+  strcpy(s2, s); // 文字列sをs2にコピーする
+  reverse_string(s);
+  printf(&quot;%s\n&quot;, s);
+  t1 = reverse_string(s2);
+  t = reverse_string(t1);
+  printf(&quot;%s\n&quot;, t);
+  
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>明快入門C 53 関数の構成（関数の方と引数），67
+ポインタによる配列渡し．</p></li>
+<li><p><code>main</code>関数を読んで理解しよう．入力された文字列は<code>main</code>関数の配列
+<code>s</code>に格納され，<code>s2</code>にもコピーされる．</p>
+<p><code>reverse_string(s)</code>を呼び出し，<code>reverse_string</code>によって反転された文字列<code>s</code>を出力する．</p>
+<p><code>t</code>には文字列<code>s2</code>を2度反転した文字列が返る．受け取った<code>t</code>を出力する．
+2度反転すると元に戻るが，最初の文字列を出力しているわけではない．</p></li>
+<li><p>次の2文で<code>t</code>には文字列<code>s2</code>を2度反転した文字列が入る．</p>
+<pre><code>t1 = reverse_string(s2);
+t = reverse_string(t1);</code></pre>
+<p>この2文は次の1文でまとめて書ける．この1文でも<code>t</code>に同じ文字列が入る．内側の<code>reverse_string(s2)</code>の戻り値は，そのまま外側の<code>reverse_string</code>関数の引数として渡される．</p>
+<pre><code>t = reverse_string(reverse_string(s2));</code></pre></li>
+<li><p><code>main</code>関数の<code>s</code>, <code>s1</code>,
+<code>t</code>，<code>t1</code>がよくわからない場合は次の<code>printf</code>文を確認したい場所に入れると，これらのアドレスを出力できる．<code>return</code>文を適切に書けば，<code>s1</code>と同じアドレスが<code>t</code>と<code>t1</code>に格納される．</p>
+<pre><code>printf(&quot;%p %p %p %p\n&quot;, s, s2, t, t1);</code></pre></li>
+<li><p><code>reverse_string</code>関数は文字列へのポインタを引数にとる．戻り値は引数p
+なので，次のように定義する．この例では仮引数名を<code>p</code>にしている．</p>
+<pre><code>char reverse_string(char *p) {
+  // 反転処理
+  return p; // このpは反転処理の間も変更しない．
+}</code></pre></li>
+<li><p>引数のポインタ<code>p</code>は参照渡しなので，<code>p</code>の指す配列要素（<code>p[0]</code>や<code>*p</code>）を読み書きすると，<code>main</code>関数の配列<code>s</code>の要素を読み書きすることになる．（明快入門C
+67 ポインタによる配列渡し）</p></li>
+<li><p>文字列を反転するには，先頭の文字と末尾の文字を入れ替え，先頭の次の文字と末尾の1文字前を入れ替えるという処理を，文字列の中間まで繰り返す．以降，この方法で反転する手順を説明する．</p></li>
+<li><p>仮引数<code>p</code>の代わりに配列<code>s[]</code>を用いる例を示す．この例では，文字列の長さを覚える変数を使わずに末尾の文字までポインタを移動する．</p>
+<pre><code>char s[] = &quot;This_is_a_pen.&quot;;
+char *head; // 文字列の先頭から後ろに動かすポインタ
+char *tail; // 文字列の末尾から前に動かすポインタ
+head = s;
+tail = s;</code></pre>
+<p>この例では<code>head</code>と<code>tail</code>は<code>s[0]</code>を指すポインタになる．代入文などで
+<code>s[0]</code>と書いても<code>*head</code>や<code>*tail</code>と書いても同じ配列要素になる．
+<code>head++;</code>するごとに<code>s[1]</code>，<code>s[2]</code>，<code>s[3]</code>，<span
+class="math inline">\(\ldots\)</span>とポインタが指す文字が移動する．なお，<code>head = s;</code>は<code>head = &amp;s[0];</code>と書くこともできる．</p></li>
+<li><p>文字列<code>s[]</code>の終端にはヌル文字<code>'\0'</code>が格納されているので，先ほどの例に続けて次のように書くと，ポインタ<code>tail</code>はヌル文字まで移動した後，1文字戻る．つまり，ポインタ<code>tail</code>は文字列の末尾の文字（この例ではピリオド）が格納されている配列要素を指すようになる．</p>
+<pre><code>while (*tail != &#39;\0&#39;)
+  tail++;
+tail--;</code></pre></li>
+<li><p>ここまでに説明した方法で，文字列の先頭文字を指すポインタ<code>head</code>と文字列の末尾のヌル文字の前の文字を指すポインタ<code>tail</code>が用意できる．</p></li>
+<li><p><code>*head</code>と<code>*tail</code>の文字を入れ替えるには，別の変数（例えば<code>tmp</code>）にどちらかの値を覚えておいて，入れ替える．つまり，次のようにする．</p>
+<pre><code>char tmp;
+tmp = *head;
+*head = *tail;
+*tail = tmp;</code></pre>
+<p>次のように書くと，<code>*head</code>の文字が失われる．</p>
+<pre><code>*head = *tail;
+*tail = *head;</code></pre></li>
+<li><p><code>head</code>と<code>tail</code>が常に先頭から<code>i</code>文字目と末尾から<code>i</code>文字目を指すように移動するには，二つのポインタを次のように1文字ずつ前や後ろにずらす．</p>
+<pre><code>head++;
+tail--;</code></pre></li>
+<li><p>ポインタ<code>head</code>と<code>tail</code>の大小関係を比較することで，二つのポインタが指している配列要素の添字を比較できる．<code>head</code>が<code>s[i]</code>を指し，<code>tail</code>が
+<code>s[j]</code>を指しているとすると，<code>head &lt; tail</code>ならば<code>i &lt; j</code>である．<code>head &lt; tail</code>を満たす間，ポインタをずらしながら，文字を入れ替え続けると，文字列の中間まで繰り返すことができる．</p>
+<pre><code>printf(&quot;%p %p\n&quot;, head, tail);
+while (head &lt; tail) { // 文字列の中間まで
+  head++;
+  tail--;
+}
+printf(&quot;%p %p\n&quot;, head, tail);</code></pre></li>
+<li><p>文字列の長さを調べるために<code>strlen</code>関数を使ってもよい．<code>strlen</code>関数は
+<code>string.h</code>ヘッダファイルで宣言されている．<code>while (*tail != '\0')</code>の部分を<code>strlen</code>関数を使って書き換えることができる．</p></li>
+</ul>
+</body>
+</html>

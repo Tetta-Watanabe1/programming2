@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 4_7_sudoku_fill_row</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+4_7_sudoku_fill_row</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p><strong>発展課題</strong></p>
+<p>盤面を1行ごとに調べて，空きマスが1つの場合にそのマスに適切な数字を入れる<code>fill_row(int row[])</code>関数を作成せよ<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>．関数にするのが難しい人は<code>main</code>関数で処理しても構わない．</p>
+<p>このプログラムで解ける問題（すべての空きマスに数字を入れられる問題）を作り，説明の下の欄に三つ以上書け．盤面の書き方は入力と同じ書き方にせよ．</p>
+<p><strong>数独のルール：</strong></p>
+<ul>
+<li><p>タテ9列，ヨコ9行，3 <span class="math inline">\(\times\)</span>
+3の9つあるブロックのどれにも，1から9までの数字が一つずつ入るように空きマスに数字を入れる．</p></li>
+<li><p>詳しくは以下のページで確認してください．なお「数独(SUDOKU)」はニコリの登録商標です．</p>
+<p><a
+href="http://nikoli.co.jp/ja/puzzles/sudoku/">http://nikoli.co.jp/ja/puzzles/sudoku/</a>
+(和文)</p>
+<p><a
+href="http://nikoli.co.jp/en/puzzles/sudoku/">http://nikoli.co.jp/en/puzzles/sudoku/</a>
+(英文)</p></li>
+<li><p>参考：数独の空きマスの最大数に関する論文．</p>
+<p>Gary McGuire, Bastian Tugemann, and Gilles Civario, “There is no
+16-Clue Sudoku: Solving the Sudoku Minimum Number of Clues Problem via
+Hitting Set Enumeration,” Journal of Experimental Mathematics, vol. 23,
+no. 2, Taylor &amp; Franscis, Aug. 2013. <a
+href="https://doi.org/10.1080/10586458.2013.870056">https://doi.org/10.1080/10586458.2013.870056</a>
+<a
+href="https://arxiv.org/pdf/1201.0749.pdf">https://arxiv.org/pdf/1201.0749.pdf</a></p></li>
+</ul>
+<p><strong>コマンドライン引数：</strong>なし</p>
+<p><strong>入力：</strong></p>
+<ul>
+<li><p>9 <span class="math inline">\(\times\)</span>
+9の盤面のそれぞれのマスを1文字で表す．</p></li>
+<li><p>盤面の1行を空白のない数字9つで表す．行の間には一つ以上の空白や改行が入る．実行例の場合は盤面3行おきに改行が入っている．</p></li>
+<li><p>引数の数字が0なら空きマス，1から9までの数字ならそのマスにその数字が入る．</p></li>
+</ul>
+<p><strong>出力：</strong></p>
+<ul>
+<li><p>盤面の出力形式は前の課題と同じ．テスト一覧に示すように3$$3ブロックの縁を+-|で囲んで，13行で表す．</p></li>
+<li><p>盤面を2回出力する．まず，入力された盤面を出力する．続いて，各行の空きマスに適切な数字を入れた盤面を出力する．</p></li>
+<li><p>出力例は <code>cat tests/1.correct</code>
+コマンドで表示される．</p></li>
+</ul>
+<p><strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o sudoku_fill_row sudoku_fill_row.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 3, 4, 5</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sudoku_fill_row</code></pre>
+<p>入力</p>
+<pre><code>023456789 406789103 780123456
+234507890 567091234 891230567
+345678910 678902045 910345608</code></pre>
+<p>出力</p>
+<pre><code>+---+---+---+
+| 23|456|789|
+|4 6|789|1 3|
+|78 |123|456|
++---+---+---+
+|234|5 7|89 |
+|567| 91|234|
+|891|23 |567|
++---+---+---+
+|345|678|91 |
+|678|9 2| 45|
+|91 |345|6 8|
+12行目以降省略（26行）</code></pre>
+<p>出力の全体は <code>cat tests/1.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sudoku_fill_row</code></pre>
+<p>入力</p>
+<pre><code>023456789 406789123 780123456
+204567891 560891234 091234567
+340678912 078912345 902345678</code></pre>
+<p>出力</p>
+<pre><code>+---+---+---+
+| 23|456|789|
+|4 6|789|123|
+|78 |123|456|
++---+---+---+
+|2 4|567|891|
+|56 |891|234|
+| 91|234|567|
++---+---+---+
+|34 |678|912|
+| 78|912|345|
+|9 2|345|678|
+12行目以降省略（26行）</code></pre>
+<p>出力の全体は <code>cat tests/3.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sudoku_fill_row</code></pre>
+<p>入力</p>
+<pre><code>123406789 456780123 789023456
+234507891 567091234 891230567
+345608912 678910345 912045678</code></pre>
+<p>出力</p>
+<pre><code>+---+---+---+
+|123|4 6|789|
+|456|78 |123|
+|789| 23|456|
++---+---+---+
+|234|5 7|891|
+|567| 91|234|
+|891|23 |567|
++---+---+---+
+|345|6 8|912|
+|678|91 |345|
+|912| 45|678|
+12行目以降省略（26行）</code></pre>
+<p>出力の全体は <code>cat tests/4.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sudoku_fill_row</code></pre>
+<p>入力</p>
+<pre><code>123456709 456789023 789123450
+234567801 567891230 891234067
+345678910 678912045 912345608</code></pre>
+<p>出力</p>
+<pre><code>+---+---+---+
+|123|456|7 9|
+|456|789| 23|
+|789|123|45 |
++---+---+---+
+|234|567|8 1|
+|567|891|23 |
+|891|234| 67|
++---+---+---+
+|345|678|91 |
+|678|912| 45|
+|912|345|6 8|
+12行目以降省略（26行）</code></pre>
+<p>出力の全体は <code>cat tests/5.correct</code>
+コマンドを実行すると表示される．</p>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: sudoku_fill_row.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+このプログラムで解ける問題：
+
+（例）
+023456789 406789103 780123456
+234507890 567091234 891230567
+345678910 678902045 910345608
+
+感想: 
+
+*/
+#include &lt;stdio.h&gt;
+
+// fill_row関数の定義
+void fill_row(int row[]) {
+  // 動作を確認したらこの関数本体は削除しなさい．
+  int j;
+  printf(&quot;fill_row: &quot;);
+  for (j = 0; j &lt; 9; j++)
+    printf(&quot;%d &quot;, row[j]);
+  printf(&quot;\n&quot;);
+}
+
+// sudoku_print関数の定義
+
+int main() {
+  int grid[9][9];
+  int i, j;
+
+  // 標準入力の盤面を配列grid[][]に格納する．
+
+  // 数字を入れる前の盤面を出力する
+  sudoku_print(grid);
+
+  // 上の行から1行ずつ数字を入れらるマスを探して入れる
+  for(i = 0; i &lt; 9; i++) {
+    fill_row(grid[i]);
+  }
+
+  // 数字を入れた後の盤面を出力する
+  sudoku_print(grid);
+
+  return 0;
+}
+</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>2次元配列については，明快入門C 19 配列に少し説明がある．Cの絵本
+多次元配列の方が詳しい．配列を参照渡しする方法については，1次元配列と2次元配列で大きくは違わない．<code>&amp;grid[0][0]</code>の代わりに<code>grid</code>と書いたり，
+<code>&amp;grid[i][0]</code>の代わりに<code>grid[i]</code>と書くといずれもその要素のアドレスが得られるので，参照渡しにこれらのアドレスが使える．</p></li>
+<li><p>配布ファイルの<code>fill_row</code>関数に次のように書くと，その行を出力するようになる．</p>
+<pre><code>void fill_row(int row[]) {
+  int i;
+  for (i = 0; i &lt; 9; i++) {
+    printf(&quot;%d&quot;, row[i]);
+  }
+  printf(&quot;\n&quot;);
+}</code></pre>
+<p>この引数では<code>fill_row</code>関数を書きにくければ<code>main</code>関数の配列
+<code>grid[9][9]</code>をそのまま渡してもよい．</p></li>
+<li><p><code>main</code>関数ではコマンドライン引数の盤面を配列<code>grid</code>に格納しなおす．次のように数字（<code>'1'</code>など）を数値（<code>1</code>など）に変換して入れておくほうがよいだろう．</p>
+<pre><code>int grid[9][9];
+
+// 0行8列（右上）のマスの数字を数値に変換して格納する例
+grid[0][8] = argv[1][8] - &#39;0&#39;;</code></pre></li>
+<li><p><code>fill_row</code>関数は1行ずつ処理する．<code>grid[行][列]</code>のように添え字は行，列の順に対応していることに注意すると，例えば次のような実引数で
+<code>main</code>関数から<code>fill_row</code>関数を呼び出せば，盤面の8行目（最下行）を参照渡しすることになる．</p>
+<pre><code>fill_row(grid[8]);</code></pre>
+<p>呼び出された<code>fill_row</code>関数内で<code>row[i]</code>は<code>main</code>関数の<code>grid[8][i]</code>に対応している．<code>row[i]</code>を代入すると<code>main</code>関数の<code>grid[8][i]</code>の値が変わる．</p></li>
+<li><p>2次元配列は<code>[0][0]</code>，<code>[0][1]</code>，<code>[0][2]</code>，<span
+class="math inline">\(\ldots\)</span>，<code>[0][8]</code>，
+<code>[1][0]</code>，<span
+class="math inline">\(\ldots\)</span>，<code>[1][8]</code>，<code>[2][0]</code>,
+<span
+class="math inline">\(\ldots\)</span>，<code>[8][8]</code>の順に格納されている．</p></li>
+<li><p><code>grid[i]</code>は<code>&amp;grid[i][0]</code>と同じアドレス．</p></li>
+<li><p><code>i</code>行目でまだ使っていない数字と，空きマスを探す方法は各自で考えよ．数字を添字にした配列を使う方法や，行のマスの数字を合計する方法などがある．</p></li>
+<li><p>引数<code>row</code>の行で，まだ使っていない数字が<code>d</code>で，空きマスが<code>j</code>列目だとすると，次のように空きマスに適切な数字を入れる．</p>
+<pre><code>row[j] = d;</code></pre></li>
+<li><p>出力は課題<code>sudoku_print</code>を次のような関数にすると扱いやすい．</p>
+<pre><code>void sudoku_print(int grid[9][9]);</code></pre></li>
+</ul>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>この課題では列やブロックは見ない．<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

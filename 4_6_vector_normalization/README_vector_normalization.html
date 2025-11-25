@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 4_6_vector_normalization</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+4_6_vector_normalization</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p><strong>発展課題</strong></p>
+<p><span
+class="math inline">\(n\)</span>次元ベクトル<code>x</code>を読み込み，正規化して出力するプログラムを作成したい．正規化とは，ベクトルの長さが1になるように各要素をベクトルの長さで割ることである．</p>
+<p>そこで，配列<code>vec[]</code>に格納された<code>dim</code>次元ベクトルを正規化する<code>void normalize(float vec[], int dim)</code>関数を書け．</p>
+<p><code>main</code>関数に<code>normalize</code>関数を呼び出す部分を追加せよ．ベクトルの入出力をする部分は<code>main</code>関数にすでに書かれている．<code>normalize</code>関数内で配列
+<code>vec[]</code>の要素を書き換えると，<code>main</code>関数の配列<code>x[]</code>の要素も書き変わることを有効に使え．</p>
+<p> <strong><code>normalize</code>関数の引数：</strong></p>
+<ul>
+<li>第1引数:
+<code>float</code>型の配列<code>vec[]</code>．ベクトル<code>x</code>の各要素</li>
+<li>第2引数: 整数<code>n</code>．ベクトル<code>x</code>の次元</li>
+</ul>
+<p> <strong><code>normalize</code>関数の戻り値：</strong></p>
+<ul>
+<li><p>なし</p></li>
+<li><p>配列<code>vec[]</code>の要素を<code>normalize</code>関数内で書き換えると，<code>main</code>関数の配列
+<code>x[]</code>の対応する要素もその値に書き変わるため，配列<code>vec[]</code>が戻り値に相当するものである（参照渡しやアドレス渡し．明快入門C
+56 関数への引数渡し2
+配列）．なお，参照渡しについては「ポインタ（1）」の回に改めて説明する．</p></li>
+</ul>
+<p> <strong><code>normalize</code>関数の処理：</strong></p>
+<ul>
+<li>引数で表されたベクトル<code>x</code>の長さ<span
+class="math inline">\(|x|\)</span>を求め，配列<code>vec[]</code>の各要素（<code>vec[0]</code>から<code>vec[n-1]</code>）をそれぞれ<span
+class="math inline">\(|x|\)</span>で割った値に書き換える．</li>
+</ul>
+<p> <strong>入力：</strong></p>
+<ul>
+<li><p>標準入力の最初の整数は次元数<span
+class="math inline">\(n\)</span>（<span
+class="math inline">\(n\)</span>は1から10の整数）</p></li>
+<li><p>続く<span
+class="math inline">\(n\)</span>個の実数はベクトル<code>x</code>の要素<span
+class="math inline">\(x_1,\; x_2,\; \ldots,\; x_n\)</span>．</p>
+<p><span class="math display">\[\mathtt{x}= (x_1,\; x_2,\; \ldots,\;
+x_n)\]</span></p></li>
+<li><p><code>x</code>の長さは0より大きいと仮定してよい．</p></li>
+</ul>
+<p> <strong>出力：</strong></p>
+<ul>
+<li>ベクトル<code>x</code>の各要素<span
+class="math inline">\(x_i\)</span>をベクトルの長さ<span
+class="math inline">\(|\mathtt{x}|\)</span>で割ったベクトル <span
+class="math display">\[\left(\frac{x_1}{|\mathtt{x}|},\;
+\frac{x_2}{|\mathtt{x}|},\; \ldots,\;
+\frac{x_n}{|\mathtt{x}|}\right)\]</span>
+を，縦1列に小数第4位まで標準出力に表示する．</li>
+</ul>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o vector_normalization vector_normalization.c</code></pre>
+<p>（<code>-lm</code>が必要なオペレーティングシステムでは，）</p>
+<pre><code>    $ gcc -Wall -o vector_normalization vector_normalization.c -lm</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./vector_normalization</code></pre>
+<p>入力</p>
+<pre><code>1 10</code></pre>
+<p>出力</p>
+<pre><code>1.0000</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./vector_normalization</code></pre>
+<p>入力</p>
+<pre><code>2 5 5 </code></pre>
+<p>出力</p>
+<pre><code>0.7071
+0.7071</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./vector_normalization</code></pre>
+<p>入力</p>
+<pre><code>3 1 2 3</code></pre>
+<p>出力</p>
+<pre><code>0.2673
+0.5345
+0.8018</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./vector_normalization</code></pre>
+<p>入力</p>
+<pre><code>2 1.70864935226 5.72885022163</code></pre>
+<p>出力</p>
+<pre><code>0.2858
+0.9583</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./vector_normalization</code></pre>
+<p>入力</p>
+<pre><code>5 0.935634654657 0.525865748367 0.262731687351 0.268757214054 0.521526715431</code></pre>
+<p>出力</p>
+<pre><code>0.7479
+0.4203
+0.2100
+0.2148
+0.4169</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./vector_normalization</code></pre>
+<p>入力</p>
+<pre><code>6 0.538093899672 0.991359687383 0.0413432155943 0.941884563277 0.609013900775 0.3257659556</code></pre>
+<p>出力</p>
+<pre><code>0.3313
+0.6103
+0.0255
+0.5799
+0.3749
+0.2006</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./vector_normalization</code></pre>
+<p>入力</p>
+<pre><code>7 0.297594066985 0.800701530418 0.753005213118 0.00743085396083 0.015287874345 0.76286558116 0.832276464144</code></pre>
+<p>出力</p>
+<pre><code>0.1856
+0.4993
+0.4696
+0.0046
+0.0095
+0.4757
+0.5190</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./vector_normalization</code></pre>
+<p>入力</p>
+<pre><code>8 0.740633425241 0.84169561152 0.395893043814 0.290514205885 0.334025798417 0.391820845978 0.228596634548 0.369675486002</code></pre>
+<p>出力</p>
+<pre><code>0.5301
+0.6024
+0.2833
+0.2079
+0.2391
+0.2804
+0.1636
+0.2646</code></pre>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./vector_normalization</code></pre>
+<p>入力</p>
+<pre><code>10 0.379167215761 0.915087420544 0.691659198771 0.784506166675 0.84588184897 0.56287620218 0.829802675302 0.938726758234 0.636437687889 0.393151613402</code></pre>
+<p>出力</p>
+<pre><code>0.1657
+0.3999
+0.3022
+0.3428
+0.3696
+0.2460
+0.3626
+0.4102
+0.2781
+0.1718</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./vector_normalization</code></pre>
+<p>入力</p>
+<pre><code>5 935.634654657 52.5865748367 2.62731687351 0.268757214054 0.052152671543</code></pre>
+<p>出力</p>
+<pre><code>0.9984
+0.0561
+0.0028
+0.0003
+0.0001</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: vector_normalization.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#include &lt;stdio.h&gt;
+
+#define MAX_LEN 10
+
+// ここにnormalize関数を書く（定義する）
+
+int main() {
+  float x[MAX_LEN];
+  int n;
+  int i;
+
+  scanf(&quot;%d&quot;, &amp;n);
+  for (i = 0; i &lt; n; i++) {
+    float element;
+    scanf(&quot;%f&quot;, &amp;element);
+    x[i] = element;
+  }
+
+  // ここでnormalize関数を呼び出す
+  
+  for (i = 0; i &lt; n; i++) {
+    printf(&quot;%.4f\n&quot;, x[i]);
+  }
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>明快入門Cの第7章が関数．そのうち特にこの課題と関係が深いのは56
+関数への引数渡し2 配列，付録A C言語主要関数一覧 数学処理．</p></li>
+<li><p>ベクトル<span class="math inline">\(x\)</span>の長さは <span
+class="math inline">\(|x| = \sqrt{x_1^2 + x_2^2 + \ldots +
+x_n^2}\)</span> である．</p></li>
+<li><p>平方根を求める関数は<code>float sqrtf(float)</code>である．この課題では<code>double sqrt(double)</code>は使わないことにしよう．（スライドや付録A
+C言語主要関数一覧 数学処理）</p></li>
+<li><p><code>sqrtf</code>関数（あるいは<code>sqrt</code>関数）を使うには適切なヘッダファイルが必要（明快入門C
+C言語主要関数一覧 数学処理）</p></li>
+<li><p><strong>参照渡しの例</strong></p>
+<p>次の<code>init</code>関数を呼び出したあと，<code>main</code>関数の配列<code>a[10]</code>の要素の値は先頭から順に1,
+1, 2, 3, 5, 8, 13, 21, 34, 55
+になる．<code>init</code>関数を呼び出す直前は配列<code>a[10]</code>のどの要素も0．</p></li>
+</ul>
+<pre><code>#include &lt;stdio.h&gt;
+
+void init(int b[]) {
+  int i;
+
+  b[0] = 1;
+  b[1] = 1;
+  for (i = 2; i &lt; 10; i++) {
+    b[i] = b[i-1] + b[i-2];
+  }
+}
+
+int main() {
+  int a[10];
+  int i;
+
+  for (i = 0; i &lt; 10; i++)
+    a[i] = 0;
+  init(a);
+  for (i = 0; i &lt; 10; i++)
+    printf(&quot;%d &quot;, a[i]);
+  printf(&quot;\n&quot;);
+  return 0;
+}</code></pre>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 4_3_compexch_sort</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+4_3_compexch_sort</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>入力された5つの整数列を，小さいものから順に並べ替えて出力したい．</p>
+<p>二つの参照渡し引数の値を比較し，第二引数の値が小さいならば，第一引数が小さくなるように値を入れ替える<code>comp_exch</code>関数を作れ．</p>
+<p>この関数を<code>main</code>関数から何度か呼び出すことで5つの整数列を並べ替えよ．
+<code>main</code>関数に<code>comp_exch</code>関数の呼び出し以外を書き加えてはならない．
+<code>comp_exch</code>関数は必要なだけ何回呼び出してよい．</p>
+<p> <strong><code>comp_exch</code>関数の引数：</strong>
+2つの<code>int</code>型変数へのポインタ．それぞれのポインタは<code>main</code>関数の変数を指す（参照渡し）．第二引数の変数の値が小さいときは，第一引数の変数の値と入れ替える．</p>
+<p> <strong><code>comp_exch</code>関数の戻り値：</strong>なし．</p>
+<p> <strong>入力：</strong> 5つの整数</p>
+<p>
+<strong>出力：</strong>小さいもの順に並べ替えた5つの整数．空白区切りで1行に出力．</p>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o compexch_sort compexch_sort.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+17, 18, 19, 20</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>4 1 3 2 5</code></pre>
+<p>出力</p>
+<pre><code>1 2 3 4 5</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>12 89 39 3 68</code></pre>
+<p>出力</p>
+<pre><code>3 12 39 68 89</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>77 58 11 25 31</code></pre>
+<p>出力</p>
+<pre><code>11 25 31 58 77</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>39 47 92 22 33</code></pre>
+<p>出力</p>
+<pre><code>22 33 39 47 92</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>80 54 92 29 47</code></pre>
+<p>出力</p>
+<pre><code>29 47 54 80 92</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>24 7 16 38 81</code></pre>
+<p>出力</p>
+<pre><code>7 16 24 38 81</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>41 61 43 15 31</code></pre>
+<p>出力</p>
+<pre><code>15 31 41 43 61</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>66 78 3 28 54</code></pre>
+<p>出力</p>
+<pre><code>3 28 54 66 78</code></pre>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>14 43 78 91 4</code></pre>
+<p>出力</p>
+<pre><code>4 14 43 78 91</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>0 3 13 17 16</code></pre>
+<p>出力</p>
+<pre><code>0 3 13 16 17</code></pre>
+<p><strong>テスト11</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>90 9 41 18 43</code></pre>
+<p>出力</p>
+<pre><code>9 18 41 43 90</code></pre>
+<p><strong>テスト12</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>45 34 20 89 3</code></pre>
+<p>出力</p>
+<pre><code>3 20 34 45 89</code></pre>
+<p><strong>テスト13</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>82 64 60 33 56</code></pre>
+<p>出力</p>
+<pre><code>33 56 60 64 82</code></pre>
+<p><strong>テスト14</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>24 87 47 23 94</code></pre>
+<p>出力</p>
+<pre><code>23 24 47 87 94</code></pre>
+<p><strong>テスト15</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>49 80 30 71 24</code></pre>
+<p>出力</p>
+<pre><code>24 30 49 71 80</code></pre>
+<p><strong>テスト16</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>58 8 10 85 35</code></pre>
+<p>出力</p>
+<pre><code>8 10 35 58 85</code></pre>
+<p><strong>テスト17</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>13 35 17 49 40</code></pre>
+<p>出力</p>
+<pre><code>13 17 35 40 49</code></pre>
+<p><strong>テスト18</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>76 58 74 84 69</code></pre>
+<p>出力</p>
+<pre><code>58 69 74 76 84</code></pre>
+<p><strong>テスト19</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>62 68 46 8 39</code></pre>
+<p>出力</p>
+<pre><code>8 39 46 62 68</code></pre>
+<p><strong>テスト20</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./compexch_sort</code></pre>
+<p>入力</p>
+<pre><code>96 95 5 0 6</code></pre>
+<p>出力</p>
+<pre><code>0 5 6 95 96</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: compexch_sort.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#include &lt;stdio.h&gt;
+
+/* ここにcomp_exch関数を定義する．*/
+
+int main() {
+  int a, b, c, d, e;
+
+  scanf(&quot;%d %d %d %d %d&quot;, &amp;a, &amp;b, &amp;c, &amp;d, &amp;e);
+  
+  /*
+    ここで comp_exch 関数を呼び出す．
+    comp_exch 関数の引数は二つ．
+    comp_exch 関数の呼び出し以外はしてはならない．
+    手引きに記載しているように，複数回 comp_exch 関数を呼び出すことになる．
+  */
+  
+  printf(&quot;%d %d %d %d %d\n&quot;, a, b, c, d, e); // printf文は書き換えてはならない．
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>明快入門C 66 ポインタを引数にする．</p></li>
+<li><p><code>comp_exch</code>関数に引数を <strong>値渡し</strong>
+しても，<code>main</code>関数の変数<code>a</code>や
+<code>b</code>の値を入れ替えることはできない．ポインタを使って
+<strong>参照渡し</strong>
+することで，<code>main</code>関数の変数に値を代入できる．</p>
+<p>次の例では<code>main</code>関数から<code>func</code>関数が呼び出されており，実引数として
+<code>&amp;a</code>（変数<code>a</code>のアドレス．変数<code>a</code>の参照）を渡している．よって，
+<code>func</code>関数内のポインタ変数<code>p</code>は<code>main</code>関数の変数<code>a</code>を指している．つまり，<code>func</code>関数内で<code>*p</code>に代入すると，変数<code>a</code>に1が代入される．</p>
+<pre><code>void func(int *p) {
+  *p = 1; // main関数のaに1を代入
+}
+
+int main() {
+  int a;
+  func(&amp;a);
+}</code></pre></li>
+<li><p>二つの変数<code>x</code>と<code>y</code>の値を入れ替えるために，次のように書くと，<code>x</code>の値が失われ，どちらも<code>y</code>の値になるので注意せよ．</p>
+<pre><code>x = y; // xにyの値を代入する．xの値は失われる
+y = x; // すでにxにyの値が入っている．この代入文がなくてxとyは同じ値</code></pre>
+<p>逆順にしたら<code>y</code>の値が失われる．</p>
+<pre><code>y = x; // yにxの値を代入する．yの値は失われる
+x = y;</code></pre>
+<p>変数<code>x</code>と<code>y</code>のどちらの値も失わないためには，次のように一方の変数の値を一時的に保存しておく変数<code>z</code>を使う．<code>comp_exch</code>関数では，変数<code>x</code>と
+<code>y</code>の部分は参照渡しの仮引数であることに注意．</p>
+<pre><code>int x, y, z;
+x = 2;
+y = 1;
+
+z = x;
+x = y;
+y = z;</code></pre></li>
+<li><p>並べ替え方の例を示す．5つの整数を<code>a</code>，<code>b</code>，<code>c</code>，<code>d</code>，<code>e</code>とする．
+(<code>d</code>,<code>e</code>)，(<code>c</code>,<code>d</code>)，(<code>b</code>,<code>c</code>)，(<code>a</code>,<code>b</code>)の順に比較と入れ替えをすると，<code>a</code>には最小の整数が入っている．その後，残りの4つ<code>b</code>，<code>c</code>，<code>d</code>，
+<code>e</code>のうちの最小が<code>b</code>になるように比較と入れ替えを行う．さらに，残り3
+つ<code>c</code>，<code>d</code>，<code>e</code>も同様に，<code>c</code>が最小になるように入れ替える．最後に<code>c</code>，
+<code>d</code>の2つの比較と入れ替える．（この手順はバブルソートと呼ばれる）</p></li>
+<li><p>他の並べ替え方もある．例えば，(<code>a</code>,<code>b</code>)，(<code>a</code>,<code>c</code>)，(<code>a</code>,<code>d</code>)，
+(<code>a</code>,<code>e</code>)の比較と入れ替えを行うと，<code>a</code>に最小の整数が入る．この場合は
+4つの順序は問わない．</p></li>
+<li><p><code>comp_exch</code>関数の引数を5つにする方法しか思いつかない学生は，ヒントを読み，演習時間に質問すること．</p></li>
+</ul>
+<p> <strong>補足：</strong></p>
+<ul>
+<li><p>以下の <strong>値渡し</strong>
+の例で，<code>func</code>内の<code>a</code>への代入文の影響を見る．
+<code>func</code>内の変数<code>a</code>の値は1から11に書き換えられるが，<code>main</code>関数内の変数
+<code>a</code>の値は1のままである．</p>
+<pre><code>void func(int a) { // 値渡し
+  a = a + 10; // aへの代入文
+  // funcの変数aは11
+}
+
+int main() {
+  int a; // main関数の変数a
+  a = 1;
+  func(a);
+  // mainの変数aは1のまま．11ではない．
+}</code></pre></li>
+<li><p>関数名<code>comp_exch</code>はcompare（比較する）とexchange（交換する）の先頭4
+文字ずつをつなげたものである．</p></li>
+<li><p>（プログラミングIIIの先取り：プロトタイプ宣言）</p>
+<p><code>main</code>関数で呼び出す<code>comp_exch</code>関数は，<code>main</code>関数より前に宣言しないとコンパイルエラーになる．関数<code>fa</code>と関数<code>fb</code>が互いを呼び出すような関数を書くにはどうすればいいだろうか．次のように，関数<code>fb</code>関数の宣言を
+<code>fa</code>関数の前に書き，<code>fb</code>関数の定義を<code>fa</code>関数の後に書く方法がある．</p>
+<pre><code>int fb(int j); // 関数fbの宣言
+
+int fa(int i) { // 関数faの定義
+  return fb(i - 1);
+}
+
+int fb(int j) { // 関数fbの定義
+  if (j &lt;= 0)
+    return j + 1;
+  else
+    fa(j - 1);
+}</code></pre>
+<p><code>int fb(int j);</code>のように，中括弧<code>{}</code>で囲んだ部分（この部分を関数の本体と呼ぶ）を書かず，代わりにセミコロン<code>;</code>で終わるのがプロトタイプ宣言である．一方，関数の定義とは，関数名と引数の後に関数の本体が続く．<strong>宣言</strong>
+と <strong>定義</strong>
+の二語はこのように使い分ける．プロトタイプ（prototype）を訳すと原型．</p></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 4_1_pointer</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+4_1_pointer</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>ポインタの練習課題である．実用的なものではない．</p>
+<p>変数<code>a</code>と<code>f</code>，配列<code>s[]</code>に<code>scanf</code>で入力された値が入っている．これらの変数などのアドレスをポインタに代入しなさい．このポインタを使って，<code>a</code>の値を<code>b</code>に，<code>f</code>の値を<code>g</code>にコピーし，配列<code>s[]</code>の文字列を配列<code>t[]</code>にコピーしなさい．</p>
+<p>ポインタの練習なので，<code>b = a;</code>や<code>t[0] = s[0];</code>のようにポインタを使わずに代入してはいけません．また，<code>scanf</code>と<code>printf</code>の引数を書き換えないでください．これらの条件を満たさないプログラムはテストに成功しても合格点にはしません．</p>
+<p>
+<strong>入力：</strong>標準入力に整数，実数，文字列が与えられる．</p>
+<p> <strong>出力：</strong>入力された整数，実数，文字列．</p>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o pointer pointer.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./pointer</code></pre>
+<p>入力</p>
+<pre><code>1 2.0 pointer</code></pre>
+<p>出力</p>
+<pre><code>1   2.000000        pointer</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./pointer</code></pre>
+<p>入力</p>
+<pre><code>12 3.456789 gcc-core</code></pre>
+<p>出力</p>
+<pre><code>12  3.456789        gcc-core</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./pointer</code></pre>
+<p>入力</p>
+<pre><code>12 3.456789 4_1_pointer</code></pre>
+<p>出力</p>
+<pre><code>12  3.456789        4_1_pointe</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: pointer.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#include &lt;stdio.h&gt;
+
+int main() {
+  int a, b = 0;
+  float f, g = 0.0;
+  char s[11], t[11] = &quot;0123456789&quot;;
+  int i;
+
+  scanf(&quot;%d&quot;, &amp;a);
+  scanf(&quot;%f&quot;, &amp;f);
+  scanf(&quot;%10s&quot;, s);
+
+  // ただし，a,f,sのアドレスをポインタに格納する．
+
+  // ポインタを使ってa,f,s[]の値をb,g,t[]にコピーする．
+  
+  printf(&quot;%d\t%f\t%s\n&quot;, b, g, t);
+
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>ポインタを使わずに次のように直接代入しても期待される出力をするプログラムになる．ただし，この課題はポインタの使い方を学ぶ課題なのでこのような直接代入はしてはならない．代入文の右辺にある<code>a</code>，<code>f</code>，<code>s[i]</code>をポインタを使った書き方に書き換えること．</p>
+<pre><code>scanf(&quot;%d&quot;, &amp;a);
+scanf(&quot;%f&quot;, &amp;f);
+scanf(&quot;%10s&quot;, s);
+
+b = a; // 直接代入
+g = f; // 直接代入
+for (i = 0; i &lt; 11; i++)
+  t[i] = s[i]; // 直接代入
+
+printf(&quot;%d\t%f\t%s\n&quot;, b, g, t);</code></pre></li>
+<li><p>明快入門C 60 ポインタの基本機能，64 ポインタと配列，65
+ポインタと文字列．</p></li>
+<li><p>ポインタの演算子はアドレス演算子(<code>&amp;</code>)と間接参照演算子(<code>*</code>)．アドレス演算子<code>&amp;</code>は変数のアドレスを取得する．間接参照演算子<code>*</code>はポインタの指す変数を読み書きする．</p>
+<pre><code>int y, x;
+int *p;  // pはポインタだと宣言している．*pはint型変数
+
+x = 1;
+y = 2;
+p = &amp;x;  // 変数xのアドレスをpに代入
+y = *p;  // アドレスpに格納されている変数の値をyに代入．代入後のyの値は1．
+*p = 3;  // アドレスpに格納されている変数xに1を代入．代入後のxの値は3．</code></pre>
+<p>変数はメモリの特定のアドレスに格納されている．変数が格納されているアドレスを取り出すのがアドレス演算子(<code>&amp;</code>)である．他方，特定のアドレスに格納されている変数を読み書きするために使うのが間接参照演算子(<code>*</code>)．</p></li>
+<li><p>配列<code>a[10]</code>の先頭要素のアドレスを<code>p</code>に代入すると，配列要素<code>s[1]</code>を読み書きしたいときに，<code>a[1]</code>の代わりに<code>p[1]</code>や<code>*(p + 1)</code>が使える．</p>
+<pre><code>int a[10];
+int *p;
+
+p = a; // aの先頭要素のアドレスをpに代入．
+// p = &amp;a[0]; とも書ける．
+p[1] = 10;     // a[1]に10を代入する
+*(p + 2) = 13; // a[2]に13を代入する
+*p = 15;       // a[0]に15を代入する
+p++;           // ポインタを次の要素a[1]に動かす．p = &amp;a[1]と同じ．
+*p = 16;       // a[1]に16を代入する
+p += 2;           // ポインタを二つ後ろ要素a[3]に動かす．p = &amp;a[3]と同じ．
+*p = 16;       // a[2]に16を代入する</code></pre></li>
+</ul>
+</body>
+</html>
