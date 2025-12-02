@@ -26,9 +26,15 @@ int main() {
   scanf("%10s", s);
 
   // ただし，a,f,sのアドレスをポインタに格納する．
-
+  int *pa = &a;
+  float *pf = &f;
+  char *ps = s;
   // ポインタを使ってa,f,s[]の値をb,g,t[]にコピーする．
-  
+  b = *pa;
+  g = *pf;
+  for(i = 0;s[i] != '\0';i++)
+    t[i] = *ps++;
+  t[i] = *ps;
   printf("%d\t%f\t%s\n", b, g, t);
 
   return 0;

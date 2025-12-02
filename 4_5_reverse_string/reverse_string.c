@@ -17,6 +17,10 @@
 #include <string.h>
 
 // ここにreverse_string関数を定義する．
+char reverse_string(char *p){
+	for(int i = strlen(p) - 1;i >= 0;i--){
+	}
+}
 
 #define LEN 79
 

@@ -16,6 +16,12 @@
 #include <stdio.h>
 
 // ここにpartial_sum関数を定義する．
+int partial_sum(int *p, int w){
+	int sum = 0;
+	for(int i = 0;i < w;i++)
+		sum += p[i];
+	return sum;
+}
 
 int main() {
   int a[50] =
@@ -29,6 +35,7 @@ int main() {
   scanf("%d %d", &s, &w);
   // ここでpartial_sum関数を呼び出し，
   // 関数の戻り値を変数sumに代入する．
+	sum = partial_sum(a + s, w);
   printf("%d\n", sum);
   return 0;
 }
