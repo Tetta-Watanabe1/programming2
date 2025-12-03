@@ -16,9 +16,9 @@
 #include <stdio.h>
 
 // このあたりにsum_diff関数を定義する．
-void sum_diff(int a, int b, int *sum, int *diff ){
-	*sum = a + b;
-	*diff = a - b;
+void sum_diff(int a, int b, int *sum, int *diff) {
+  *sum = a + b;
+  *diff = a - b;
 }
 
 int main() {
@@ -33,7 +33,7 @@ int main() {
   d = 100; */
 
   // ここでsum_diff関数を呼び出す．
-	sum_diff(a, b, &s, &d);
+  sum_diff(a, b, &s, &d);
   printf("sum  %7d\n", s);
   printf("diff %7d\n", d);
   return 0;

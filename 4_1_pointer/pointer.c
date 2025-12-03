@@ -32,7 +32,7 @@ int main() {
   // ポインタを使ってa,f,s[]の値をb,g,t[]にコピーする．
   b = *pa;
   g = *pf;
-  for(i = 0;s[i] != '\0';i++)
+  for (i = 0; s[i] != '\0'; i++)
     t[i] = *ps++;
   t[i] = *ps;
   printf("%d\t%f\t%s\n", b, g, t);
