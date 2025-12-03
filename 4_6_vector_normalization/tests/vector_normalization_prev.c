@@ -1,0 +1,52 @@
+/**
+
+氏名:渡邊鉄太
+
+学生番号:B255451
+
+作成日:2025-12-03
+
+入出力の説明:標準入力から最初に次元数が入力されそのあとにベクトルの各要素が入力される.標準出力に正規化されたベクトルの各要素を小数点以下4桁で出力する.
+
+動きの説明:x[]の要素の2乗を計算してその合計の平方根を求める.その平方根で各要素を割ることで正規化を行う.
+
+感想:sumをint型で定義していてミスをしたがfloat型に直して解決した.
+
+*/
+#include <stdio.h>
+
+#define MAX_LEN 10
+
+// ここにnormalize関数を書く（定義する）
+#include <math.h>
+void normalize(float vec[], int dim) {
+  float sum = 0;
+  float norm;
+  for (int i = 0; i < dim; i++) {
+    sum += vec[i] * vec[i];
+  }
+  norm = sqrt(sum);
+  for (int i = 0; i < dim; i++) {
+    vec[i] = vec[i] / norm;
+  }
+}
+
+int main() {
+  float x[MAX_LEN];
+  int n;
+  int i;
+
+  scanf("%d", &n);
+  for (i = 0; i < n; i++) {
+    float element;
+    scanf("%f", &element);
+    x[i] = element;
+  }
+
+  // ここでnormalize関数を呼び出す
+  normalize(x, n);
+  for (i = 0; i < n; i++) {
+    printf("%.4f\n", x[i]);
+  }
+  return 0;
+}
