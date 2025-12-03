@@ -1,0 +1,52 @@
+﻿/**
+
+氏名: 渡邊鉄太
+
+学生番号: B255451
+
+作成日: 2025-12-03
+
+入出力の説明: 5つの整数を入力し，小さいもの順に並べ替えた5つの整数を空白区切りで1行に出力する．
+
+動きの説明: comp_exch関数はコードを見ての通り. この関数をa,b,c,d,eの順に使うことで一番大きい数が最後に来る. それを利用して関数を呼び出す回数を決めている．
+
+感想: コードを書くことよりも南海呼び出すかを考える方が難しかった．
+
+*/
+#include <stdio.h>
+
+/* ここにcomp_exch関数を定義する．*/
+void comp_exch(int *a, int *b){
+	if(*a > *b){
+		int temp = *a;
+		*a = *b;
+		*b = temp;
+	}
+}
+
+int main() {
+  int a, b, c, d, e;
+
+  scanf("%d %d %d %d %d", &a, &b, &c, &d, &e);
+  
+  /*
+    ここで comp_exch 関数を呼び出す．
+    comp_exch 関数の引数は二つ．
+    comp_exch 関数の呼び出し以外はしてはならない．
+    手引きに記載しているように，複数回 comp_exch 関数を呼び出すことになる．
+  */
+ 	comp_exch(&a, &b);
+ 	comp_exch(&b, &c);
+ 	comp_exch(&c, &d);
+ 	comp_exch(&d, &e);
+ 	comp_exch(&a, &b);
+ 	comp_exch(&b, &c);
+ 	comp_exch(&c, &d);
+ 	comp_exch(&a, &b);
+ 	comp_exch(&b, &c);
+	comp_exch(&a, &b);
+
+
+  printf("%d %d %d %d %d\n", a, b, c, d, e); // printf文は書き換えてはならない．
+  return 0;
+}

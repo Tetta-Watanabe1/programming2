@@ -1,0 +1,58 @@
+# 2025
+
+# test
+ls -l pointer.c; cat pointer.c
+-rwxr-xr-x 1 me なし 1095 Dec  3 14:17 pointer.c
+/**
+
+氏名: 渡邊鉄太
+
+学生番号: B255451
+
+作成日: 2025-12-03
+
+入出力の説明: 標準入力に整数，実数，文字列が与えられ, 入力された整数，実数，文字列を出力する
+
+動きの説明: 変数aとf, 配列s[]のアドレスをポインタに代入し, このポインタを使って，aの値をbに，fの値をgにコピーし，配列s[]の文字列を配列t[]にコピーする.
+
+感想: 配列の名前が配列の最初のポインタを指すことを知っていてが, それを実感できた.
+
+*/
+#include <stdio.h>
+
+int main() {
+  int a, b = 0;
+  float f, g = 0.0;
+  char s[11], t[11] = "0123456789";
+  int i;
+
+  scanf("%d", &a);
+  scanf("%f", &f);
+  scanf("%10s", s);
+
+  // ただし，a,f,sのアドレスをポインタに格納する．
+  int *pa = &a;
+  float *pf = &f;
+  char *ps = s;
+  // ポインタを使ってa,f,s[]の値をb,g,t[]にコピーする．
+  b = *pa;
+  g = *pf;
+  for(i = 0;s[i] != '\0';i++)
+    t[i] = *ps++;
+  t[i] = *ps;
+  printf("%d\t%f\t%s\n", b, g, t);
+
+  return 0;
+}
+
+# test
+diff -ubs 直前のpointer.c pointer.c
+Files tests/pointer_prev.c and pointer.c are identical
+
+# test
+diff -ubs 直前のpointer.c pointer.c
+Files tests/pointer_prev.c and pointer.c are identical
+
+テスト 2 成功（pass）
+テスト 3 成功（pass）
+すべてのテストに成功しました．(3)
