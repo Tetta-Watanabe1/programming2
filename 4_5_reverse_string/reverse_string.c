@@ -10,16 +10,23 @@
 
 動きの説明: 
 
-感想: 
+感想: 最初はp = result_stringとしていたがresult_stringはreverse_string内で定義されたローカル変数なので、その時はポインタを渡せるが終了したときに変数が削除されるためコンパイルできるがバグになっていた.
 
 */
 #include <stdio.h>
 #include <string.h>
 
 // ここにreverse_string関数を定義する．
-char reverse_string(char *p){
+char *reverse_string(char *p){
+	char result_string[80];
+	int s = 0;
 	for(int i = strlen(p) - 1;i >= 0;i--){
+		result_string[s++] = p[i];
 	}
+	result_string[s] = '\0';
+	for(int i = 0;result_string[i] != '\0';i++)
+		p[i] = result_string[i];
+	return p;
 }
 
 #define LEN 79

@@ -18,6 +18,8 @@
 #define MAX_LEN 10
 
 // ここにnormalize関数を書く（定義する）
+void normalize(float vec[], int dim){
+}
 
 int main() {
   float x[MAX_LEN];
