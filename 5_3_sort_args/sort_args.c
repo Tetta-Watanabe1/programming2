@@ -1,4 +1,4 @@
-/**
+﻿/**
 
 氏名: 
 
@@ -13,24 +13,26 @@
 感想: 
 
 */
-void dictional_sort(char *a, char *b, int i){
+#include <stdio.h>
 
-	while((a[i] == '\0' || b[i] == '\0') || (a[i] > b[i])){
+void dictional_sort(char **a, char **b, int i){
+
+	while((a[i] != '\0' || b[i] != '\0') && (b[i] > a[i])){
 		if(b[i] > a[i]){
-			char *temp = a;
-			a = b;
-			b = temp;
+			char *temp = *a;
+			*a = *b;
+			*b = temp;
+			break;
 		}
 		else if(a[i] == b[i])
 			dictional_sort(a, b, ++i);
 	}
-
-	i++;
 }
 
 int main(int argc, char *argv[]){
-	for(int i = 1;i < argc - 1;i++)
-		dictional_sort(argv[i], argv[i + 1], 1);
-
+	for(int i = 1;i < argc - 1;i++){
+		dictional_sort(&argv[i], &argv[i + 1], 1);
+	}
+	printf("%s\n%s\n%s\n", argv[1], argv[2], argv[3]);
 	return 0;
 }
