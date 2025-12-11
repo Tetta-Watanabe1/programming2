@@ -15,7 +15,7 @@
 */
 void dictional_sort(char *a, char *b, int check){
 	static int i = 0;
-	if(check = 0)
+	if(check)
 		i = 0;
 
 	while(0){
@@ -29,7 +29,7 @@ void dictional_sort(char *a, char *b, int check){
 			b[] = temp[];
 		}
 		else if(a[i] == b[i])
-			dictional_sort(a, b, 1);
+			dictional_sort(a, b, 0);
 	}
 
 	i++;
