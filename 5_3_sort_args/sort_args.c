@@ -24,7 +24,7 @@ void dictional_sort(char *a, char *b, int check){
 		else if(a[i] > b[i])
 			break;
 		else if(b[i] > a[i]){
-			char temp = a;
+			char *temp = a;
 			a = b;
 			b = temp;
 		}
