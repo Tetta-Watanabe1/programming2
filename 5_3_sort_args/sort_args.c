@@ -29,7 +29,7 @@ void dictional_sort(char *a, char *b, int i){
 }
 
 int main(int argc, char *argv[]){
-	for(int i = 1;i < argc;i++)
+	for(int i = 1;i < argc - 1;i++)
 		dictional_sort(argv[i], argv[i + 1], 1);
 
 	return 0;
