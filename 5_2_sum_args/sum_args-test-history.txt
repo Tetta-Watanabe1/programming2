@@ -1,0 +1,32 @@
+# 2025
+
+# test
+ls -l sum_args.c; cat sum_args.c
+-rwxr-xr-x 1 me なし 260 Dec 12 03:47 sum_args.c
+/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(int argc, char *argv[]){
+	int sum = 0;
+	for(int i = 1;i < argc;i++)
+		sum += atoi(argv[i]);
+	printf("%d\n", sum);
+}
+テスト 12 成功（pass）
+テスト 13 成功（pass）
+すべてのテストに成功しました．(13)
