@@ -13,31 +13,24 @@
 感想: 
 
 */
-void dictional_sort(char *a, char *b, int check){
-	static int i = 0;
-	if(check)
-		i = 0;
+void dictional_sort(char *a, char *b, int i){
 
-	while(0){
-		if(a[i] == '\0' || b[i] == '\0')
-			break;
-		else if(a[i] > b[i])
-			break;
-		else if(b[i] > a[i]){
+	while((a[i] == '\0' || b[i] == '\0') || (a[i] > b[i])){
+		if(b[i] > a[i]){
 			char *temp = a;
 			a = b;
 			b = temp;
 		}
 		else if(a[i] == b[i])
-			dictional_sort(a, b, 0);
+			dictional_sort(a, b, ++i);
 	}
 
 	i++;
 }
 
 int main(int argc, char *argv[]){
-	for(int i = 1;argv[i] != NULL;i++)
-		dictional_sort(argv[i], argv[i + 1], 0);
+	for(int i = 1;i < argc;i++)
+		dictional_sort(argv[i], argv[i + 1], 1);
 
 	return 0;
 }
