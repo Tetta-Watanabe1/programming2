@@ -31,7 +31,13 @@ void dictional_sort(char *a, char *b, check){
 		else if(a[i] == b[i])
 			dictional_sort(a, b, 1);
 	}
+
+	i++;
 }
 
-int main(){
+int main(int argc, char *argv[]){
+	for(int i = 1;argv[i] != NULL;i++)
+		dictional_sort(argv[i], argv[i + 1], 0);
+
+	return 0;
 }
