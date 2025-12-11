@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 5_8_word_histogram</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+5_8_word_histogram</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p><strong>発展課題</strong>（未提出でも減点しない）</p>
+<p>標準入力に与えられた文章の単語とその出現回数を出力せよ．<code>malloc</code>関数を使って単語を格納するメモリを確保せよ．テストケースによって入力される文章の処理し易さが異なる．まずは，テストケース1と2を目標にしなさい．テストケース5以降は処理の微妙な違いによってテストに成功するとは限らない．</p>
+<p> <strong>入力：</strong></p>
+<p>英文．ただし，単語は30文字を超えることはないと仮定してよい．入力文章の単語数は20000種類以下と仮定してよい．</p>
+<p> <strong>出力：</strong></p>
+<ul>
+<li><p><code>"出現回数\t単語\n"</code>のように1行に1単語出力する．出現回数，単語の順に出力する．</p></li>
+<li><p>単語の出力順序は入力文に最初に出現した順番とする（出現回数で並べ替えない<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>）．</p></li>
+<li><p>大文字と小文字は区別せず，すべて小文字にして出力する．</p></li>
+</ul>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o word_histogram word_histogram.c</code></pre>
+<p>
+<strong>実行例：</strong>（<code>&lt;Ctrl+D&gt;</code>のところでCtrlキーを押したまま<code>D</code>キーを押す）</p>
+<pre><code>    $ ./word_histogram
+    this is a pen  that is a pineapple
+    &lt;Ctrl+D&gt;
+    1       this
+    2       is
+    2       a
+    1       pen
+    1       that
+    1       pineapple</code></pre>
+<p> <strong>テストケース：</strong></p>
+<ul>
+<li><p>1, 2:
+アルファベット小文字だけからなる文章．大文字や文末のピリオドなどを含まない．</p></li>
+<li><p>3, 4:
+アルファベットだけからなる文章．アルファベット大文字と小文字からなる．文末のピリオドなどの記号を含まない．</p></li>
+<li><p>5, 6: （発展2）大文字やピリオドなどを含む通常の英文<a href="#fn2"
+class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a></p></li>
+<li><p>7, 8: （発展3）長文 …
+単語の前に記号がついている場合がある．このテストケースは解答例と一致しないでよい．</p></li>
+<li><p>1番のテストケースの入力は次のコマンドで確認できる．2番目以降も同様．</p>
+<pre><code>$ cat tests/1.in</code></pre></li>
+<li><p>出典</p>
+<ul>
+<li>2, 4, 6：Robert Sedgewick, Algorithm in C, 3rd ed., Addison wesley,
+1998.</li>
+<li>7 長文：<a href="http://www.gutenberg.org/ebooks/928">Alice’s
+Adventures in Wonderland by Lewis Carroll</a> at Project Gutenberg</li>
+<li>8 長文：<a href="http://www.gutenberg.org/ebooks/1522">Julius Caesar
+by William Shakespeare</a> at Project Gutenberg</li>
+</ul></li>
+</ul>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./word_histogram</code></pre>
+<p>入力</p>
+<pre><code>this is a pen  that is a pineapple</code></pre>
+<p>出力</p>
+<pre><code>1   this
+2   is
+2   a
+1   pen
+1   that
+1   pineapple</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./word_histogram</code></pre>
+<p>入力</p>
+<pre><code>the programming language used for all of the implementations in c  any particular language has advantages and disadvantages we use c because it is widely available and provides the features needed for our implementation  the programs can be translated easily to other modern programming languages since relatively few constructs are unique to c  we use standard c idioms when appropriate but this book is not intended to be a reference work on c programming  from robert sedgewick algorithms in c third edition preface</code></pre>
+<p>出力</p>
+<pre><code>4   the
+3   programming
+2   language
+1   used
+2   for
+1   all
+1   of
+1   implementations
+2   in
+6   c
+1   any
+1   particular
+12行目以降省略（63行）</code></pre>
+<p>出力の全体は <code>cat tests/2.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./word_histogram</code></pre>
+<p>入力</p>
+<pre><code>This is a pen  That is a pineapple</code></pre>
+<p>出力</p>
+<pre><code>1   this
+2   is
+2   a
+1   pen
+1   that
+1   pineapple</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./word_histogram</code></pre>
+<p>入力</p>
+<pre><code>The programming language used for all of the implementations in C  Any particular language has advantages and disadvantages we use C because it is widely available and provides the features needed for our implementation  The programs can be translated easily to other modern programming languages since relatively few constructs are unique to C  We use standard C idioms when appropriate but this book is not intended to be a reference work on C programming  From Robert Sedgewick Algorithms in C third edition Preface</code></pre>
+<p>出力</p>
+<pre><code>4   the
+3   programming
+2   language
+1   used
+2   for
+1   all
+1   of
+1   implementations
+2   in
+6   c
+1   any
+1   particular
+12行目以降省略（63行）</code></pre>
+<p>出力の全体は <code>cat tests/4.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./word_histogram</code></pre>
+<p>入力</p>
+<pre><code>This is a pen.  That is a pineapple.</code></pre>
+<p>出力</p>
+<pre><code>1   this
+2   is
+2   a
+1   pen
+1   that
+1   pineapple</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./word_histogram</code></pre>
+<p>入力</p>
+<pre><code>The programming language used for all of the implementations in C.  Any particular language has advantages and disadvantages; we use C because it is widely available and provides the features needed for our implementation.  The programs can be translated easily to other modern programming languages, since relatively few constructs are unique to C.  We use standard C idioms when appropriate, but this book is not intended to be a reference work on C programming.  From Robert Sedgewick, Algorithms in C, third edition, Preface.</code></pre>
+<p>出力</p>
+<pre><code>4   the
+3   programming
+2   language
+1   used
+2   for
+1   all
+1   of
+1   implementations
+2   in
+6   c
+1   any
+1   particular
+12行目以降省略（63行）</code></pre>
+<p>出力の全体は <code>cat tests/6.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン（入力量が多いためファイルから与える）</p>
+<pre><code>$ ./word_histogram 100 &lt; tests/7.in</code></pre>
+<p>入力</p>
+<pre><code>ALICE&#39;S ADVENTURES IN WONDERLAND
+
+Lewis Carroll
+
+THE MILLENNIUM FULCRUM EDITION 3.0
+5行目以降省略（1684行）</code></pre>
+<p>入力の全体は <code>cat tests/7.in</code>
+コマンドを実行すると表示される．</p>
+<p>出力</p>
+<pre><code>366 in
+1630        the
+401 i
+101 down
+386 alice
+357 was
+721 to
+144 very
+508 of
+248 her
+193 on
+845 and
+12行目以降省略（36行）</code></pre>
+<p>出力の全体は <code>cat tests/7.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン（入力量が多いためファイルから与える）</p>
+<pre><code>$ ./word_histogram 100 &lt; tests/8.in</code></pre>
+<p>入力</p>
+<pre><code>THE TRAGEDY OF JULIUS CAESAR
+
+by William Shakespeare
+
+Contents
+5行目以降省略（4642行）</code></pre>
+<p>入力の全体は <code>cat tests/8.in</code>
+コマンドを実行すると表示される．</p>
+<p>出力</p>
+<pre><code>630 the
+380 of
+238 caesar
+101 by
+527 i
+275 a
+371 brutus
+235 in
+159 his
+229 cassius
+645 and
+424 to
+12行目以降省略（38行）</code></pre>
+<p>出力の全体は <code>cat tests/8.correct</code>
+コマンドを実行すると表示される．</p>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: word_histogram.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+
+#define NUM_WORDS 20000</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p><code>malloc</code>関数は<code>stdlib.h</code>ヘッダファイルで宣言されている．</p></li>
+<li><p>「君はマロックなんていらない」を思い出そう．あいみょん「君はロックを聴かない」のメロディーで．
+<a href="https://youtu.be/cJnO-Y_YnFg?t=59"
+class="uri">https://youtu.be/cJnO-Y_YnFg?t=59</a></p></li>
+<li><p>大まかな流れを考えよう．ただし，アルファベット大文字や文末のピリオドなどを含む場合の処理はここでは考えない．</p>
+<ul>
+<li><p>現れた単語とその単語が現れた回数をそれぞれ配列<code>word[]</code>と
+<code>count[]</code>に格納する．また，それまでに現れた単語の数（整数）を変数
+<code>n</code>に覚えておく．単語<code>word[i]</code>の出現回数を<code>count[i]</code>に格納することにしよう．</p></li>
+<li><p>単語<code>w</code>を一つずつ読み込んで二つの配列<code>word[]</code>と<code>count[]</code>，およびそれまでに現れた単語の数<code>n</code>を，次の3項目のように更新する．</p></li>
+<li><p>単語<code>w</code>がはじめて現れた単語か調べる．配列<code>word[]</code>に格納した単語それぞれに対して，単語<code>w</code>と一致するか調べる．すべての単語と異なれば，単語<code>w</code>ははじめて現れたことになる．</p></li>
+<li><p>単語<code>w</code>がはじめて現れた単語であれば，<code>word[n]</code>にwをコピーし，
+<code>count[n]</code>を1にする．つまり，単語<code>word[n]</code>が1回出現したことを覚えておく．その後，現れた単語の数<code>n</code>を1増やす．例えば，最初の単語が
+<code>"this"</code>であれば，<code>word[0]</code>には文字列<code>"this"</code>を格納し（後述するように正確には<code>word[0]</code>に格納するのは<code>"this"</code>へのポインタ），
+<code>count[0]</code>の値を1にする．</p></li>
+<li><p>単語<code>w</code>がすでに現れていた単語<code>word[i]</code>であれば，その単語の現れた回数<code>count[i]</code>を1増やす．例えば，単語<code>w</code>と<code>word[1]</code>がどちらも
+<code>"is"</code>であれば，<code>count[1]</code>を1増やす．</p></li>
+<li><p>すべての単語を読み込み終わったら，単語とその出現回数を現れた順に出力する．</p></li>
+<li><p>出力後に<code>malloc</code>関数で確保したメモリを解放することを忘れてはいけない．</p></li>
+</ul></li>
+<li><p>この流れを整理すると次のようになる．分かりにくい場合は，実行例に示したような短い入力例に対して，<code>word[]</code>と<code>count[]</code>，<code>n</code>がどのように変化するか紙に書いて考えるとよい．</p>
+<pre><code>n = 0; // 単語の数
+while (単語をwに読み込む) {
+  単語wがすでに出現した単語のいずれかと一致するか調べる．
+  if (wがはじめて現れた)
+    単語wをword[n]にコピーする．
+    count[n]に1を代入する．
+    nを1増やす．
+  else
+    単語wのcountを1増やす．
+}
+単語とその出現回数を出力する．
+free関数を呼び出して，malloc関数で確保したメモリを解放する．</code></pre></li>
+<li><p>標準入力から単語を読み込むには<code>scanf("%30s", char型配列)</code>でいいでしょう．<code>char</code>型配列の大きさは30+1にすると30文字の文字列が格納できる．+1
+は末尾のヌル文字<code>'\0'</code>の分．標準入力の最後まで読み込むと<code>scanf</code>関数は<code>EOF</code>を返すので，次のように<code>while</code>文を使うことで標準入力の最後まで読み込める．</p>
+<pre><code>char w[30+1];
+while (scanf(&quot;%30s&quot;, w) != EOF) {
+  // 入力単語wに対する処理
+}</code></pre></li>
+<li><p>単語を格納する配列<code>word</code>と単語の出現回数を格納する配列<code>count</code>を用意する．<code>word</code>は<code>char</code>型ポインタ（<code>char *</code>）の配列で，それぞれの要素が指す文字列は不定であることに注意．また，入力文章の単語数は20000語以下と仮定しているので，配列の大きさは20000でよい．</p>
+<pre><code>#define NUM_WORDS 20000
+
+char *word[NUM_WORDS];
+int count[NUM_WORDS];</code></pre></li>
+<li><p>まずは，同じ単語が2回出現しても区別しないやり方を説明する．</p></li>
+<li><p><code>scanf</code>で読み込んだ単語<code>w</code>が，<code>n</code>番目（<span
+class="math inline">\({\tt n} \ge
+0\)</span>）の単語であれば<code>word[n]</code>に<code>w</code>をコピーする．コピー先のメモリは<code>malloc</code>関数を使って確保する．この単語の出現回数を1にする．</p>
+<pre><code>word[n] = (char *) malloc(sizeof(char)
+                          * (strlen(w) + 1));
+if (word[n] == NULL) {
+  fprintf(stderr, &quot;Cannot allocate memory.\n&quot;);
+  return 1;
+}
+strcpy(word[n], w);
+count[n] = 1;</code></pre></li>
+<li><p>単語を出力する順番は入力に現れた順なので，<code>word</code>と<code>count</code>の二つの配列の0番目の要素から順に，すべての単語と出現回数を出力する．なお，出現回数順に並べ替えたければ，次のように<code>sort</code>コマンドを使うとよい．</p>
+<pre><code>$ ./word_histogram | sort -n</code></pre></li>
+<li><p>同じ単語が複数回出現する場合，今読み込んだ単語<code>w</code>は，すでに<code>word</code>配列内にあるどれかの要素（<code>word[0]</code>，<code>word[1]</code>，<span
+class="math inline">\(\ldots\)</span>）と一致する．読み込んだ単語<code>w</code>が，<code>word[i]</code>と一致したとすると，<code>w</code>はすでに
+<code>word[i]</code>にコピーされているので，<code>count[i]</code>を1増やすだけでよい．初めて出現した単語であれば，前述の通り，<code>word[n]</code>にその単語を追加する．</p></li>
+<li><p>配列<code>word</code>の単語と比較する前に，読み込んだ単語<code>w</code>にアルファベット大文字が含まれていたら小文字に置き換える．この置き換えには，単語<code>w</code>の文字を1文字ずつ調べる．</p></li>
+<li><p>有用そうな関数の紹介．</p>
+<ul>
+<li><p><code>string.h</code>ヘッダファイルに宣言されている関数．<code>strlen(*s)</code>関数は文字列<code>s[]</code>の長さを返す．<code>strcpy(*dst, *src)</code>関数は文字列<code>src[]</code>を
+<code>dst[]</code>にコピーする．<code>strcmp(*s1, *s2)</code>関数は文字列<code>s1[]</code>と
+<code>s2[]</code>が一致したら0を返し，一致しなければ0以外を返す．</p>
+<pre><code>int strlen(char *s);
+char *strcpy(char *dst, char *src);
+int strcmp(char *s1, char *s2);</code></pre></li>
+<li><p><code>ctype.h</code>ヘッダファイルに宣言されている関数．<code>tolower(c)</code>関数は，文字<code>c</code>がアルファベットの大文字ならば小文字にして返し，それ以外なら<code>c</code>を返す．<code>isalnum(c)</code>関数は，文字<code>c</code>が数字かアルファベットならば1を返し，それ以外の文字なら0を返す．</p>
+<pre><code>int tolower(int c);
+int isalnum(int c);</code></pre></li>
+</ul></li>
+</ul>
+<p>
+<strong>発展2：</strong>大文字やピリオドなどを含む通常の英文．ピリオドなどの単語の後にある記号を削除して出現回数を数える．</p>
+<p> <strong>発展2の実行例：</strong></p>
+<pre><code>    $ ./word_histogram
+    This is a pen.  That is a pineapple.
+    &lt;Ctrl+D&gt;
+    1       this
+    2       is
+    2       a
+    1       pen
+    1       that
+    1       pineapple</code></pre>
+<p> <strong>発展2のヒント：</strong></p>
+<ul>
+<li>テストで標準入力に与える文章には<code>"pen."</code>のように単語の末尾にピリオドやコンマが含まれることがある．<code>"pen"</code>と<code>"pen."</code>は同じ単語として扱えるように，<code>word[n]</code>にコピーする前（あるいはコピーするとき）に，単語の末尾の記号を取り除く．</li>
+</ul>
+<p> <strong>発展3：</strong></p>
+<p>大文字やピリオドや記号などを含む長文．単語の出現回数がコマンドライン引数に指定した整数以上の単語のみ出力する．コマンドライン引数なしの場合は，すべての単語を出力する．このテストケースは解答例と一致しないでよい．</p>
+<p> <strong>発展3の実行例3：</strong></p>
+<pre><code>    $ ./word_histogram 2
+    This is a pen.  That is a pineapple.
+    &lt;Ctrl+D&gt;
+    2       is
+    2       a</code></pre>
+<p> <strong>発展3のヒント：</strong></p>
+<ul>
+<li><p>コマンドライン引数に整数<code>min</code>を指定すると，単語の出現回数が<code>min</code>以上の単語のみ出力する．コマンドライン引数なしの場合は，すべての単語を出力する．</p></li>
+<li><p>記号の削除の仕方などによって，解答例の出現回数が一致しない可能性がある．出現回数の一致にはこだわらず，よく使われている単語が取り出せていることを確認してほしい．<code>make test</code>で失敗したからといって神経質になならくてよい．</p></li>
+<li><p>解答例ではI’veなどの間に記号が入った語はそのまま1単語にしている．Iと
+veに分解していない．</p></li>
+<li><p><code>make test</code>を使わずにテストケース7と8を試す方法．&lt;のあとはファイル名</p>
+<pre><code>$ ./word_histogram 100 &lt; tests/7.in
+$ ./word_histogram 100 &lt; tests/8.in
+あるいは
+$ cat tests/7.in | ./word_histogram 100
+$ cat tests/8.in | ./word_histogram 100</code></pre></li>
+</ul>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li
+id="fn1"><p>出現回数順や辞書順などの決まった順番に並べ替える処理をソートと呼ぶ．この科目では多要素のソートは扱わない．アルゴリズムとデータ構造を履修してからソートに挑戦しなさい．<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li
+id="fn2"><p>大文字・小文字の区別を無くしたり，ピリオドを削除したりする作業をdata
+cleansingやdata
+cleaningと言われる．データクレンジングやデータクリーニングと言われる．訳語は定着していない訳語だとデータ浄化．<a
+href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

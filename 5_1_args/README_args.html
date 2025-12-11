@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 5_1_args</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+5_1_args</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>コマンドライン引数の数（コマンド名自身を含む数）とそれぞれの引数を出力するプログラムを作成せよ．</p>
+<p> <strong>コマンドライン引数：</strong>なし，または1個以上．</p>
+<p> <strong>入力：</strong>なし．</p>
+<p> <strong>出力：</strong></p>
+<ul>
+<li><p>1行目：コマンドライン引数の数（コマンド名自身を含む数）</p></li>
+<li><p>2行目以降：実行例のようにコマンドライン引数の番号と引数を1行に一つずつ．コマンド名自身は含めない．</p></li>
+</ul>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o args args.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./args first_argument second_argument third_argument</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>4
+1: first_argument
+2: second_argument
+3: third_argument</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./args 1 2 3 4 5</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>6
+1: 1
+2: 2
+3: 3
+4: 4
+5: 5</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./args Fibonacci 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>18
+1: Fibonacci
+2: 0,
+3: 1,
+4: 1,
+5: 2,
+6: 3,
+7: 5,
+8: 8,
+9: 13,
+10: 21,
+11: 34,
+12行目以降省略（18行）</code></pre>
+<p>出力の全体は <code>cat tests/3.correct</code>
+コマンドを実行すると表示される．</p>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./args ess igo sado shougi shodo railway astro hyakunin-isshu nandemo candle game manzai nazo magic history ikenobo photo lego art theater watercolor shooting quiz</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>24
+1: ess
+2: igo
+3: sado
+4: shougi
+5: shodo
+6: railway
+7: astro
+8: hyakunin-isshu
+9: nandemo
+10: candle
+11: game
+12行目以降省略（24行）</code></pre>
+<p>出力の全体は <code>cat tests/4.correct</code>
+コマンドを実行すると表示される．</p>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: args.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/
+
+int main() {
+  return 0;
+}</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>明快入門C 88 コマンドラインから引数を渡す．Cの絵本
+main()関数．</p></li>
+<li><p>コマンドラインに指定された引数を読み取るプログラムは<code>main</code>関数の引数を二つ使う．第1引数の<code>argc</code>はコマンドライン引数の個数（コマンド名自身を含む数）である<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>．コマンド名も数に含めるので，実行するコマンドラインがテスト1のように
+<code>./args first_argument second_argument third_argument</code>
+であれば個数は4つである．第2引数の<code>argv</code>は配列で，配列のそれぞれの要素が文字列のアドレスである．</p>
+<pre><code>int main(int argc, char *argv[])</code></pre>
+<p>例えば，<code>argv[0]</code>は<code>char *</code>型，つまり<code>char</code>型ポインタである．
+<code>argv[0]</code>にはコマンド名の文字列の先頭アドレスが格納されている（実行例では<code>"./args"</code>の先頭アドレス）．<code>*argv[0]</code>と<code>argv[0][0]</code>はどちらも同じ文字型（<code>char</code>型）の変数である．この変数の値は，コマンド名の先頭文字である（実行例ではこの文字はピリオド’.’）．</p></li>
+<li><p>実行例をよく見なさい．最初に出力する引数の数にはコマンド名を含みますが，続く出力にはコマンド名（<code>argv[0]</code>）は含みません．</p></li>
+<li><p><code>argc</code>番目のコマンドライン引数（<code>argv[argc]</code>）にNULLが格納されていることを確認しなさい．</p>
+<pre><code>if (argv[argc] == NULL) {
+  printf(&quot;argv[%d] is NULL\n&quot;, argc);
+} else {
+  printf(&quot;argv[%d] is NOT NULL\n&quot;, argc);
+}</code></pre></li>
+<li><p><code>argc</code>と<code>argv</code>という仮引数名が一般的に使われる．他の名前でもエラーになるわけではないが，他の名前に変える理由もないのでこのまま覚えるといいだろう．<code>argc</code>はargument
+countの略で，<code>argv</code>はargument
+vectorの略と覚えるとよい．</p></li>
+</ul>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>コマンドライン引数は空白で区切られる．<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
