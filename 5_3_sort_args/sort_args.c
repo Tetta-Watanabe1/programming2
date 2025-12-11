@@ -13,7 +13,7 @@
 感想: 
 
 */
-void dictional_sort(char *a, char *b, check){
+void dictional_sort(char *a, char *b, int check){
 	static int i = 0;
 	if(check = 0)
 		i = 0;
