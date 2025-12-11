@@ -1,0 +1,8 @@
+Test case 2 with "--version" (not implemented)
+Usage: find_options [options]
+Options:
+--help, -h                  Display this information
+--version, -v               Display version information
+--search <arg>, -s <arg>    Search <arg> string
+--save <file>, -S <file>    Save into <file>
+--test, -t                  Test this command

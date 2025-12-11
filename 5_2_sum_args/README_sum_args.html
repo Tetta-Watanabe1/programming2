@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 5_2_sum_args</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+5_2_sum_args</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>コマンドライン引数に与えられた整数の合計を出力せよ．</p>
+<p> <strong>コマンドライン引数：</strong></p>
+<p>引数はそれぞれ整数である．引数の個数はいくつでもよい．</p>
+<p>引数が正の整数の場合には，<code>"+10"</code>のように先頭にプラスがつく場合と，
+<code>"10"</code>のように先頭のプラスを省略する場合がある．負の数の場合，
+<code>"-10"</code>のように先頭にマイナスがつく．<code>atoi</code>関数で整数に変換できる引数が与えられる．</p>
+<p> <strong>入力：</strong>なし．</p>
+<p>
+<strong>出力：</strong>コマンドライン引数に与えられた整数の合計．テスト一覧のようにプラス記号は省略すること．</p>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o sum_args sum_args.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args 365</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>365</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args +31</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>31</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args </code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>0</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args -1</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>-1</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args 1 2</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>3</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args +1 -2</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>-1</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args +5 +6 +1 +1 +2 +7 +2 +7 +0 +8</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>39</code></pre>
+<p><strong>テスト8</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args 73868 58797 14369 40410 91671 79991 25034 61095 25586 58950</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>529771</code></pre>
+<p><strong>テスト9</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args 79 1 76 99 69 4 77 95 22 98 60 51 59 87 20 99 82 41 25 97 68 57 60 85 41 96 77 64 23 71 13 9 37 78 39 67 57 53 85 2 23 67 12 61 14 90 62 51 78 21 23 99 93 13 32 15 59 74 24 85 92 96 46 14 5 2 8 80 8 19 35 26 68 62 0 68 8 77 28 92 87 21 64 53 29 25 21 51 90 12 89 66 93 9 32 15 61 38 75 34</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>5118</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args 265 194 325 -450 218 357 147 397 47 393</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>1893</code></pre>
+<p><strong>テスト11</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args -9 -4 -10 -10 -10 -1 -7 -9 -8 -7</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>-75</code></pre>
+<p><strong>テスト12</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args -320 4783 1993 7144 6364 206 7544 1521 6790 1430</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>37455</code></pre>
+<p><strong>テスト13</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sum_args 12 -21 -4 9 -27 -14 2 33 6 13 -45 17 -50 -12 -49 34 2 -12 33 23 2 -36 -18 39 11 20 22 -3 48 -37 -47 -2 44 46 35 19 -40 34 15 -35 9 40 25 26 -27 -15 -11 3 0 22 9 0 -19 -7 39 -25 5 -50 44 -13 22 -46 1 -4 -3 27 10 29 8 13 10 42 -29 26 -11 -5 13 -2 10 46 6 -6 -25 2 7 -48 -19 12 3 -18 41 -49 -36 23 28 16 34 -16 48 -48</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>234</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: sum_args.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>明快入門C 88 コマンドラインから引数を渡す．Cの絵本
+main()関数．</p></li>
+<li><p><code>main</code>関数の第一引数（<code>int argc</code>）にはコマンド名を含むコマンドライン引数の個数が格納されている．第二引数（<code>char *argv[]</code>）は配列である．配列のそれぞれの要素はコマンドライン引数の文字列を指すポインタである．例えば，ターミナルで次のように実行したとする．</p>
+<pre><code>$ ./sum_args 1 2</code></pre>
+<p>このとき，
+次のように第一引数と第二引数に値（やアドレス）が格納されて，<code>main</code>関数が呼び出される．</p>
+<pre><code>argc = 3;
+argv[0] = &quot;./sum_args&quot;;
+argv[1] = &quot;1&quot;;
+argv[2] = &quot;2&quot;;
+argv[3] = NULL ;</code></pre>
+<p>コマンドラインの文字列は，1つ以上の空白文字で引数に分割される．</p>
+<p><code>argv[3]</code>の値<code>NULL</code>はポインタ型の定数である．メモリアドレス0番地を指すポインタで，無効なポインタとして使う．</p></li>
+<li><p>コマンドライン引数に与えられた整数は文字列として<code>main</code>関数に渡される．文字列で表現された整数を<code>int</code>型の整数に変換するには，<code>atoi</code>関数を使うとよい．もちろん，<code>atoi</code>関数を使わずに自分で同様の処理を書いても構わない．<code>atoi</code>関数は<code>stdlib.h</code>ヘッダファイルに次のように宣言されている．</p>
+<pre><code>#include &lt;stdlib.h&gt;
+
+int atoi(char *str);</code></pre>
+<p>引数の<code>str</code>は文字列の先頭アドレス（char型配列のアドレス）である．
+<code>atoi</code>関数の呼び出し例は明快入門C 83
+その他の関数にある．このほかに明快入門Cの索引から，48 数値入出力3
+数値入力の別方法や付録Aにも
+<code>atoi</code>関数の説明があることがわかる．</p>
+<p><code>atoi</code>関数を試すには次のプログラムで<code>"+1"</code>の部分を書き換えるとよい．</p>
+<pre><code>int i;
+i = atoi(&quot;+1&quot;);
+printf(&quot;%d\n&quot;, i);</code></pre></li>
+<li><p>Cygwin64ターミナルで（英文）<code>atoi</code>関数のオンラインマニュアルを読める．マニュアルページを終了するときは
+Q キーを押す．マニュアルページの使い方を知りたいときは H
+キーを押す．</p>
+<pre><code>$ man atoi
+ATOI(3)              Standard Utility F...
+
+NAME
+       atoi, atol, _atoi_r, _atol_r - s...
+
+SYNOPSIS
+       #include &lt;stdlib.h&gt;
+
+       int atoi(const char *s);</code></pre>
+<p><code>man atoi</code>
+コマンドを実行したときに「<code>atoi</code>というマニュアルはありません」と表示される場合は，Cygwin
+に cygwin-doc
+パッケージを追加してから改めて<code>man</code>コマンドを実行する．パッケージの追加方法はBb9の「必携
+PC（Windows
+11）の演習準備」ページの「Cygwinのmanコマンドの使い方」という項目をみよ．</p>
+<pre><code>$  setup-x86_64 -P cygwin-doc</code></pre></li>
+</ul>
+</body>
+</html>

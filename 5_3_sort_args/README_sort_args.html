@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プログラミングII演習課題の手引き 5_3_sort_args</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href=".README.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プログラミングII演習課題の手引き<br />
+5_3_sort_args</h1>
+</header>
+<h1 data-number="1" id="説明"><span
+class="header-section-number">1</span> 説明</h1>
+<p>コマンドライン引数で与えられる三つまたは四つの単語を辞書順に出力せよ．</p>
+<p> <strong>コマンドライン引数：</strong>三つ，または四つの単語</p>
+<p> <strong>入力：</strong>なし</p>
+<p> <strong>出力：</strong>単語（コマンドライン引数）が三つの場合</p>
+<ul>
+<li>辞書順で最も小さい単語（辞書で最初に出てくる単語）</li>
+<li>辞書順で二番目に小さい単語</li>
+<li>辞書順で最も大きい単語（辞書で最後に出てくる単語）</li>
+</ul>
+<p>単語が四つ場合</p>
+<ul>
+<li>辞書順で最も小さい単語</li>
+<li>辞書順で二番目に小さい単語</li>
+<li>辞書順で三番目に小さい単語</li>
+<li>辞書順で最も大きい単語</li>
+</ul>
+<p> <strong>コンパイル：</strong></p>
+<pre><code>    $ gcc -Wall -o sort_args sort_args.c</code></pre>
+<h1 data-number="2" id="testlist"><span
+class="header-section-number">2</span> テスト一覧</h1>
+<p>テスト番号: 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34</p>
+<p>（1行が長い場合にブラウザでは複数行に分けて表示される場合あるので注意すること）</p>
+<p><strong>テスト1</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args apple banana cherry</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>apple
+banana
+cherry</code></pre>
+<p><strong>テスト2</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args boy meets girl</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>boy
+girl
+meets</code></pre>
+<p><strong>テスト3</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args banana apple cherry</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>apple
+banana
+cherry</code></pre>
+<p><strong>テスト4</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args long time ago</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>ago
+long
+time</code></pre>
+<p><strong>テスト5</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args wild honey pie</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>honey
+pie
+wild</code></pre>
+<p><strong>テスト6</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args cherry banana apple</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>apple
+banana
+cherry</code></pre>
+<p><strong>テスト7</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args cry baby cry</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>baby
+cry
+cry</code></pre>
+<p><strong>テスト10</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args closely color company content</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト11</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args closely color content company</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト12</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args closely company color content</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト13</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args closely company content color</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト14</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args closely content color company</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト15</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args a taste of honey</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>a
+honey
+of
+taste</code></pre>
+<p><strong>テスト16</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args if i needed someone</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>i
+if
+needed
+someone</code></pre>
+<p><strong>テスト17</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args color closely content company</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト18</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args color company closely content</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト19</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args color company content closely</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト20</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args things we said today</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>said
+things
+today
+we</code></pre>
+<p><strong>テスト21</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args any time at all</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>all
+any
+at
+time</code></pre>
+<p><strong>テスト22</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args company closely color content</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト23</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args rock and roll music</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>and
+music
+rock
+roll</code></pre>
+<p><strong>テスト24</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args eight days a week</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>a
+days
+eight
+week</code></pre>
+<p><strong>テスト25</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args company color content closely</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト26</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args here there and everywhere</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>and
+everywhere
+here
+there</code></pre>
+<p><strong>テスト27</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args company content color closely</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト28</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args content closely color company</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト29</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args content closely company color</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト30</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args content color closely company</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト31</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args your mother should know</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>know
+mother
+should
+your</code></pre>
+<p><strong>テスト32</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args when i get home</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>get
+home
+i
+when</code></pre>
+<p><strong>テスト33</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args content company color closely</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>closely
+color
+company
+content</code></pre>
+<p><strong>テスト34</strong></p>
+<p>コマンドライン</p>
+<pre><code>$ ./sort_args good morning good morning</code></pre>
+<p>入力なし</p>
+<p>出力</p>
+<pre><code>good
+good
+morning
+morning</code></pre>
+<h1 data-number="3" id="配布ファイル"><span
+class="header-section-number">3</span> 配布ファイル</h1>
+<p>ファイル名: sort_args.c</p>
+<pre><code>/**
+
+氏名: 
+
+学生番号: 
+
+作成日: 
+
+入出力の説明: 
+
+動きの説明: 
+
+感想: 
+
+*/</code></pre>
+<h1 data-number="4" id="ヒント"><span
+class="header-section-number">4</span> ヒント</h1>
+<ul>
+<li><p>辞書順は apple，banana，cherry
+のように単語が辞書に載っている順番． banana，apple，cherry は banana と
+apple が逆順なので辞書順ではない．</p></li>
+<li><p>辞書順に並んでいることを確認するには，すべての隣り合う二つの間で辞書順になっていることを確認すればよい．確認回数は三単語なら二回，四単語なら三回．単語数が<span
+class="math inline">\(n\)</span>なら<span
+class="math inline">\(n-1\)</span>回．</p></li>
+<li><p>文字列比較関数は文字列処理ですでに学んでいます．<code>strcmp</code>関数．明快入門C
+付録A C言語主要関数一覧 文字列処理 が調べやすい．</p></li>
+<li><p><strong>まずは</strong>
+文字列比較関数の使い方を思い出すために，三単語が辞書順に並んでいること確認するプログラムを書くのがいいでしょう．単語は自分で入力しなさい．なお，最初のテストは三単語で，辞書順に並んでいます．</p>
+<p><strong>その後</strong>，三単語の場合のプログラムを作りましょう．</p>
+<p><strong>最後に</strong>，四単語の場合もプログラムにしましょう．</p></li>
+<li><p>三つのコマンドライン引数の場合，すべての場合（順列）を並べると，<span
+class="math inline">\(3!
+= 6\)</span> 通り．a b c, a c b, b a c, b c a, c a b, c b a</p></li>
+<li><p>四つのコマンドライン引数がある場合は，すべての場合を並べると，<span
+class="math inline">\(4! =
+24\)</span>
+通り．すべての場合をプログラム中に並べるのは，闇雲に並べると，いくつかの場合を漏らしそうです．</p></li>
+<li><p>仮に四つのコマンドライン引数を単語 <span class="math inline">\(a,
+b, c,
+d\)</span>．先頭から一単語ずつ辞書順に揃えていく方法があります．この方法を挿入ソートと呼びます．ただし，辞書順で<span
+class="math inline">\(a&lt;b&lt;c&lt;d\)</span>とは限らないことに注意せよ．</p>
+<ol type="1">
+<li>まず単語<span
+class="math inline">\(a\)</span>だけ考える．辞書順に並んでいるといえる．リストを<span
+class="math inline">\((a)\)</span> とする．</li>
+<li>次に辞書順を維持したまま，リスト<span
+class="math inline">\((a)\)</span>に単語<span
+class="math inline">\(b\)</span>を加える．加えたリストを<span
+class="math inline">\((a&#39;, b&#39;)\)</span>とする．<span
+class="math inline">\(a&#39; &lt; b&#39;\)</span>を満たす．<span
+class="math inline">\(a&#39;\)</span>と<span
+class="math inline">\(b&#39;\)</span>は一方が<span
+class="math inline">\(a\)</span> で他方が<span
+class="math inline">\(b\)</span>．</li>
+<li>さらに辞書順を維持したまま，リスト<span
+class="math inline">\((a&#39;, b&#39;)\)</span>に単語<span
+class="math inline">\(c\)</span>を加える．加えたリストを<span
+class="math inline">\((a&#39;&#39;, b&#39;&#39;,
+c&#39;&#39;)\)</span>とする．<span class="math inline">\(a&#39;&#39;
+&lt; b&#39;&#39; &lt; c&#39;&#39;\)</span>を満たす．</li>
+<li>最後に辞書順を維持したまま，リスト<span
+class="math inline">\((a&#39;&#39;, b&#39;&#39;,
+c&#39;&#39;)\)</span>に単語<span
+class="math inline">\(d\)</span>を加える．加えたリストを<span
+class="math inline">\((a&#39;&#39;&#39;, b&#39;&#39;&#39;,
+c&#39;&#39;&#39;, d&#39;&#39;&#39;)\)</span>とする．<span
+class="math inline">\(a&#39;&#39;&#39; &lt;
+b&#39;&#39;&#39; &lt; c&#39;&#39;&#39; &lt;
+d&#39;&#39;&#39;\)</span>を満たす．</li>
+<li>リスト<span class="math inline">\((a&#39;&#39;, b&#39;&#39;&#39;,
+c&#39;&#39;&#39;, d&#39;&#39;&#39;)\)</span>は辞書順に並んでいる．</li>
+</ol></li>
+<li><p>「辞書順を維持したまま，リスト<span
+class="math inline">\((a&#39;, b&#39;)\)</span>に単語<span
+class="math inline">\(c\)</span>を加える」部分をもう少し詳しくみる．<span
+class="math inline">\(c\)</span>より小さいものが見つかるまで，リスト末尾から先頭に向かって一単語ずつ<span
+class="math inline">\(c\)</span>と比べる．<span
+class="math inline">\(c\)</span>より小さいものが見つかったらそのすぐ後に<span
+class="math inline">\(c\)</span>を入れて終わる．</p>
+<p>適切な場所を探すイメージ(<code>b?</code>は単語<code>b</code>が入る仮の位置)</p>
+<pre><code>1. リスト (a&#39;, b&#39;) はすでに辞書順．
+2. リスト (a&#39;, b&#39;, c?) を辞書順と仮定する．
+3. リスト (a&#39;, b&#39;, c?) について b&#39; &lt;= c ならば，このリスト (a&#39;, b&#39;, c) は辞書順．
+4. そうでなければ（つまり c &lt; b&#39; ならば），リスト (a&#39;, c?, b&#39;) を辞書順と仮定する．
+5. リスト (a&#39;, c?, b&#39;) について a&#39; &lt;= c ならば，このリスト (a&#39;, c, b&#39;) は辞書順．
+6. そうでなければ（つまり c &lt; a&#39; ならば），リスト (c?, a&#39;, b&#39;) を辞書順と仮定する．
+7. リストの先頭と比べたので繰り返しは終わり．リスト (c, a&#39;, b&#39;) は辞書順．</code></pre>
+<p>上の手順をC言語っぽく書くと次のようになる．<code>単語c &lt;= 単語t</code>などの比較は単語の比較をしているので文字列比較関数を使う．C言語で
+<code>c &lt;= t</code> と書くとアドレスの比較になる．</p>
+<pre><code>単語t = 単語c;
+if (単語b &lt;= 単語t) {   // 3
+  単語c = 単語t;        // 3
+} else {               // 4
+  単語c = 単語b;        // 4
+  if (単語a &lt;= 単語t) { // 5
+    単語b = 単語t;      // 5
+  } else {             // 6
+    単語b = 単語a:      // 6
+    単語a = 単語t;      // 7
+  }
+}</code></pre></li>
+<li><p>四つ目の単語dを加えるところも，三つ目の単語の場合と同様です．最後の単語cから順に比較して適切な場所に入れます．</p></li>
+</ul>
+</body>
+</html>
